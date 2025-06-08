@@ -6,21 +6,20 @@ export async function GET() {
 
   const itemsXml = allBlogs
     .sort((a, b) => {
-      if (new Date(a.metadata.publishedAt) > new Date(b.metadata.publishedAt)) {
-        return -1
-      }
-      return 1
+      const dateA = new Date(a.metadata.publishedAt || a.metadata.date || new Date().toISOString())
+      const dateB = new Date(b.metadata.publishedAt || b.metadata.date || new Date().toISOString())
+      return dateB.getTime() - dateA.getTime()
     })
     .map(
-      (post) =>
-        `<item>
+      (post) => {
+        const pubDate = new Date(post.metadata.publishedAt || post.metadata.date || new Date().toISOString())
+        return `<item>
           <title>${post.metadata.title}</title>
           <link>${baseUrl}/blog/${post.slug}</link>
           <description>${post.metadata.summary || ''}</description>
-          <pubDate>${new Date(
-            post.metadata.publishedAt
-          ).toUTCString()}</pubDate>
+          <pubDate>${pubDate.toUTCString()}</pubDate>
         </item>`
+      }
     )
     .join('\n')
 
