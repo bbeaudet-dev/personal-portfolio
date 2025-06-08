@@ -7,13 +7,13 @@ export default function Page() {
         just another blog
       </h1>
       <p className="mb-4">
-        {`Hey, I'm Ben Beaudet.`}
+        {`Hey, I'm Ben.`}
       </p>
       <p className="mb-4">
-        {`I began pivoting from mechanical engineering to software engineering a few months ago and found that writing helps me get better at explaining my thought process, understanding new concepts, and processing both my insights and my struggles.`}
+        {`I'm pivoting from mechanical engineering to software engineering and writing helps me process/understand/explain everything better. `}
       </p>
       <p className="mb-4">
-        {`From June 2nd to August 30th 2025, I will be doing the Fractal Bootcamp & AI Accelerator in Brooklyn, NY. Most of my posts will be about coding and game dev, especially during this 3-month window, but I like to explore all kinds of topics and want this to be an experiment for both what I enjoy writing about and what you might want to read.`}
+        {`From 06/02 to 08/30, I'll be doing the Fractal Bootcamp & AI Accelerator, so most of my posts will be about coding and game dev, but I want to leave it open based on what I like to write and what you might like to read. `}
       </p>
       <p className="mb-4">
         {`Welcome and thanks for being here.`}
