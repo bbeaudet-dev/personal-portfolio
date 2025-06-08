@@ -4,14 +4,16 @@ export default function Page() {
   return (
     <section>
       <h1 className="mb-8 text-2xl font-semibold tracking-tighter">
-        My Portfolio
+        just another blog
       </h1>
       <p className="mb-4">
-        {`I'm a Vim enthusiast and tab advocate, finding unmatched efficiency in
-        Vim's keystroke commands and tabs' flexibility for personal viewing
-        preferences. This extends to my support for static typing, where its
-        early error detection ensures cleaner code, and my preference for dark
-        mode, which eases long coding sessions by reducing eye strain.`}
+        {`Hey, I'm Ben Beaudet. 
+        
+        I began pivoting from mechanical engineering to software engineering a few months ago and found that helps me get better at explaining my thought process, understanding new concepts, and processing both my insights and my struggles. 
+        
+        From June 2nd to August 30th 2025, I will be doing the [Fractal Bootcamp & AI Accelerator](https://fractalbootcamp.com/) in Brooklyn, NY. Most of my posts will be about coding and game dev, especially during this 3-month window, but I like to explore all kinds of topics and want this to be an experiment for both what I enjoy writing about and what you might want to read. 
+        
+        Welcome and thanks for being here.`}
       </p>
       <div className="my-8">
         <BlogPosts />
