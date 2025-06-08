@@ -3,7 +3,8 @@ import path from 'path'
 
 type Metadata = {
   title: string
-  publishedAt: string
+  publishedAt?: string
+  date?: string
   summary: string
   image?: string
 }
@@ -50,41 +51,65 @@ function getMDXData(dir) {
 }
 
 export function getBlogPosts() {
-  return getMDXData(path.join(process.cwd(), 'app', 'blog', 'posts'))
+  return getMDXData(path.join(process.cwd(), 'app', 'blog', 'posts')).map(post => ({
+    ...post,
+    metadata: {
+      ...post.metadata,
+      publishedAt: post.metadata.publishedAt || post.metadata.date || new Date().toISOString()
+    }
+  }))
 }
 
-export function formatDate(date: string, includeRelative = false) {
-  let currentDate = new Date()
-  if (!date.includes('T')) {
-    date = `${date}T00:00:00`
+export function formatDate(date: string | undefined, includeRelative = false) {
+  if (!date) {
+    return ''
   }
+
+  let currentDate = new Date()
   let targetDate = new Date(date)
 
-  let yearsAgo = currentDate.getFullYear() - targetDate.getFullYear()
-  let monthsAgo = currentDate.getMonth() - targetDate.getMonth()
-  let daysAgo = currentDate.getDate() - targetDate.getDate()
+  let months = [
+    'Jan',
+    'Feb',
+    'Mar',
+    'Apr',
+    'May',
+    'Jun',
+    'Jul',
+    'Aug',
+    'Sep',
+    'Oct',
+    'Nov',
+    'Dec',
+  ]
+  let month = months[targetDate.getMonth()]
+  let day = targetDate.getDate()
+  let year = targetDate.getFullYear()
 
-  let formattedDate = ''
+  let formattedDate = `${month} ${day}, ${year}`
 
-  if (yearsAgo > 0) {
-    formattedDate = `${yearsAgo}y ago`
-  } else if (monthsAgo > 0) {
-    formattedDate = `${monthsAgo}mo ago`
-  } else if (daysAgo > 0) {
-    formattedDate = `${daysAgo}d ago`
-  } else {
-    formattedDate = 'Today'
+  if (includeRelative) {
+    const diffInDays = Math.floor(
+      (currentDate.getTime() - targetDate.getTime()) / (1000 * 60 * 60 * 24)
+    )
+
+    if (diffInDays === 0) {
+      return 'Today'
+    } else if (diffInDays === 1) {
+      return 'Yesterday'
+    } else if (diffInDays < 7) {
+      return `${diffInDays} days ago`
+    } else if (diffInDays < 30) {
+      const weeks = Math.floor(diffInDays / 7)
+      return `${weeks} ${weeks === 1 ? 'week' : 'weeks'} ago`
+    } else if (diffInDays < 365) {
+      const months = Math.floor(diffInDays / 30)
+      return `${months} ${months === 1 ? 'month' : 'months'} ago`
+    } else {
+      const years = Math.floor(diffInDays / 365)
+      return `${years} ${years === 1 ? 'year' : 'years'} ago`
+    }
   }
 
-  let fullDate = targetDate.toLocaleString('en-us', {
-    month: 'long',
-    day: 'numeric',
-    year: 'numeric',
-  })
-
-  if (!includeRelative) {
-    return fullDate
-  }
-
-  return `${fullDate} (${formattedDate})`
+  return formattedDate
 }
