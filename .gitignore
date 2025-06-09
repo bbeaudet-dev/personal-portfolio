@@ -1,8 +1,7 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
-# WIP Posts
-/app/blog/posts/1-taking-the-leap.mdx
-/app/blog/posts/2-tech-eval.mdx
+# ideas / drafts
+/app/blog/ideas
 
 # dependencies
 /node_modules
