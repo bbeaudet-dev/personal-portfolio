@@ -65,8 +65,9 @@ export function formatDate(date: string | undefined, includeRelative = false) {
     return ''
   }
 
+  // Ensure the date is interpreted in UTC
+  let targetDate = new Date(date + 'T00:00:00Z')
   let currentDate = new Date()
-  let targetDate = new Date(date)
 
   let months = [
     'Jan',
@@ -82,9 +83,9 @@ export function formatDate(date: string | undefined, includeRelative = false) {
     'Nov',
     'Dec',
   ]
-  let month = months[targetDate.getMonth()]
-  let day = targetDate.getDate()
-  let year = targetDate.getFullYear()
+  let month = months[targetDate.getUTCMonth()]
+  let day = targetDate.getUTCDate()
+  let year = targetDate.getUTCFullYear()
 
   let formattedDate = `${month} ${day}, ${year}`
 
