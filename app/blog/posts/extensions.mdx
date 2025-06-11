@@ -8,6 +8,10 @@ _These VS Code extensions are helping me be more productive and find my programm
 
 As a beginner software engineer, I wanted to share the extensions that have genuinely made coding easier and more enjoyable for me. This is by no means an objective or exhaustive list of the "best" tools — just the ones that helped me feel more confident, learn quicker, and get stuff done.
 
+The screenshot below shows a majority of the extensions discussed, including colors, themes, error and bracket lenses, spell check, bookmarks, and to-dos:
+
+TODO add all-styling image
+
 ---
 
 ## Troubleshooting & Quality of Life
@@ -25,9 +29,11 @@ _Catching mistakes early and writing better code_
 
 Shows errors and warnings directly on the line where they occur - great for quickly glancing over your code and a QOL must-have.
 
+TODO Add error-brackets image
+
 ### Bracket Lens
 
-Shows which opening bracket corresponds to each closing bracket with inline info like start/end lines and type of object - great for quickly parsing through nested JavaScript objects.
+Shows which opening bracket corresponds to each closing bracket with inline info like start/end lines and type of object - great for quickly parsing through nested JavaScript objects. (shown in image above)
 
 ### Code Spell Checker
 
@@ -56,15 +62,21 @@ _Personalizing your workspace and making your code easier to read at a glance_
 
 Colors your indentation levels, making it easier to visualize hierarchies, nested objects, and looping. Also highlights when lines are not correctly indented / have unnecessary spaces. IMO this one has an outsized impact for how simple it is.
 
+TODO Add indent image
+
 ### Peacock
 
 Changes your VSCode window color per project - that's it! Picking new colors for each new project is fun. This looks great with the Monokai theme imo. 
+
+TODO Add peacock image
 
 **Setup:** Once installed, press `Cmd/Ctrl + Shift + P`, search "Peacock", and (e.g.) run the "Change to a favorite color" command.
 
 ### Folder Path Color
 
 Assign colors to individual folders/paths. Likely better for larger projects since it involves some manual setup.
+
+TODO Add folder-path image here
 
 **Setup:** Configure your `settings.json` file like:
 
@@ -99,11 +111,42 @@ Bookmark specific lines in your code and jump between them instantly instead of 
 
 ### Todo Tree
 
-Scans your code for TODO, FIXME, and other comment tags and displays them in a tree view so you never forget about unfinished business.
+Scans your code for TODO, FIXME, and other comment tags and displays them in a tree view so you never forget about unfinished business. 
+
+TODO Add todo image
+
+I haven't tried this yet, but I imagine these tags would make your intentions very clear to the AI when you ask it to edit your code. 
 
 ### Git History
 
 Provides a visual representation of your Git commit history, so you can see exactly what changed when and debug newly-introduced issues.
+
+---
+
+## Efficiency & Navigation (WIP)
+
+Everything here makes me feel like a legit coder / hacker, and also saves me a bunch of time and effort over the 1,000s of micro-actions every day.
+
+### Navigation & Positioning (TODO)
+- Window/tab navigation and positioning
+- Moving/editing lines of code
+- CLI navigation
+- You can [set up folders in your dock using aliases](https://support.apple.com/guide/mac-help/open-apps-from-the-dock-mh35859/15.0/mac/15.0#mchlpf80766d), which helps me compartmentalize, example here:
+TODO add dock folders image
+- Highly recommend BetterSnapTool (or Magnet, they're all the same imo) and configuring shortcuts for common layouts like left/right half, left/middle/right third, full screen, etc.
+TODO add bettersnaptool image
+
+### Keyboard Shortcuts
+
+My most used:
+  - Option + Arrow = Move current line up/down
+  - Option + Shift + Arrow = Copy current line up/down
+  - Cmd + Shift + K = Delete Line
+  - Cmd + D = Duplicate cursor to next occurrence
+  - Cmd + K + P = Copy path of active file
+  - Cmd + Opt + I  or  Fn F12  = Inspect / Dev Console
+  - Cmd + Shift + . (Period) = Toggle Hidden Files in Finder
+  - Cmd + Shift + P = VSCode command
 
 ---
 
@@ -134,7 +177,7 @@ Lets you develop inside a containerized environment, which can solves the "it wo
 
 ---
 
-## Essential Settings Tweaks
+## Settings Tweaks
 
 _Small changes that make a big difference_
 
