@@ -1,4 +1,4 @@
-import { BlogPosts } from 'app/components/posts'
+import { RecentContent } from 'app/components/recent-content'
 
 export default function Page() {
   return (
@@ -10,17 +10,15 @@ export default function Page() {
         {`Hey, I'm Ben.`}
       </p>
       <p className="mb-4">
-        {`I'm pivoting from mechanical engineering to software engineering and writing helps me process/understand/explain everything better. `}
+        {`I'm pivoting from mechanical to software engineering and I've found that writing helps me understand myself and the world better.`}
       </p>
       <p className="mb-4">
-        {`From 06/02 to 08/30, I'll be doing the Fractal Bootcamp & AI Accelerator, so most of my posts will be about coding and game dev, but I want to leave it open based on what I like to write and what you might like to read. `}
+        {`I'll be doing the Fractal Engineering Bootcamp & AI Accelerator throughout the summer, so most of my posts will be about coding, although who knows where my mind will take us. `}
       </p>
       <p className="mb-4">
-        {`Welcome and thanks for being here!`}
+        {`Welcome and thanks for being here.`}
       </p>
-      <div className="my-8">
-        <BlogPosts />
-      </div>
+      <RecentContent />
     </section>
   )
 }
