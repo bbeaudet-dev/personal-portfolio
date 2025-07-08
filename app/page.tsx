@@ -13,9 +13,6 @@ export default function Page() {
         {`I'm pivoting from mechanical to software engineering and I've found that writing helps me understand myself and the world better.`}
       </p>
       <p className="mb-4">
-        {`I'll be doing the Fractal Engineering Bootcamp & AI Accelerator throughout the summer, so most of my posts will be about coding, although who knows where my mind will take us. `}
-      </p>
-      <p className="mb-4">
         {`Welcome and thanks for being here.`}
       </p>
       <RecentContent />
