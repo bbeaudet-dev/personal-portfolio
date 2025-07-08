@@ -58,7 +58,16 @@ function parseFrontmatter(fileContent: string) {
 }
 
 function getMDXFiles(dir) {
-  return fs.readdirSync(dir).filter((file) => path.extname(file) === '.mdx')
+  try {
+    if (!fs.existsSync(dir)) {
+      console.log(`Directory ${dir} does not exist, returning empty array`);
+      return [];
+    }
+    return fs.readdirSync(dir).filter((file) => path.extname(file) === '.mdx')
+  } catch (error) {
+    console.log(`Error reading directory ${dir}:`, error);
+    return [];
+  }
 }
 
 function readMDXFile(filePath) {
@@ -67,17 +76,22 @@ function readMDXFile(filePath) {
 }
 
 function getMDXData(dir) {
-  let mdxFiles = getMDXFiles(dir)
-  return mdxFiles.map((file) => {
-    let { metadata, content } = readMDXFile(path.join(dir, file))
-    let slug = path.basename(file, path.extname(file))
+  try {
+    let mdxFiles = getMDXFiles(dir)
+    return mdxFiles.map((file) => {
+      let { metadata, content } = readMDXFile(path.join(dir, file))
+      let slug = path.basename(file, path.extname(file))
 
-    return {
-      metadata,
-      slug,
-      content,
-    }
-  })
+      return {
+        metadata,
+        slug,
+        content,
+      }
+    })
+  } catch (error) {
+    console.log(`Error getting MDX data from ${dir}:`, error);
+    return [];
+  }
 }
 
 export function getBroadwayReviews() {
