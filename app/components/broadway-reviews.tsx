@@ -1,5 +1,6 @@
 import Link from 'next/link'
-import { formatDate, getBroadwayReviews, calculateAverageRating } from 'app/broadway/utils'
+import { formatDate, getBroadwayReviews } from 'app/broadway/utils'
+import { getShowRank, getTotalShows, formatRank, getShowBySlug } from 'app/broadway/reviews/show-list'
 
 export function BroadwayReviews() {
   let allReviews = getBroadwayReviews()
@@ -16,7 +17,10 @@ export function BroadwayReviews() {
           return 1
         })
         .map((review) => {
-          const averageRating = calculateAverageRating(review.metadata.rating)
+          const showInfo = getShowBySlug(review.slug)
+          const displayName = showInfo ? showInfo.name : review.metadata.showName
+          const rank = getShowRank(displayName)
+          const totalShows = getTotalShows()
           return (
             <Link
               key={review.slug}
@@ -29,7 +33,7 @@ export function BroadwayReviews() {
                 </p>
                 <div className="flex-1">
                   <p className="text-neutral-900 dark:text-neutral-100 tracking-tight">
-                    {review.metadata.showName}
+                    {displayName}
                   </p>
                   {review.metadata.summary && (
                     <p className="text-neutral-600 dark:text-neutral-400 text-sm">
@@ -39,7 +43,7 @@ export function BroadwayReviews() {
                 </div>
                 <div className="flex items-center space-x-2">
                   <span className="text-base text-neutral-900 dark:text-neutral-100 font-semibold">
-                    {averageRating.toFixed(1)}/5
+                    {formatRank(rank, totalShows)}
                   </span>
                 </div>
               </div>

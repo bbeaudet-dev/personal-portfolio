@@ -4,16 +4,14 @@ export default function Page() {
   return (
     <section>
       <h1 className="mb-8 text-2xl font-semibold tracking-tighter">
-        just another blog
+        hey, I'm ben
       </h1>
       <p className="mb-4">
-        {`Hey, I'm Ben.`}
+        {`I'm pivoting from mechanical to software engineering. 
+        Writing helps me understand myself and the world better.`}
       </p>
       <p className="mb-4">
-        {`I'm pivoting from mechanical to software engineering and I've found that writing helps me understand myself and the world better.`}
-      </p>
-      <p className="mb-4">
-        {`Welcome and thanks for being here.`}
+        {`welcome, thanks for being here`}
       </p>
       <RecentContent />
     </section>
