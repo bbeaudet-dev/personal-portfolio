@@ -9,7 +9,7 @@ type Rating = {
   wowFactor: number
 }
 
-type BroadwayMetadata = {
+type TheatreMetadata = {
   title: string
   publishedAt?: string
   date?: string
@@ -26,7 +26,7 @@ function parseFrontmatter(fileContent: string) {
   let frontmatterMatch = frontmatterRegex.exec(fileContent)
   let frontMatterBlock = frontmatterMatch![1]
   let content = fileContent.replace(frontmatterRegex, '').trim()
-  let metadata: Partial<BroadwayMetadata> = {}
+  let metadata: Partial<TheatreMetadata> = {}
 
   let frontMatterLines = frontMatterBlock.trim().split('\n')
   frontMatterLines.forEach((line) => {
@@ -54,7 +54,7 @@ function parseFrontmatter(fileContent: string) {
     }
   })
 
-  return { metadata: metadata as BroadwayMetadata, content }
+  return { metadata: metadata as TheatreMetadata, content }
 }
 
 function getMDXFiles(dir) {
@@ -94,8 +94,8 @@ function getMDXData(dir) {
   }
 }
 
-export function getBroadwayReviews() {
-  const reviews = getMDXData(path.join(process.cwd(), 'app', 'broadway', 'reviews')).map(review => {
+export function getTheatreReviews() {
+  const reviews = getMDXData(path.join(process.cwd(), 'app', 'theatre', 'reviews')).map(review => {
     console.log('DEBUG: Raw review metadata:', review.metadata);
     console.log('DEBUG: Rating value:', review.metadata.rating);
     

@@ -1,4 +1,5 @@
-import { BlogPosts } from 'app/components/posts'
+import { getBlogPosts, formatDate } from 'app/blog/utils'
+import { ContentList } from 'app/components/content-list-item'
 
 export const metadata = {
   title: "Ben's Blog",
@@ -6,10 +7,19 @@ export const metadata = {
 }
 
 export default function Page() {
+  const allBlogs = getBlogPosts().sort((a, b) => new Date(b.metadata.publishedAt).getTime() - new Date(a.metadata.publishedAt).getTime())
   return (
     <section>
       <h1 className="font-semibold text-2xl mb-8 tracking-tighter">just another blog</h1>
-      <BlogPosts />
+      <ContentList
+        items={allBlogs}
+        getItemProps={(post) => ({
+          date: formatDate(post.metadata.publishedAt, false),
+          title: post.metadata.title,
+          href: `/blog/${post.slug}`,
+        })}
+        getKey={(post) => post.slug}
+      />
     </section>
   )
 }
