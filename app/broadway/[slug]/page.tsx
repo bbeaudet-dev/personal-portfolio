@@ -12,17 +12,17 @@ function RatingCategory({
   description: string 
 }) {
   return (
-    <div className="flex items-center justify-between py-1 border-b border-neutral-200 dark:border-neutral-800">
+    <div className="flex items-center justify-between py-2 border-b border-neutral-200 dark:border-neutral-800">
       <div className="flex-1">
-        <h3 className="text-sm font-medium text-neutral-900 dark:text-neutral-100">
+        <h3 className="font-medium text-neutral-900 dark:text-neutral-100">
           {title}
         </h3>
-        <p className="text-xs text-neutral-600 dark:text-neutral-400">
+        <p className="text-sm text-neutral-600 dark:text-neutral-400">
           {description}
         </p>
       </div>
       <div className="flex items-center space-x-2">
-        <span className="text-sm font-semibold text-neutral-900 dark:text-neutral-100 w-6 text-right">
+        <span className="text-base font-semibold text-neutral-900 dark:text-neutral-100 w-8 text-right">
           {rating}/5
         </span>
       </div>
@@ -44,7 +44,7 @@ export default function BroadwayReviewPage({
 
   const hasRating = review.metadata.rating && 
     Object.values(review.metadata.rating).some(rating => rating > 0)
-  const averageRating = hasRating ? calculateAverageRating(review.metadata.rating) : 0
+  const averageRating = calculateAverageRating(review.metadata.rating)
 
   return (
     <section>
@@ -68,24 +68,20 @@ export default function BroadwayReviewPage({
         )}
       </div>
 
-      <div className="prose prose-neutral dark:prose-invert mb-8">
-        <MDXRemote source={review.content} />
-      </div>
-
       {/* Rating Box - Only show if rating data exists */}
       {hasRating && (
-        <div className="bg-neutral-50 dark:bg-neutral-900 rounded-lg p-4 mt-8">
-          <div className="flex items-center justify-between mb-3">
-            <h2 className="text-lg font-semibold">Rating</h2>
-            <div className="flex items-center space-x-2">
-              <span className="text-xl font-bold text-neutral-900 dark:text-neutral-100">
+        <div className="bg-neutral-50 dark:bg-neutral-900 rounded-lg p-6 mb-8">
+          <div className="flex items-center justify-between mb-4">
+            <h2 className="text-xl font-semibold">Overall Rating</h2>
+            <div className="flex items-center space-x-3">
+              <span className="text-2xl font-bold text-neutral-900 dark:text-neutral-100">
                 {averageRating.toFixed(1)}/5.0
               </span>
             </div>
           </div>
           
           {/* Individual Ratings */}
-          <div className="space-y-0">
+          <div className="space-y-1">
             <RatingCategory
               title="Resonance"
               rating={review.metadata.rating.emotionalResonance}
@@ -114,6 +110,10 @@ export default function BroadwayReviewPage({
           </div>
         </div>
       )}
+
+      <div className="prose prose-neutral dark:prose-invert">
+        <MDXRemote source={review.content} />
+      </div>
     </section>
   )
 } 
