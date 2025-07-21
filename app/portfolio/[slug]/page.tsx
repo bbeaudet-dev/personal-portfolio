@@ -92,6 +92,11 @@ export default function Portfolio({ params }) {
       <article className="prose">
         <CustomMDX source={project.content} />
       </article>
+      <div className="mt-8 flex justify-left">
+        <a href="/portfolio" className="inline-block px-6 py-2 rounded-lg bg-neutral-100 dark:bg-neutral-800 text-neutral-900 dark:text-neutral-100 font-medium shadow hover:bg-neutral-200 dark:hover:bg-neutral-700 transition-colors">
+          ← Back to Portfolio
+        </a>
+      </div>
     </section>
   )
 } 

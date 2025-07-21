@@ -1,7 +1,9 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
-# ideas / drafts
-/app/blog/ideas
+# drafts
+/app/blog/posts-wip
+/app/theatre/reviews-wip
+/app/portfolio/projects-wip
 
 # dependencies
 /node_modules
