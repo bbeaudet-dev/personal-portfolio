@@ -35,7 +35,7 @@ export function RecentContent() {
       }),
     },
     {
-      label: 'Blog Posts',
+      label: 'Blog',
       link: '/blog',
       items: recentBlogs,
       getItemProps: (post: any) => ({
@@ -66,9 +66,9 @@ export function RecentContent() {
   ]
 
   return (
-    <div className="my-8 w-full max-w-screen-xl mx-auto flex flex-row gap-8">
+    <div className="my-8 w-full max-w-screen-xl mx-auto flex flex-row gap-8 justify-center">
       {categories.map((cat) => (
-        <div key={cat.label} className="flex-1 border border-neutral-200 dark:border-neutral-800 rounded-lg bg-white dark:bg-neutral-900 p-4">
+        <div key={cat.label} className="border border-neutral-200 dark:border-neutral-800 rounded-lg bg-white dark:bg-neutral-900 p-4">
           <div className="space-y-3">
             <div className="flex items-center justify-between">
               <h2 className="text-xl font-semibold tracking-tight">{cat.label}</h2>
