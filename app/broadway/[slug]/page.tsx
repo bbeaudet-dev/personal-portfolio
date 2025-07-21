@@ -42,6 +42,8 @@ export default function BroadwayReviewPage({
     notFound()
   }
 
+  const hasRating = review.metadata.rating && 
+    Object.values(review.metadata.rating).some(rating => rating > 0)
   const averageRating = calculateAverageRating(review.metadata.rating)
 
   return (
@@ -64,8 +66,10 @@ export default function BroadwayReviewPage({
             {review.metadata.summary}
           </p>
         )}
-        
-        {/* Overall Rating */}
+      </div>
+
+      {/* Rating Box - Only show if rating data exists */}
+      {hasRating && (
         <div className="bg-neutral-50 dark:bg-neutral-900 rounded-lg p-6 mb-8">
           <div className="flex items-center justify-between mb-4">
             <h2 className="text-xl font-semibold">Overall Rating</h2>
@@ -105,7 +109,7 @@ export default function BroadwayReviewPage({
             />
           </div>
         </div>
-      </div>
+      )}
 
       <div className="prose prose-neutral dark:prose-invert">
         <MDXRemote source={review.content} />
