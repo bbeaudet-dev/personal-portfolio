@@ -2,6 +2,7 @@ import { notFound } from 'next/navigation'
 import { CustomMDX } from 'app/components/mdx'
 import { formatDate, getBlogPosts } from 'app/blog/utils'
 import { baseUrl } from 'app/sitemap'
+import { Badge } from 'app/components/ui/badge'
 
 // Add type for Metadata with optional collection
 
@@ -12,6 +13,7 @@ type Metadata = {
   summary: string
   image?: string
   collection?: string
+  tag?: string
 }
 
 export async function generateStaticParams() {
@@ -79,6 +81,19 @@ export default function Blog({ params }) {
     relatedPosts = allPosts.filter((p) => p.slug !== params.slug && (p.metadata as Metadata).collection === collection).slice(-3).reverse()
   }
 
+  // Map collection to badge variant
+  const getBadgeVariant = (collection?: string) => {
+    if (!collection) return 'secondary'
+    switch (collection) {
+      case 'fractal-weekly-reflection':
+        return 'fractal'
+      case 'beginner-programmer':
+        return 'beginner-programmer'
+      default:
+        return 'secondary'
+    }
+  }
+
   return (
     <section>
       <script
@@ -103,9 +118,16 @@ export default function Blog({ params }) {
           }),
         }}
       />
-      <h1 className="title font-semibold text-2xl tracking-tighter">
-        {post.metadata.title}
-      </h1>
+      <div className="flex items-center gap-3 mb-2">
+        <h1 className="title font-semibold text-2xl tracking-tighter">
+          {post.metadata.title}
+        </h1>
+        {(post.metadata as Metadata).tag && (
+          <Badge variant={getBadgeVariant(collection)} className="text-xs">
+            {(post.metadata as Metadata).tag}
+          </Badge>
+        )}
+      </div>
       <div className="flex justify-between items-center mt-2 mb-8 text-sm">
         <p className="text-sm text-neutral-600 dark:text-neutral-400">
           {formatDate(post.metadata.publishedAt)}
@@ -125,8 +147,15 @@ export default function Blog({ params }) {
           <div className="flex flex-col md:flex-row md:space-x-6 space-y-4 md:space-y-0">
             {relatedPosts.map((related) => (
               <a key={related.slug} href={`/blog/${related.slug}`} className="block group flex-1 border border-neutral-200 dark:border-neutral-800 rounded-lg p-4 hover:bg-neutral-50 dark:hover:bg-neutral-900 transition-colors">
-                <div className="font-medium text-neutral-900 dark:text-neutral-100 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors mb-1">
-                  {related.metadata.title}
+                <div className="flex items-center gap-2 mb-1">
+                  <div className="font-medium text-neutral-900 dark:text-neutral-100 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+                    {related.metadata.title}
+                  </div>
+                  {related.metadata.tag && (
+                    <Badge variant={getBadgeVariant(related.metadata.collection)} className="text-xs">
+                      {related.metadata.tag}
+                    </Badge>
+                  )}
                 </div>
                 <div className="text-sm text-neutral-600 dark:text-neutral-400 mb-1">
                   {formatDate(related.metadata.publishedAt)}

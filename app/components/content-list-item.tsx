@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import { Badge } from './ui/badge'
 
 interface ContentListItemProps {
   date: string
@@ -7,9 +8,24 @@ interface ContentListItemProps {
   extra?: string
   href: string
   vertical?: boolean
+  tag?: string
+  collection?: string
 }
 
-export function ContentListItem({ date, title, subtitle, extra, href, vertical = false }: ContentListItemProps) {
+export function ContentListItem({ date, title, subtitle, extra, href, vertical = false, tag, collection }: ContentListItemProps) {
+  // Map collection to badge variant
+  const getBadgeVariant = (collection?: string) => {
+    if (!collection) return 'secondary'
+    switch (collection) {
+      case 'fractal-weekly-reflection':
+        return 'fractal'
+      case 'beginner-programmer':
+        return 'beginner-programmer'
+      default:
+        return 'secondary'
+    }
+  }
+
   if (vertical) {
     return (
       <Link href={href} className="block group flex-shrink-0">
@@ -22,6 +38,13 @@ export function ContentListItem({ date, title, subtitle, extra, href, vertical =
               <span className="text-xs font-semibold text-neutral-900 dark:text-neutral-100 ml-2">
                 {extra}
               </span>
+            )}
+          </div>
+          <div className="flex items-center gap-2 mb-1">
+            {tag && (
+              <Badge variant={getBadgeVariant(collection)} className="text-xs">
+                {tag}
+              </Badge>
             )}
           </div>
           <p className="text-neutral-900 dark:text-neutral-100 font-medium group-hover:text-neutral-600 dark:group-hover:text-neutral-400 transition-colors text-sm leading-tight">
@@ -40,9 +63,16 @@ export function ContentListItem({ date, title, subtitle, extra, href, vertical =
         <p className="text-neutral-600 dark:text-neutral-400 tabular-nums w-32 min-w-[8rem] whitespace-nowrap pr-5">
           {date}
         </p>
-        <p className="text-neutral-900 dark:text-neutral-100 tracking-tight flex-1">
-          {title}
-        </p>
+        <div className="flex items-center gap-2 flex-1">
+          {tag && (
+            <Badge variant={getBadgeVariant(collection)} className="text-xs">
+              {tag}
+            </Badge>
+          )}
+          <p className="text-neutral-900 dark:text-neutral-100 tracking-tight">
+            {title}
+          </p>
+        </div>
         {extra && (
           <span className="text-sm font-semibold text-neutral-900 dark:text-neutral-100 ml-2">
             {extra}
