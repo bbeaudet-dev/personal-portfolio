@@ -4,7 +4,7 @@ completedAt: 2025-07-11
 summary: "An interactive blob simulation game with physics and growth mechanics"
 technologies: "JavaScript, HTML5 Canvas, CSS3"
 githubUrl: "https://github.com/bbeaudet-dev/blob-game"
-liveUrl: ""
+liveUrl: "https://sublobination.netlify.app/"
 ---
 
 An engaging blob simulation game where players control a growing blob that can consume smaller blobs and avoid larger ones in a dynamic environment.
@@ -28,6 +28,49 @@ This game features a blob that grows as it consumes smaller blobs while avoiding
 - HTML5 Canvas API
 - CSS3 for styling
 - RequestAnimationFrame for smooth animations
+
+## Play the Game
+
+<div className="mb-6 text-center">
+  <a
+    href="https://sublobination.netlify.app/"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="inline-block px-6 py-3 bg-green-600 hover:bg-green-700 text-white font-semibold rounded-lg shadow-lg transition-colors"
+  >
+    🎮 Play on Netlify (Full Experience)
+  </a>
+  <p className="text-sm text-gray-600 dark:text-gray-400 mt-2">
+    Opens the complete idle game experience in a new tab
+  </p>
+</div>
+
+<div
+  className="my-8 -mx-4 md:-mx-8 lg:-mx-16"
+  style={{ marginTop: "2rem", marginBottom: "2rem" }}
+>
+  <div
+    style={{
+      width: "calc(100vw - 2rem)",
+      height: "calc(100vh - 2rem)",
+      minHeight: "600px",
+      marginLeft: "calc(-50vw + 50% + 1rem)",
+      marginRight: "calc(-50vw + 50% + 1rem)",
+    }}
+  >
+    <iframe
+      src="https://sublobination.netlify.app/"
+      className="w-full h-full"
+      style={{
+        border: "none",
+        borderRadius: "0",
+        boxShadow: "none",
+      }}
+      title="Blob Game - Sublobination"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+    />
+  </div>
+</div>
 
 ## Screenshots & Videos
 
