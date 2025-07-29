@@ -9,6 +9,8 @@ type Metadata = {
   technologies?: string
   githubUrl?: string
   liveUrl?: string
+  prominence?: string | number
+  tag?: string
 }
 
 function parseFrontmatter(fileContent: string) {
