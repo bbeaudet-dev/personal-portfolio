@@ -14,7 +14,25 @@ interface ContentListItemProps {
 
 export function ContentListItem({ date, title, subtitle, extra, href, vertical = false, tag, collection }: ContentListItemProps) {
   // Map collection to badge variant
-  const getBadgeVariant = (collection?: string) => {
+  const getBadgeVariant = (collection?: string, tag?: string) => {
+    // Check for project-specific tags first
+    if (tag) {
+      switch (tag.toLowerCase()) {
+        case 'published':
+          return 'published'
+        case 'deployed':
+          return 'deployed'
+        case 'finished':
+          return 'finished'
+        case 'in-progress':
+          return 'in-progress'
+        case 'experiment':
+          return 'experiment'
+        // If it's not a project tag, fall through to collection logic
+      }
+    }
+    
+    // Fall back to collection-based logic for blog posts
     if (!collection) return 'secondary'
     switch (collection) {
       case 'fractal-weekly-reflection':
@@ -40,16 +58,16 @@ export function ContentListItem({ date, title, subtitle, extra, href, vertical =
               </span>
             )}
           </div>
+          <p className="text-neutral-900 dark:text-neutral-100 font-medium group-hover:text-neutral-600 dark:group-hover:text-neutral-400 transition-colors text-sm leading-tight">
+            {title}
+          </p>
           <div className="flex items-center gap-2 mb-1">
             {tag && (
-              <Badge variant={getBadgeVariant(collection)} className="text-xs">
+              <Badge variant={getBadgeVariant(collection, tag)} className="text-xs">
                 {tag}
               </Badge>
             )}
           </div>
-          <p className="text-neutral-900 dark:text-neutral-100 font-medium group-hover:text-neutral-600 dark:group-hover:text-neutral-400 transition-colors text-sm leading-tight">
-            {title}
-          </p>
           {subtitle && (
             <p className="text-neutral-600 dark:text-neutral-400 text-xs leading-tight mt-1">{subtitle}</p>
           )}
@@ -64,14 +82,14 @@ export function ContentListItem({ date, title, subtitle, extra, href, vertical =
           {date}
         </p>
         <div className="flex items-center gap-2 flex-1">
-          {tag && (
-            <Badge variant={getBadgeVariant(collection)} className="text-xs">
-              {tag}
-            </Badge>
-          )}
           <p className="text-neutral-900 dark:text-neutral-100 tracking-tight">
             {title}
           </p>
+          {tag && (
+            <Badge variant={getBadgeVariant(collection, tag)} className="text-xs">
+              {tag}
+            </Badge>
+          )}
         </div>
         {extra && (
           <span className="text-sm font-semibold text-neutral-900 dark:text-neutral-100 ml-2">
