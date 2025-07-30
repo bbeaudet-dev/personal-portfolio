@@ -15,7 +15,17 @@ export function RecentContent() {
     .sort((a, b) => new Date(b.metadata.publishedAt).getTime() - new Date(a.metadata.publishedAt).getTime())
     .slice(0, 3)
   let recentProjects = allProjects
-    .sort((a, b) => new Date(b.metadata.completedAt).getTime() - new Date(a.metadata.completedAt).getTime())
+    .sort((a, b) => {
+      // Sort by prominence first (lower prominence = first), then by date
+      const aProminence = a.metadata.prominence || 999
+      const bProminence = b.metadata.prominence || 999
+      
+      if (aProminence !== bProminence) {
+        return (aProminence as number) - (bProminence as number)
+      }
+      
+      return new Date(b.metadata.completedAt).getTime() - new Date(a.metadata.completedAt).getTime()
+    })
     .slice(0, 3)
   let recentReviews = allReviews
     .sort((a, b) => new Date(b.metadata.publishedAt).getTime() - new Date(a.metadata.publishedAt).getTime())
@@ -31,6 +41,7 @@ export function RecentContent() {
         date: formatDate(project.metadata.completedAt),
         title: project.metadata.title,
         href: `/portfolio/${project.slug}`,
+        tag: project.metadata.tag,
         vertical: true,
       }),
     },
