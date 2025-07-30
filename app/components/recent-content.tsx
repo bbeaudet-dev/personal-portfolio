@@ -1,115 +1,96 @@
-import Link from 'next/link'
-import { formatDate, getBlogPosts } from 'app/blog/utils'
-import { getPortfolioProjects } from 'app/portfolio/utils'
-import { getTheatreReviews } from 'app/theatre/utils'
-import { getShowRank, getTotalShows, formatRank, getShowBySlug } from 'app/theatre/reviews/show-list'
-import { ContentListItem } from 'app/components/content-list-item'
+import { getBlogPosts } from '../blog/utils'
+import { getPortfolioProjects } from '../portfolio/utils'
+import { getTheatreReviews } from '../theatre/utils'
+import { getShowRank, getTotalShows, formatRank, getShowBySlug, getShowDistrict } from '../theatre/reviews/show-list'
+import { ContentCarousel } from './content-carousel'
 
 export function RecentContent() {
   let allBlogs = getBlogPosts()
   let allProjects = getPortfolioProjects()
   let allReviews = getTheatreReviews()
 
-  // Prepare recent items for each category
-  let recentBlogs = allBlogs
-    .sort((a, b) => {
-      // Sort by prominence first (lower prominence = first), then by date
-      const aProminence = a.metadata.prominence || 999
-      const bProminence = b.metadata.prominence || 999
-      
-      if (aProminence !== bProminence) {
-        return (aProminence as number) - (bProminence as number)
-      }
-      
-      return new Date(b.metadata.publishedAt).getTime() - new Date(a.metadata.publishedAt).getTime()
-    })
-    .slice(0, 3)
-  let recentProjects = allProjects
-    .sort((a, b) => {
-      // Sort by prominence first (lower prominence = first), then by date
-      const aProminence = a.metadata.prominence || 999
-      const bProminence = b.metadata.prominence || 999
-      
-      if (aProminence !== bProminence) {
-        return (aProminence as number) - (bProminence as number)
-      }
-      
-      return new Date(b.metadata.completedAt).getTime() - new Date(a.metadata.completedAt).getTime()
-    })
-    .slice(0, 3)
-  let recentReviews = allReviews
-    .sort((a, b) => new Date(b.metadata.publishedAt).getTime() - new Date(a.metadata.publishedAt).getTime())
-    .slice(0, 3)
+  // Sort blog posts: prominence first, then by date
+  let sortedBlogs = allBlogs.sort((a, b) => {
+    const aProminence = a.metadata.prominence || 999
+    const bProminence = b.metadata.prominence || 999
+    
+    if (aProminence !== bProminence) {
+      return (aProminence as number) - (bProminence as number)
+    }
+    
+    return new Date(b.metadata.publishedAt).getTime() - new Date(a.metadata.publishedAt).getTime()
+  })
 
-  // Define categories config
-  const categories = [
-    {
-      label: 'Portfolio',
-      link: '/portfolio',
-      items: recentProjects,
-      getItemProps: (project: any) => ({
-        date: formatDate(project.metadata.completedAt),
-        title: project.metadata.title,
-        href: `/portfolio/${project.slug}`,
-        tag: project.metadata.tag,
-        vertical: true,
-      }),
-    },
-    {
-      label: 'Blog',
-      link: '/blog',
-      items: recentBlogs,
-      getItemProps: (post: any) => ({
-        date: formatDate(post.metadata.publishedAt, false),
-        title: post.metadata.title,
-        href: `/blog/${post.slug}`,
-        tag: post.metadata.tag,
-        collection: post.metadata.collection,
-        vertical: true,
-      }),
-    },
-    {
-      label: 'Theatre',
-      link: '/theatre',
-      items: recentReviews,
-      getItemProps: (review: any) => {
-        const showInfo = getShowBySlug(review.slug)
-        const displayName = showInfo ? showInfo.name : review.metadata.showName
-        const rank = getShowRank(displayName)
-        const totalShows = getTotalShows()
-        return {
-          date: formatDate(review.metadata.publishedAt, false),
-          title: displayName,
-          href: `/theatre/${review.slug}`,
-          extra: formatRank(rank, totalShows),
-          vertical: true,
-        }
-      },
-    },
-  ]
+  // Sort projects by prominence
+  let sortedProjects = allProjects.sort((a, b) => {
+    const aProminence = a.metadata.prominence || 999
+    const bProminence = b.metadata.prominence || 999
+    return (aProminence as number) - (bProminence as number)
+  })
+
+  // Sort theatre reviews by date (most recent first)
+  let sortedReviews = allReviews.sort((a, b) => 
+    new Date(b.metadata.publishedAt).getTime() - new Date(a.metadata.publishedAt).getTime()
+  )
+
+  // Prepare carousel items
+  const portfolioItems = sortedProjects.map(project => ({
+    title: project.metadata.title,
+    href: `/portfolio/${project.slug}`,
+    tag: project.metadata.tag,
+    date: project.metadata.completedAt,
+    summary: project.metadata.summary,
+  }))
+
+  const blogItems = sortedBlogs.map(post => ({
+    title: post.metadata.title,
+    href: `/blog/${post.slug}`,
+    tag: post.metadata.tag,
+    collection: post.metadata.collection,
+    date: post.metadata.publishedAt,
+    summary: post.metadata.summary,
+  }))
+
+  const theatreItems = sortedReviews.map(review => {
+    const showInfo = getShowBySlug(review.slug)
+    const displayName = showInfo ? showInfo.name : review.metadata.showName
+    const rank = getShowRank(displayName)
+    const totalShows = getTotalShows()
+    
+    return {
+      title: displayName,
+      href: `/theatre/${review.slug}`,
+      tag: getShowDistrict(displayName),
+      extra: formatRank(rank, totalShows),
+      date: review.metadata.publishedAt,
+      summary: review.metadata.summary,
+    }
+  })
 
   return (
-    <div className="my-8 w-full max-w-screen-xl mx-auto flex flex-row gap-8 justify-center">
-      {categories.map((cat) => (
-        <div key={cat.label} className="border border-neutral-200 dark:border-neutral-800 rounded-lg bg-white dark:bg-neutral-900 p-4">
-          <div className="space-y-3">
-            <div className="flex items-center justify-between">
-              <h2 className="text-xl font-semibold tracking-tight">{cat.label}</h2>
-              <Link
-                href={cat.link}
-                className="text-sm text-neutral-600 dark:text-neutral-400 hover:text-neutral-800 dark:hover:text-neutral-200 transition-colors"
-              >
-                View all →
-              </Link>
-            </div>
-            <div className="space-y-1">
-              {cat.items.map((item: any) => (
-                <ContentListItem key={item.slug} {...cat.getItemProps(item)} />
-              ))}
-            </div>
+    <div className="w-full">
+      <ContentCarousel 
+        title={
+          <div className="flex items-center gap-2">
+            <span>Portfolio</span>
+            <span className="text-sm text-neutral-600 dark:text-neutral-400 font-normal">
+              (<a href="/portfolio/resume" className="underline hover:text-neutral-800 dark:hover:text-neutral-200 transition-colors">resume</a>)
+            </span>
           </div>
-        </div>
-      ))}
+        }
+        items={portfolioItems} 
+        type="portfolio" 
+      />
+      <ContentCarousel 
+        title="Blog Posts" 
+        items={blogItems} 
+        type="blog" 
+      />
+      <ContentCarousel 
+        title="Theatre Reviews" 
+        items={theatreItems} 
+        type="theatre" 
+      />
     </div>
   )
 } 
