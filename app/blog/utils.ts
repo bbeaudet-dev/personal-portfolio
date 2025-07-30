@@ -9,6 +9,7 @@ type Metadata = {
   image?: string
   tag?: string
   collection?: string
+  prominence?: string | number
 }
 
 function parseFrontmatter(fileContent: string) {
@@ -57,7 +58,8 @@ export function getBlogPosts() {
     ...post,
     metadata: {
       ...post.metadata,
-      publishedAt: post.metadata.publishedAt || post.metadata.date || new Date().toISOString()
+      publishedAt: post.metadata.publishedAt || post.metadata.date || new Date().toISOString(),
+      prominence: post.metadata.prominence ? parseInt(post.metadata.prominence as string) : undefined
     }
   }))
 }

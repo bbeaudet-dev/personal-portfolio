@@ -12,7 +12,17 @@ export function RecentContent() {
 
   // Prepare recent items for each category
   let recentBlogs = allBlogs
-    .sort((a, b) => new Date(b.metadata.publishedAt).getTime() - new Date(a.metadata.publishedAt).getTime())
+    .sort((a, b) => {
+      // Sort by prominence first (lower prominence = first), then by date
+      const aProminence = a.metadata.prominence || 999
+      const bProminence = b.metadata.prominence || 999
+      
+      if (aProminence !== bProminence) {
+        return (aProminence as number) - (bProminence as number)
+      }
+      
+      return new Date(b.metadata.publishedAt).getTime() - new Date(a.metadata.publishedAt).getTime()
+    })
     .slice(0, 3)
   let recentProjects = allProjects
     .sort((a, b) => {
