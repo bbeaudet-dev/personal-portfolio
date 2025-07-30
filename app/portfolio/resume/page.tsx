@@ -6,7 +6,7 @@ import { PrintButton } from "../../components/print-button"
 
 export default function Resume() {
   return (
-    <div className="min-h-screen bg-gray-100 py-8 print:bg-white print:py-0">
+    <div className="min-h-screen bg-gray-100 dark:bg-gray-900 py-8 print:bg-white print:py-0">
       <Card className="mx-auto max-w-4xl shadow-lg print:shadow-none">
         <CardContent className="p-8 print:p-4">
           {/* Header Section */}
