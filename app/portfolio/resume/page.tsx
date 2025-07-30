@@ -87,16 +87,14 @@ export default function Resume() {
               <div className="flex flex-col md:flex-row justify-between mb-2">
                 <div className="flex items-center gap-2">
                   <h5 className="text-muted-foreground">BATS-TOI</h5>
-                  <Badge variant="secondary">Contract</Badge>
+                  <Badge variant="in-progress">Contract</Badge>
                 </div>
                 <span className="text-muted-foreground text-sm">Brooklyn, NY</span>
               </div>
               <ul className="list-disc list-outside ml-5 space-y-1 text-sm">
-                <li>Automated 80% of design workflows with 5,000+ lines of VBA code, saving 1,000+ annual engineering hours</li>
-                <li>Developed CAD master models and parametric design systems, saving 2,000+ annual engineering hours</li>
-                <li>Managed 300+ sales orders for 75 government agencies, contributing to $3.5M in revenue</li>
-                <li>Pioneered continuous improvement initiatives including PLM/ERP optimization and database system implementation</li>
-                <li>Created automated drawing generation and BOM management systems</li>
+                <li>Developing smart helmet technology integrating speakers, microphones, and EEG sensors for real-time coach-player communication and concussion monitoring</li>
+                <li>Collaborating with ML engineer and CTO to implement computer vision and smart lens technology for augmented reality applications</li>
+                <li>Designing firmware and hardware integration solutions for sports and military applications using embedded systems</li>
               </ul>
             </div>
 
@@ -109,16 +107,14 @@ export default function Resume() {
               <div className="flex flex-col md:flex-row justify-between mb-2">
                 <div className="flex items-center gap-2">
                   <h5 className="text-muted-foreground">Cerelog</h5>
-                  <Badge variant="secondary">Contract</Badge>
+                  <Badge variant="finished">Contract</Badge>
                 </div>
                 <span className="text-muted-foreground text-sm">Brooklyn, NY</span>
               </div>
               <ul className="list-disc list-outside ml-5 space-y-1 text-sm">
-                <li>Automated 80% of design workflows with 5,000+ lines of VBA code, saving 1,000+ annual engineering hours</li>
-                <li>Developed CAD master models and parametric design systems, saving 2,000+ annual engineering hours</li>
-                <li>Managed 300+ sales orders for 75 government agencies, contributing to $3.5M in revenue</li>
-                <li>Pioneered continuous improvement initiatives including PLM/ERP optimization and database system implementation</li>
-                <li>Created automated drawing generation and BOM management systems</li>
+                <li>Integrated Brainflow library with ESP32 microcontroller and ADS1289 EEG chip for real-time brain wave data processing</li>
+                <li>Implemented serial communication protocols with custom message packaging, error handling, and O(n) ring buffer algorithm for reliable data transmission</li>
+                <li>Developed parametric configuration system allowing dynamic adjustment of sampling rates, channel activation, and voltage gain settings through serial handshake protocols</li>
               </ul>
             </div>
 
@@ -131,7 +127,7 @@ export default function Resume() {
               <div className="flex flex-col md:flex-row justify-between mb-2">
                 <div className="flex items-center gap-2">
                   <h5 className="text-muted-foreground">Lazurite</h5>
-                  <Badge variant="secondary">Full-Time</Badge>
+                  <Badge variant="published">Full-Time</Badge>
                 </div>
                 <span className="text-muted-foreground text-sm">Cleveland, OH</span>
               </div>
@@ -140,26 +136,6 @@ export default function Resume() {
                 <li>Implemented PLM software to manage inventory of 75+ electronic components and optimize supply chain</li>
                 <li>Conducted 6 product validation tests and optimized manufacturing processes for first 10 production units</li>
                 <li>Developed cost analysis systems demonstrating 25% savings through data-driven optimization</li>
-              </ul>
-            </div>
-
-            {/* Chief of Staff / Technical Generalist */}
-            <div className="mb-5">
-              <div className="flex flex-col md:flex-row justify-between mb-1">
-                <h4 className="font-medium">Chief of Staff / Technical Generalist</h4>
-                <span className="text-muted-foreground text-sm">Sep 2021 - Feb 2022</span>
-              </div>
-              <div className="flex flex-col md:flex-row justify-between mb-2">
-                <div className="flex items-center gap-2">
-                  <h5 className="text-muted-foreground">Blended</h5>
-                  <Badge variant="secondary">Full-Time</Badge>
-                </div>
-                <span className="text-muted-foreground text-sm">Cleveland, OH</span>
-              </div>
-              <ul className="list-disc list-outside ml-5 space-y-1 text-sm">
-                <li>Acquired first 50 users by developing automated workflows and implementing Product-Led-Growth strategies</li>
-                <li>Coordinated technical operations across three offices (Ohio, Washington, Argentina)</li>
-                <li>Implemented automation systems and growth analytics to optimize user acquisition</li>
               </ul>
             </div>
 
@@ -172,7 +148,7 @@ export default function Resume() {
               <div className="flex flex-col md:flex-row justify-between mb-2">
                 <div className="flex items-center gap-2">
                   <h5 className="text-muted-foreground">Birkdale Neuro Rehab Centre</h5>
-                  <Badge variant="secondary">Contract</Badge>
+                  <Badge variant="finished">Contract</Badge>
                 </div>
                 <span className="text-muted-foreground text-sm">London, UK</span>
               </div>
@@ -193,60 +169,69 @@ export default function Resume() {
               <div>
                 <h4 className="font-medium mb-2">Frontend Development</h4>
                 <div className="flex flex-wrap gap-2">
-                  <Badge variant="secondary">TypeScript</Badge>
-                  <Badge variant="secondary">Next.js</Badge>
-                  <Badge variant="secondary">React</Badge>
-                  <Badge variant="secondary">React Native</Badge>
+                  <Badge variant="finished">TypeScript</Badge>
+                  <Badge variant="finished">Next.js</Badge>
+                  <Badge variant="finished">React</Badge>
+                  <Badge variant="finished">React Native</Badge>
                 </div>
               </div>
               <div>
                 <h4 className="font-medium mb-2">Backend & Database</h4>
                 <div className="flex flex-wrap gap-2">
-                  <Badge variant="secondary">Node.js</Badge>
-                  <Badge variant="secondary">Express</Badge>
-                  <Badge variant="secondary">PostgreSQL</Badge>
-                  <Badge variant="secondary">Supabase</Badge>
-                  <Badge variant="secondary">Neon</Badge>
+                  <Badge variant="deployed">Node.js</Badge>
+                  <Badge variant="deployed">Express</Badge>
+                  <Badge variant="deployed">PostgreSQL</Badge>
+                  <Badge variant="deployed">Supabase</Badge>
+                  <Badge variant="deployed">Neon</Badge>
                 </div>
               </div>
               <div>
                 <h4 className="font-medium mb-2">Programming Languages</h4>
                 <div className="flex flex-wrap gap-2">
-                  <Badge variant="secondary">JavaScript</Badge>
-                  <Badge variant="secondary">Python</Badge>
-                  <Badge variant="secondary">C/C++</Badge>
-                  <Badge variant="secondary">Arduino</Badge>
-                  <Badge variant="secondary">VBA</Badge>
-                  <Badge variant="secondary">MATLAB</Badge>
+                  <Badge variant="published">JavaScript</Badge>
+                  <Badge variant="published">Python</Badge>
+                  <Badge variant="published">C/C++</Badge>
+                  <Badge variant="published">Arduino</Badge>
+                  <Badge variant="published">VBA</Badge>
+                  <Badge variant="published">MATLAB</Badge>
                 </div>
               </div>
               <div>
                 <h4 className="font-medium mb-2">Deployment</h4>
                 <div className="flex flex-wrap gap-2">
-                  <Badge variant="secondary">GitTown</Badge>
-                  <Badge variant="secondary">Docker</Badge>
-                  <Badge variant="secondary">Vercel</Badge>
-                  <Badge variant="secondary">Netlify</Badge>
-                  <Badge variant="secondary">Render</Badge>
+                  <Badge variant="experiment">GitTown</Badge>
+                  <Badge variant="experiment">Docker</Badge>
+                  <Badge variant="experiment">Vercel</Badge>
+                  <Badge variant="experiment">Netlify</Badge>
+                  <Badge variant="experiment">Render</Badge>
                 </div>
               </div>
               <div>
                 <h4 className="font-medium mb-2">AI & Development Tools</h4>
                 <div className="flex flex-wrap gap-2">
-                  <Badge variant="secondary">Cursor</Badge>
-                  <Badge variant="secondary">Claude</Badge>
-                  <Badge variant="secondary">ChatGPT</Badge>
-                  <Badge variant="secondary">Replit</Badge>
-                  <Badge variant="secondary">v0</Badge>
+                  <Badge variant="in-progress">Cursor</Badge>
+                  <Badge variant="in-progress">Claude + Claude Code</Badge>
+                  <Badge variant="in-progress">ChatGPT</Badge>
+                  <Badge variant="in-progress">Replit</Badge>
+                  <Badge variant="in-progress">v0</Badge>
+                </div>
+              </div>
+              <div>
+                <h4 className="font-medium mb-2">Media Production & Graphic Design</h4>
+                <div className="flex flex-wrap gap-2">
+                  <Badge variant="broadway">Final Cut Pro</Badge>
+                  <Badge variant="broadway">iMovie</Badge>
+                  <Badge variant="broadway">Logo Design</Badge>
+                  <Badge variant="broadway">Game Assets</Badge>
                 </div>
               </div>
               <div>
                 <h4 className="font-medium mb-2">CAD & Automation</h4>
                 <div className="flex flex-wrap gap-2">
-                  <Badge variant="secondary">Inventor</Badge>
-                  <Badge variant="secondary">iLogic</Badge>
-                  <Badge variant="secondary">SolidWorks</Badge>
-                  <Badge variant="secondary">AutoCAD</Badge>
+                  <Badge variant="playhouse-square">Inventor</Badge>
+                  <Badge variant="playhouse-square">iLogic</Badge>
+                  <Badge variant="playhouse-square">SolidWorks</Badge>
+                  <Badge variant="playhouse-square">AutoCAD</Badge>
                 </div>
               </div>
             </div>
@@ -262,10 +247,10 @@ export default function Resume() {
               <div className="flex flex-col md:flex-row justify-between mb-1">
                 <h4 className="font-medium">Full-Stack Web Applications</h4>
                 <div className="flex gap-2">
-                  <Badge variant="secondary">React</Badge>
-                  <Badge variant="secondary">Next.js</Badge>
-                  <Badge variant="secondary">TypeScript</Badge>
-                  <Badge variant="secondary">Supabase</Badge>
+                  <Badge variant="finished">React</Badge>
+                  <Badge variant="finished">Next.js</Badge>
+                  <Badge variant="finished">TypeScript</Badge>
+                  <Badge variant="finished">Supabase</Badge>
                 </div>
               </div>
               <p className="text-sm text-muted-foreground mb-1">
@@ -283,9 +268,9 @@ export default function Resume() {
               <div className="flex flex-col md:flex-row justify-between mb-1">
                 <h4 className="font-medium">Mobile Development</h4>
                 <div className="flex gap-2">
-                  <Badge variant="secondary">React Native</Badge>
-                  <Badge variant="secondary">JavaScript</Badge>
-                  <Badge variant="secondary">Cross-Platform</Badge>
+                  <Badge variant="published">React Native</Badge>
+                  <Badge variant="published">JavaScript</Badge>
+                  <Badge variant="published">Cross-Platform</Badge>
                 </div>
               </div>
               <p className="text-sm text-muted-foreground mb-1">
@@ -302,10 +287,10 @@ export default function Resume() {
               <div className="flex flex-col md:flex-row justify-between mb-1">
                 <h4 className="font-medium">Design Automation System</h4>
                 <div className="flex gap-2">
-                  <Badge variant="secondary">VBA</Badge>
-                  <Badge variant="secondary">iLogic</Badge>
-                  <Badge variant="secondary">CAD APIs</Badge>
-                  <Badge variant="secondary">Python</Badge>
+                  <Badge variant="deployed">VBA</Badge>
+                  <Badge variant="deployed">iLogic</Badge>
+                  <Badge variant="deployed">CAD APIs</Badge>
+                  <Badge variant="deployed">Python</Badge>
                 </div>
               </div>
               <p className="text-sm text-muted-foreground mb-1">
@@ -323,10 +308,10 @@ export default function Resume() {
               <div className="flex flex-col md:flex-row justify-between mb-1">
                 <h4 className="font-medium">IoT & Embedded Systems</h4>
                 <div className="flex gap-2">
-                  <Badge variant="secondary">Arduino</Badge>
-                  <Badge variant="secondary">C/C++</Badge>
-                  <Badge variant="secondary">IoT</Badge>
-                  <Badge variant="secondary">Bluetooth</Badge>
+                  <Badge variant="experiment">Arduino</Badge>
+                  <Badge variant="experiment">C/C++</Badge>
+                  <Badge variant="experiment">IoT</Badge>
+                  <Badge variant="experiment">Bluetooth</Badge>
                 </div>
               </div>
               <p className="text-sm text-muted-foreground mb-1">
@@ -345,6 +330,34 @@ export default function Resume() {
           {/* Education */}
           <section className="mb-6">
             <h3 className="text-lg font-semibold mb-4">Education</h3>
+
+            <div className="mb-2">
+              <div className="flex flex-col md:flex-row justify-between">
+                <h4 className="font-medium">AI Accelerator & Software Engineering Bootcamp</h4>
+                <span className="text-muted-foreground text-sm">Summer 2025 Cohort</span>
+              </div>
+              <div className="flex flex-col md:flex-row justify-between">
+                <p className="text-muted-foreground">Fractal Tech</p>
+                <span className="text-muted-foreground text-sm">Brooklyn, NY</span>
+              </div>
+              <p className="text-sm text-muted-foreground mt-1">
+                Full-stack development, React/Next.js, mobile apps, AI integration, multiplayer games, real-time systems
+              </p>
+            </div>
+
+            <div className="mb-2">
+              <div className="flex flex-col md:flex-row justify-between">
+                <h4 className="font-medium">Venture For America Fellowship</h4>
+                <span className="text-muted-foreground text-sm">2021 - 2023</span>
+              </div>
+              <div className="flex flex-col md:flex-row justify-between">
+                <p className="text-muted-foreground">Entrepreneurship fellowship program</p>
+                <span className="text-muted-foreground text-sm">Training Bootcamp: July 2021</span>
+              </div>
+              <p className="text-sm text-muted-foreground mt-1">
+                Career development program for recent graduates to work at startups and revitalize American cities
+              </p>
+            </div>
 
             <div className="mb-2">
               <div className="flex flex-col md:flex-row justify-between">
@@ -370,18 +383,7 @@ export default function Resume() {
           </section>
 
           <Separator className="my-6" />
-
-          {/* Additional Experience */}
-          <section>
-            <h3 className="text-lg font-semibold mb-4">Leadership & Involvement</h3>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
-              <div>
-                <h4 className="font-medium">Entrepreneurship Fellow</h4>
-                <p className="text-muted-foreground">Venture For America • 2020-2023</p>
-              </div>
-            </div>
-          </section>
+          
         </CardContent>
       </Card>
     </div>

@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import { Badge } from './ui/badge'
+import { getBadgeVariant } from './utils'
 
 interface ContentListItemProps {
   date: string
@@ -12,37 +13,10 @@ interface ContentListItemProps {
   collection?: string
 }
 
+// Map collection to badge variant
+
+
 export function ContentListItem({ date, title, subtitle, extra, href, vertical = false, tag, collection }: ContentListItemProps) {
-  // Map collection to badge variant
-  const getBadgeVariant = (collection?: string, tag?: string) => {
-    // Check for project-specific tags first
-    if (tag) {
-      switch (tag.toLowerCase()) {
-        case 'published':
-          return 'published'
-        case 'deployed':
-          return 'deployed'
-        case 'finished':
-          return 'finished'
-        case 'in-progress':
-          return 'in-progress'
-        case 'experiment':
-          return 'experiment'
-        // If it's not a project tag, fall through to collection logic
-      }
-    }
-    
-    // Fall back to collection-based logic for blog posts
-    if (!collection) return 'secondary'
-    switch (collection) {
-      case 'fractal-weekly-reflection':
-        return 'fractal'
-      case 'beginner-programmer':
-        return 'beginner-programmer'
-      default:
-        return 'secondary'
-    }
-  }
 
   if (vertical) {
     return (
