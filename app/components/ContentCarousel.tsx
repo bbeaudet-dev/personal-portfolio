@@ -76,7 +76,7 @@ export function ContentCarousel({ title, items, type }: ContentCarouselProps) {
               <div className="group relative">
                 <a
                   href={item.href}
-                  className={`block p-4 border border-neutral-200 dark:border-neutral-800 rounded-lg hover:border-neutral-300 dark:hover:border-neutral-700 transition-all duration-200 h-45 ${cardWidth}`}
+                  className={`block p-4 border border-neutral-200 dark:border-neutral-800 rounded-lg hover:border-neutral-300 dark:hover:border-neutral-700 transition-all duration-200 h-32 ${cardWidth}`}
                 >
                   <div className="space-y-2 h-full flex flex-col">
                     {/* Date (for blog posts) */}

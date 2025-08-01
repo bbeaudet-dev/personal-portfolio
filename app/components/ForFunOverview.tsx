@@ -1,5 +1,5 @@
 import { getForFunSections } from '../lib/config/sections'
-import { ContentCarousel } from './content-carousel'
+import { ContentCarousel } from './ContentCarousel'
 
 export function ForFunOverview() {
   const forFunSections = getForFunSections()

@@ -37,7 +37,7 @@ export function Navbar() {
                 return (
                   <div
                     key={item.id}
-                    className="relative group"
+                    className="relative"
                     onMouseEnter={() => setHoveredItem(item.id)}
                     onMouseLeave={() => setHoveredItem(null)}
                   >
@@ -47,11 +47,10 @@ export function Navbar() {
                           ? 'font-bold text-neutral-800 dark:text-neutral-200 text-lg' 
                           : 'text-neutral-600 dark:text-neutral-400'
                       }`}
-                      onClick={() => setHoveredItem(hoveredItem === item.id ? null : item.id)}
                     >
                       {item.name}
                     </div>
-                    {(hoveredItem === item.id || isItemActive) && (
+                    {hoveredItem === item.id && (
                       <div className="absolute top-full left-0 mt-1 bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-700 rounded-lg shadow-lg py-2 min-w-[120px] z-50">
                         {item.children.map((child) => (
                           <Link
