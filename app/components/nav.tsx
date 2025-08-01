@@ -67,20 +67,15 @@ export function Navbar() {
 
   // Handle mouse leave for the entire nav area
   const handleMouseLeave = () => {
-    // Set a 1-second delay before hiding the sub-nav
-    timeoutRef.current = setTimeout(() => {
-      setHoveredItem(null)
-      setIsSubNavVisible(false)
-    }, 1000)
+    // Immediate disappearance for more natural feel
+    setHoveredItem(null)
+    setIsSubNavVisible(false)
   }
 
   // Handle mouse enter for the sub-nav area
   const handleSubNavMouseEnter = () => {
-    // Clear any existing timeout when hovering over sub-nav
-    if (timeoutRef.current) {
-      clearTimeout(timeoutRef.current)
-      timeoutRef.current = null
-    }
+    // Keep sub-nav visible when hovering over it
+    setIsSubNavVisible(true)
   }
 
   // Cleanup timeout on unmount
@@ -97,7 +92,7 @@ export function Navbar() {
 
   return (
     <aside className="-ml-[8px] mb-16 tracking-tight">
-      <div className="lg:sticky lg:top-20">
+      <div className="lg:sticky lg:top-20 relative">
         {/* Main Navigation */}
         <nav
           ref={navRef}
@@ -118,7 +113,7 @@ export function Navbar() {
                 >
                   <Link
                     href={item.href || '/for-fun'}
-                    className={`transition-all hover:text-neutral-800 dark:hover:text-neutral-200 flex align-middle relative py-1 px-2 m-1 ${
+                    className={`transition-all duration-200 hover:text-neutral-800 dark:hover:text-neutral-200 hover:scale-105 flex align-middle relative  px-2 m-1 ${
                       isItemActive 
                         ? 'font-bold text-neutral-800 dark:text-neutral-200 text-lg' 
                         : 'text-neutral-600 dark:text-neutral-400'
@@ -132,15 +127,15 @@ export function Navbar() {
           </div>
         </nav>
 
-        {/* Sub Navigation */}
+        {/* Sub Navigation - Absolute positioned to prevent content bumping */}
         <div 
-          className={`transition-all duration-300 ease-in-out overflow-hidden ${
-            shouldShowSubNav() ? 'max-h-16 opacity-100' : 'max-h-0 opacity-0'
+          className={`transition-all duration-200 ease-in-out overflow-hidden absolute top-full left-0 right-0 ${
+            shouldShowSubNav() ? 'max-h-12 opacity-100' : 'max-h-0 opacity-0'
           }`}
           onMouseEnter={handleSubNavMouseEnter}
           onMouseLeave={handleMouseLeave}
         >
-          <nav className="flex flex-row items-start relative px-0 pb-0 fade md:overflow-auto scroll-pr-6 md:relative mt-2">
+          <nav className="flex flex-row items-start relative px-0 pb-0 fade md:overflow-auto scroll-pr-6 md:relative mt-0">
             <div 
               className="flex flex-row space-x-0 pr-10"
               style={{ marginLeft: `${forFunPosition}px` }}
@@ -152,7 +147,7 @@ export function Navbar() {
                   <Link
                     key={child.href}
                     href={child.href!}
-                    className={`transition-all hover:text-neutral-800 dark:hover:text-neutral-200 flex align-middle relative py-1 px-2 m-1 text-sm ${
+                    className={`transition-all duration-200 hover:text-neutral-800 dark:hover:text-neutral-200 hover:scale-105 flex align-middle relative py-1 px-2 m-1 text-sm ${
                       isChildActive 
                         ? 'font-bold text-neutral-800 dark:text-neutral-200' 
                         : 'text-neutral-600 dark:text-neutral-400'
