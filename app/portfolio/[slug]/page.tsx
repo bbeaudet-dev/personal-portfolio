@@ -1,7 +1,7 @@
 import { notFound } from 'next/navigation'
 import { CustomMDX } from '../../components/MDX'
-import { getPortfolioProjects } from 'app/portfolio/utils'
-import { baseUrl } from 'app/sitemap'
+import { getPortfolioProjects } from '../../portfolio/utils'
+import { baseUrl } from '../../sitemap'
 
 export async function generateStaticParams() {
   let projects = getPortfolioProjects()

@@ -15,16 +15,24 @@ type Metadata = {
 function parseFrontmatter(fileContent: string) {
   let frontmatterRegex = /---\s*([\s\S]*?)\s*---/
   let match = frontmatterRegex.exec(fileContent)
-  let frontMatterBlock = match![1]
+  
+  if (!match) {
+    // If no frontmatter found, return empty metadata
+    return { metadata: {} as Metadata, content: fileContent.trim() }
+  }
+  
+  let frontMatterBlock = match[1]
   let content = fileContent.replace(frontmatterRegex, '').trim()
   let frontMatterLines = frontMatterBlock.trim().split('\n')
   let metadata: Partial<Metadata> = {}
 
   frontMatterLines.forEach((line) => {
-    let [key, ...valueArr] = line.split(': ')
-    let value = valueArr.join(': ').trim()
-    value = value.replace(/^['"](.*)['"]$/, '$1') // Remove quotes
-    metadata[key.trim() as keyof Metadata] = value
+    if (line.trim() && line.includes(': ')) {
+      let [key, ...valueArr] = line.split(': ')
+      let value = valueArr.join(': ').trim()
+      value = value.replace(/^['"](.*)['"]$/, '$1') // Remove quotes
+      metadata[key.trim() as keyof Metadata] = value
+    }
   })
 
   return { metadata: metadata as Metadata, content }
@@ -54,7 +62,10 @@ function getMDXData(dir) {
 }
 
 export function getBlogPosts() {
-  return getMDXData(path.join(process.cwd(), 'app', 'blog', 'posts')).map(post => ({
+  const mainPosts = getMDXData(path.join(process.cwd(), 'app', 'blog', 'posts'))
+  const wipPosts = getMDXData(path.join(process.cwd(), 'app', 'blog', 'posts-wip'))
+  
+  const allPosts = [...mainPosts, ...wipPosts].map(post => ({
     ...post,
     metadata: {
       ...post.metadata,
@@ -62,6 +73,8 @@ export function getBlogPosts() {
       prominence: post.metadata.prominence ? parseInt(post.metadata.prominence as string) : undefined
     }
   }))
+  
+  return allPosts
 }
 
 export function formatDate(date: string | undefined, includeRelative = false) {

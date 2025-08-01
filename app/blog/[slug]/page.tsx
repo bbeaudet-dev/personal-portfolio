@@ -1,8 +1,8 @@
 import { notFound } from 'next/navigation'
 import { CustomMDX } from '../../components/MDX'
-import { formatDate, getBlogPosts } from 'app/blog/utils'
-import { baseUrl } from 'app/sitemap'
-import { Badge } from 'app/components/ui/badge'
+import { formatDate, getBlogPosts } from '../../blog/utils'
+import { baseUrl } from '../../sitemap'
+import { Badge } from '../../components/ui/badge'
 
 // Add type for Metadata with optional collection
 

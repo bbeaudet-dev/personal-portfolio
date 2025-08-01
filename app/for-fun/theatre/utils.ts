@@ -95,7 +95,10 @@ function getMDXData(dir) {
 }
 
 export function getTheatreReviews() {
-  const reviews = getMDXData(path.join(process.cwd(), 'app', 'for-fun', 'theatre', 'reviews')).map(review => {
+  const mainReviews = getMDXData(path.join(process.cwd(), 'app', 'for-fun', 'theatre', 'reviews'))
+  const wipReviews = getMDXData(path.join(process.cwd(), 'app', 'for-fun', 'theatre', 'reviews-wip'))
+  
+  const allReviews = [...mainReviews, ...wipReviews].map(review => {
     return {
       ...review,
       metadata: {
@@ -112,7 +115,7 @@ export function getTheatreReviews() {
     }
   })
   
-  return reviews;
+  return allReviews;
 }
 
 export function calculateAverageRating(rating: Rating): number {
