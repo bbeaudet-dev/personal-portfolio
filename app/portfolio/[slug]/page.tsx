@@ -1,5 +1,5 @@
 import { notFound } from 'next/navigation'
-import { CustomMDX } from 'app/components/MDX'
+import { CustomMDX } from '../../components/MDX'
 import { getPortfolioProjects } from 'app/portfolio/utils'
 import { baseUrl } from 'app/sitemap'
 
