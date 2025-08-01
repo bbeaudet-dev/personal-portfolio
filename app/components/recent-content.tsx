@@ -1,7 +1,7 @@
 import { getBlogPosts } from '../blog/utils'
 import { getPortfolioProjects } from '../portfolio/utils'
-import { getTheatreReviews } from '../theatre/utils'
-import { getShowRank, getTotalShows, formatRank, getShowBySlug, getShowDistrict } from '../theatre/reviews/show-list'
+import { getTheatreReviews } from '../for-fun/theatre/utils'
+import { getShowRank, getTotalShows, formatRank, getShowBySlug, getShowDistrict } from '../for-fun/theatre/reviews/show-list'
 import { ContentCarousel } from './content-carousel'
 
 export function RecentContent() {
@@ -59,7 +59,7 @@ export function RecentContent() {
     
     return {
       title: displayName,
-      href: `/theatre/${review.slug}`,
+      href: `/for-fun/theatre/${review.slug}`,
       tag: getShowDistrict(displayName),
       extra: formatRank(rank, totalShows),
       date: review.metadata.publishedAt,

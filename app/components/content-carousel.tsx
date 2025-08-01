@@ -30,7 +30,7 @@ interface ContentCarouselProps {
     collection?: string
     extra?: string
   }>
-  type: 'portfolio' | 'blog' | 'theatre'
+  type: 'portfolio' | 'blog' | 'theatre' | 'for-fun'
 }
 
 export function ContentCarousel({ title, items, type }: ContentCarouselProps) {
@@ -44,7 +44,7 @@ export function ContentCarousel({ title, items, type }: ContentCarouselProps) {
       <div className="flex items-center justify-between mb-4">
         <h2 className="text-xl font-semibold">{title}</h2>
         <a 
-          href={type === 'portfolio' ? '/portfolio' : type === 'blog' ? '/blog' : '/theatre'}
+          href={type === 'portfolio' ? '/portfolio' : type === 'blog' ? '/blog' : type === 'for-fun' ? '/for-fun' : '/for-fun/theatre'}
           className="text-sm text-neutral-600 dark:text-neutral-400 hover:text-neutral-800 dark:hover:text-neutral-200 transition-colors"
         >
           See all →

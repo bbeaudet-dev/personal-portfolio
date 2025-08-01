@@ -3,44 +3,7 @@
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useState } from 'react'
-
-interface NavItem {
-  name: string
-  href?: string
-  children?: NavItem[]
-}
-
-const navItems: NavItem[] = [
-  {
-    name: 'home',
-    href: '/',
-  },
-  {
-    name: 'portfolio',
-    href: '/portfolio',
-  },
-  {
-    name: 'blog',
-    href: '/blog',
-  },
-  {
-    name: 'for fun',
-    children: [
-      {
-        name: 'theatre',
-        href: '/for-fun/theatre',
-      },
-      {
-        name: 'games',
-        href: '/for-fun/games',
-      },
-      {
-        name: 'music',
-        href: '/for-fun/music',
-      },
-    ],
-  },
-]
+import { sectionConfig, Section } from '../lib/config/sections'
 
 export function Navbar() {
   const pathname = usePathname()
@@ -51,7 +14,7 @@ export function Navbar() {
     return pathname === href || pathname.startsWith(href + '/')
   }
 
-  const isParentActive = (item: NavItem) => {
+  const isParentActive = (item: Section) => {
     if (item.href) return isActive(item.href)
     if (item.children) {
       return item.children.some(child => isActive(child.href))
@@ -67,27 +30,27 @@ export function Navbar() {
           id="nav"
         >
           <div className="flex flex-row space-x-0 pr-10">
-            {navItems.map((item) => {
+            {sectionConfig.sections.map((item) => {
               const isItemActive = isParentActive(item)
               
               if (item.children) {
                 return (
                   <div
-                    key={item.name}
+                    key={item.id}
                     className="relative group"
-                    onMouseEnter={() => setHoveredItem(item.name)}
+                    onMouseEnter={() => setHoveredItem(item.id)}
                     onMouseLeave={() => setHoveredItem(null)}
                   >
-                    <button
-                      className={`transition-all hover:text-neutral-800 dark:hover:text-neutral-200 flex align-middle relative py-1 px-2 m-1 ${
+                    <div
+                      className={`transition-all hover:text-neutral-800 dark:hover:text-neutral-200 flex align-middle relative py-1 px-2 m-1 cursor-pointer ${
                         isItemActive 
                           ? 'font-bold text-neutral-800 dark:text-neutral-200 text-lg' 
                           : 'text-neutral-600 dark:text-neutral-400'
                       }`}
                     >
                       {item.name}
-                    </button>
-                    {(hoveredItem === item.name || isItemActive) && (
+                    </div>
+                    {(hoveredItem === item.id || isItemActive) && (
                       <div className="absolute top-full left-0 mt-1 bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-700 rounded-lg shadow-lg py-2 min-w-[120px] z-50">
                         {item.children.map((child) => (
                           <Link
