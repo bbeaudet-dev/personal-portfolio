@@ -96,9 +96,6 @@ function getMDXData(dir) {
 
 export function getTheatreReviews() {
   const reviews = getMDXData(path.join(process.cwd(), 'app', 'for-fun', 'theatre', 'reviews')).map(review => {
-    console.log('DEBUG: Raw review metadata:', review.metadata);
-    console.log('DEBUG: Rating value:', review.metadata.rating);
-    
     return {
       ...review,
       metadata: {
@@ -115,7 +112,6 @@ export function getTheatreReviews() {
     }
   })
   
-  console.log('DEBUG: Final reviews:', reviews);
   return reviews;
 }
 
