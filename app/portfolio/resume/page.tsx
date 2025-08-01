@@ -2,7 +2,7 @@ import { Mail, Phone, Github, Linkedin, MapPin } from "lucide-react"
 import { Badge } from "../../components/ui/badge"
 import { Card, CardContent } from "../../components/ui/card"
 import { Separator } from "../../components/ui/separator"
-import { PrintButton } from "../../components/print-button"
+import { PrintButton } from "../../components/PrintButton"
 
 export default function Resume() {
   return (

@@ -1,4 +1,4 @@
-import { getTheatreReviews, formatDate, calculateAverageRating } from 'app/theatre/utils'
+import { getTheatreReviews, formatDate, calculateAverageRating } from 'app/for-fun/theatre/utils'
 import { MDXRemote } from 'next-mdx-remote/rsc'
 import { notFound } from 'next/navigation'
 
@@ -115,7 +115,7 @@ export default function TheatreReviewPage({
         <MDXRemote source={review.content} />
       </div>
       <div className="mt-8 flex justify-left">
-        <a href="/theatre" className="inline-block px-6 py-2 rounded-lg bg-neutral-100 dark:bg-neutral-800 text-neutral-900 dark:text-neutral-100 font-medium shadow hover:bg-neutral-200 dark:hover:bg-neutral-700 transition-colors">
+        <a href="/for-fun/theatre" className="inline-block px-6 py-2 rounded-lg bg-neutral-100 dark:bg-neutral-800 text-neutral-900 dark:text-neutral-100 font-medium shadow hover:bg-neutral-200 dark:hover:bg-neutral-700 transition-colors">
           ← Back to Reviews
         </a>
       </div>

@@ -1,5 +1,5 @@
 import { getBlogPosts, formatDate } from 'app/blog/utils'
-import { ContentList } from 'app/components/content-list-item'
+import { ContentList } from 'app/components/ContentListItem'
 
 export const metadata = {
   title: "Ben's Blog",

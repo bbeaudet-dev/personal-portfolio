@@ -1,6 +1,6 @@
-import { getTheatreReviews, formatDate } from 'app/theatre/utils'
-import { getShowRank, getTotalShows, formatRank, getShowBySlug } from 'app/theatre/reviews/show-list'
-import { ContentList } from 'app/components/content-list-item'
+import { getTheatreReviews, formatDate } from 'app/for-fun/theatre/utils'
+import { getShowRank, getTotalShows, formatRank, getShowBySlug } from 'app/for-fun/theatre/reviews/show-list'
+import { ContentList } from 'app/components/ContentListItem'
 
 export default function TheatrePage() {
   const allReviews = getTheatreReviews().sort((a, b) => new Date(b.metadata.publishedAt).getTime() - new Date(a.metadata.publishedAt).getTime())
@@ -17,7 +17,7 @@ export default function TheatrePage() {
           return {
             date: formatDate(review.metadata.publishedAt, false),
             title: displayName,
-            href: `/theatre/${review.slug}`,
+            href: `/for-fun/theatre/${review.slug}`,
             extra: formatRank(rank, totalShows),
           }
         }}

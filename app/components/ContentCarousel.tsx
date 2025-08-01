@@ -30,7 +30,7 @@ interface ContentCarouselProps {
     collection?: string
     extra?: string
   }>
-  type: 'portfolio' | 'blog' | 'theatre'
+  type: 'portfolio' | 'blog' | 'theatre' | 'for-fun'
 }
 
 export function ContentCarousel({ title, items, type }: ContentCarouselProps) {
@@ -44,7 +44,7 @@ export function ContentCarousel({ title, items, type }: ContentCarouselProps) {
       <div className="flex items-center justify-between mb-4">
         <h2 className="text-xl font-semibold">{title}</h2>
         <a 
-          href={type === 'portfolio' ? '/portfolio' : type === 'blog' ? '/blog' : '/theatre'}
+          href={type === 'portfolio' ? '/portfolio' : type === 'blog' ? '/blog' : type === 'for-fun' ? '/for-fun' : '/for-fun/theatre'}
           className="text-sm text-neutral-600 dark:text-neutral-400 hover:text-neutral-800 dark:hover:text-neutral-200 transition-colors"
         >
           See all →
@@ -76,7 +76,7 @@ export function ContentCarousel({ title, items, type }: ContentCarouselProps) {
               <div className="group relative">
                 <a
                   href={item.href}
-                  className={`block p-4 border border-neutral-200 dark:border-neutral-800 rounded-lg hover:border-neutral-300 dark:hover:border-neutral-700 transition-all duration-200 h-45 ${cardWidth}`}
+                  className={`block p-4 border border-neutral-200 dark:border-neutral-800 rounded-lg hover:border-neutral-300 dark:hover:border-neutral-700 transition-all duration-200 h-32 ${cardWidth}`}
                 >
                   <div className="space-y-2 h-full flex flex-col">
                     {/* Date (for blog posts) */}
