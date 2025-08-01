@@ -1,4 +1,4 @@
-import { HighlightReel } from './highlight-reel'
+import { HighlightReel } from './HighlightReel'
 
 export function Introduction() {
   return (

@@ -34,6 +34,7 @@ export const sectionConfig: SectionConfig = {
     {
       id: 'for-fun',
       name: 'for fun',
+      href: '/for-fun',
       description: 'Hobbies, entertainment, and personal interests',
       children: [
         {

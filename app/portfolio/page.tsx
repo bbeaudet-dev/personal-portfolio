@@ -1,6 +1,6 @@
 import { getPortfolioProjects } from 'app/portfolio/utils'
 import { formatDate } from 'app/blog/utils'
-import { ContentList } from 'app/components/content-list-item'
+import { ContentList } from 'app/components/ContentListItem'
 
 export const metadata = {
   title: "Ben's Portfolio",
