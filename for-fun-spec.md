@@ -197,26 +197,58 @@ Each game page will optionally include:
 
 ## Implementation Priority
 
-### Phase 1: Foundation
+### Phase 1: Foundation ✅ COMPLETED
 
-1. Create for-fun folder structure
-2. Update navigation with dropdown
-3. Move theatre section
-4. Create basic games and music pages
+1. ✅ Create for-fun folder structure
+2. ✅ Update navigation with dropdown
+3. ✅ Move theatre section
+4. ✅ Create basic games and music pages
 
-### Phase 2: Content
+### Phase 2: Component Architecture (CURRENT)
+
+1. 🔄 Fix navigation dropdown functionality
+2. 🔄 Refactor to proper component hierarchy:
+   - Create section-specific home components (TheatreHome, BlogHome, etc.)
+   - Move section-specific imports out of RecentContent
+   - Pass data to RecentContent instead of importing directly
+3. 🔄 Implement centralized section configuration
+4. 🔄 Create proper separation of concerns
+
+### Phase 3: Content
 
 1. Create first few game pages (Balatro, Hollow Knight)
 2. Add game-specific components (achievement displays, screenshots)
 3. Create music content structure
 4. Add filtering and search functionality
 
-### Phase 3: Enhancement
+### Phase 4: Enhancement
 
 1. Add advanced features (achievement tracking, playtime stats)
 2. Implement media galleries
 3. Add social sharing features
 4. Optimize performance and SEO
+
+## Component Architecture Discussion
+
+### Current Issue
+
+The RecentContent component currently imports all section-specific functions (getTheatreReviews, getBlogPosts, etc.) directly, violating separation of concerns.
+
+### Proposed Solution
+
+Create a proper component hierarchy:
+
+- **Home** component imports section home components
+- **TheatreHome**, **BlogHome**, etc. handle their own data fetching
+- **RecentContent** receives data as props instead of importing directly
+- Each section maintains its own data management
+
+### Benefits
+
+- Better separation of concerns
+- Easier to maintain and extend
+- More modular architecture
+- Clearer data flow
 
 ## Questions for Discussion
 

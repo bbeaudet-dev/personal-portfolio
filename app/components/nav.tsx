@@ -47,6 +47,7 @@ export function Navbar() {
                           ? 'font-bold text-neutral-800 dark:text-neutral-200 text-lg' 
                           : 'text-neutral-600 dark:text-neutral-400'
                       }`}
+                      onClick={() => setHoveredItem(hoveredItem === item.id ? null : item.id)}
                     >
                       {item.name}
                     </div>

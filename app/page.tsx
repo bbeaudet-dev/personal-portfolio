@@ -1,8 +1,16 @@
 import { RecentContent } from 'app/components/recent-content'
 import { HighlightReel } from 'app/components/highlight-reel'
-import { ForFunOverview } from 'app/components/for-fun-overview'
+import { ForFunOverview } from 'app/components/ForFunOverview'
+import { PortfolioHome } from 'app/components/sections/PortfolioHome'
+import { BlogHome } from 'app/components/sections/BlogHome'
+import { TheatreHome } from 'app/components/sections/TheatreHome'
 
 export default function Page() {
+  // Fetch data from each section
+  const { portfolioItems } = PortfolioHome()
+  const { blogItems } = BlogHome()
+  const { theatreItems } = TheatreHome()
+
   return (
     <div className="overflow-x-hidden">
       <section className="max-w-3xl mx-auto px-4">
@@ -43,7 +51,11 @@ export default function Page() {
       
       {/* Full-bleed RecentContent, centered and very wide */}
       <section className="w-full max-w-screen-2xl mx-auto px-4 overflow-hidden">
-        <RecentContent />
+        <RecentContent 
+          portfolioItems={portfolioItems}
+          blogItems={blogItems}
+          theatreItems={theatreItems}
+        />
         <ForFunOverview />
       </section>
     </div>
