@@ -37,7 +37,7 @@ export function ContentListItem({ date, title, subtitle, extra, href, vertical =
           </p>
           <div className="flex items-center gap-2 mb-1">
             {tag && (
-              <Badge variant={getBadgeVariant(collection, tag)} className="text-xs">
+              <Badge variant={getBadgeVariant(collection, tag)} className="text-[10px]">
                 {tag}
               </Badge>
             )}
@@ -60,7 +60,7 @@ export function ContentListItem({ date, title, subtitle, extra, href, vertical =
             {title}
           </p>
           {tag && (
-            <Badge variant={getBadgeVariant(collection, tag)} className="text-xs">
+            <Badge variant={getBadgeVariant(collection, tag)} className="text-[10px]">
               {tag}
             </Badge>
           )}

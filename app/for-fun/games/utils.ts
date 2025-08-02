@@ -76,12 +76,9 @@ const gamesDirectory = path.join(process.cwd(), 'app/for-fun/games/games')
 
 export function getGames(): Game[] {
   const mainGames = getMDXData(gamesDirectory)
-  const wipGames = getMDXData(path.join(process.cwd(), 'app/for-fun/games/games-wip'))
-  
-  const allGames = [...mainGames, ...wipGames]
 
   // Sort games by rating (highest first), then by title
-  return allGames.sort((a, b) => {
+  return mainGames.sort((a, b) => {
     if (b.metadata.rating !== a.metadata.rating) {
       return b.metadata.rating - a.metadata.rating
     }

@@ -96,9 +96,8 @@ function getMDXData(dir) {
 
 export function getTheatreReviews() {
   const mainReviews = getMDXData(path.join(process.cwd(), 'app', 'for-fun', 'theatre', 'reviews'))
-  const wipReviews = getMDXData(path.join(process.cwd(), 'app', 'for-fun', 'theatre', 'reviews-wip'))
   
-  const allReviews = [...mainReviews, ...wipReviews].map(review => {
+  const allReviews = mainReviews.map(review => {
     return {
       ...review,
       metadata: {

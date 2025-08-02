@@ -28,7 +28,7 @@ export function Navbar() {
 
   // Check if we should show sub-navigation
   const shouldShowSubNav = () => {
-    return pathname.startsWith('/for-fun/') || hoveredItem === 'for-fun' || isSubNavVisible
+    return pathname.startsWith('/for-fun') || hoveredItem === 'for-fun' || isSubNavVisible
   }
 
   // Get the active section for sub-nav
@@ -39,24 +39,32 @@ export function Navbar() {
     return null
   }
 
+  // Calculate position of the "for fun" nav item
+  const calculateForFunPosition = () => {
+    if (navRef.current) {
+      const navItems = navRef.current.querySelectorAll('[data-nav-item]')
+      let currentPosition = 0
+      for (let i = 0; i < navItems.length; i++) {
+        const item = navItems[i] as HTMLElement
+        if (item.getAttribute('data-nav-item') === 'for-fun') {
+          // Add a small offset to account for padding
+          return currentPosition + 8
+        }
+        currentPosition += item.offsetWidth
+      }
+    }
+    return 0
+  }
+
   // Handle mouse enter for main nav items
   const handleMouseEnter = (itemId: string) => {
     setHoveredItem(itemId)
     if (itemId === 'for-fun') {
       setIsSubNavVisible(true)
-      // Calculate position of the "for fun" nav item
-      if (navRef.current) {
-        const navItems = navRef.current.querySelectorAll('[data-nav-item]')
-        let currentPosition = 0
-        for (let i = 0; i < navItems.length; i++) {
-          const item = navItems[i] as HTMLElement
-          if (item.getAttribute('data-nav-item') === 'for-fun') {
-            setForFunPosition(currentPosition)
-            break
-          }
-          currentPosition += item.offsetWidth
-        }
-      }
+      setForFunPosition(calculateForFunPosition())
+    } else {
+      // Hide subnav when hovering over other nav items
+      setIsSubNavVisible(false)
     }
     // Clear any existing timeout
     if (timeoutRef.current) {
@@ -77,6 +85,13 @@ export function Navbar() {
     // Keep sub-nav visible when hovering over it
     setIsSubNavVisible(true)
   }
+
+  // Calculate position on mount and pathname changes
+  useEffect(() => {
+    if (shouldShowSubNav()) {
+      setForFunPosition(calculateForFunPosition())
+    }
+  }, [pathname])
 
   // Cleanup timeout on unmount
   useEffect(() => {

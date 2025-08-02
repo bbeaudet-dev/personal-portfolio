@@ -63,9 +63,8 @@ function getMDXData(dir) {
 
 export function getBlogPosts() {
   const mainPosts = getMDXData(path.join(process.cwd(), 'app', 'blog', 'posts'))
-  const wipPosts = getMDXData(path.join(process.cwd(), 'app', 'blog', 'posts-wip'))
   
-  const allPosts = [...mainPosts, ...wipPosts].map(post => ({
+  const allPosts = mainPosts.map(post => ({
     ...post,
     metadata: {
       ...post.metadata,
