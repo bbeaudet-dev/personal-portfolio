@@ -64,7 +64,7 @@ export default function TheatreClient({ reviews }: TheatreClientProps) {
           const locationTag = getShowDistrict(displayName)
           
           return {
-            date: formatDate(review.metadata.publishedAt, false),
+            date: formatDate(review.metadata.publishedAt, true),
             title: displayName,
             href: `/for-fun/theatre/${review.slug}`,
             extra: formatRank(rank, totalShows),
