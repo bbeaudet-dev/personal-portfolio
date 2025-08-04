@@ -1,4 +1,5 @@
 export interface TheatreShow {
+  id: number; // Chronological order (0 = first show seen)
   name: string;
   rank: number;
   slug: string;
@@ -8,12 +9,12 @@ export interface TheatreShow {
 
 export interface TheaterInfo {
   name: string;
-  date?: string; // Optional since some dates weren't provided
-  location?: string; // For non-Theatre venues like Detroit
+  date: string; 
 }
 
 export const theatreShowList: TheatreShow[] = [
   { 
+    id: 23,
     name: "Hadestown", 
     rank: 1, 
     slug: "hadestown",
@@ -23,6 +24,7 @@ export const theatreShowList: TheatreShow[] = [
     ]
   },
   { 
+    id: 25,
     name: "Hadestown (2)", 
     rank: 1, 
     slug: "hadestown-2",
@@ -32,6 +34,7 @@ export const theatreShowList: TheatreShow[] = [
     ]
   },
   { 
+    id: 34,
     name: "Hadestown (3)", 
     rank: 1, 
     slug: "hadestown-3",
@@ -41,6 +44,7 @@ export const theatreShowList: TheatreShow[] = [
     ]
   },
   { 
+    id: 7,
     name: "Hamilton", 
     rank: 2, 
     slug: "hamilton",
@@ -50,6 +54,7 @@ export const theatreShowList: TheatreShow[] = [
     ]
   },
   { 
+    id: 10,
     name: "Come From Away", 
     rank: 3, 
     slug: "come-from-away",
@@ -59,17 +64,29 @@ export const theatreShowList: TheatreShow[] = [
     ]
   },
   { 
+    id: 26,
     name: "Come From Away (2)", 
     rank: 3, 
     slug: "come-from-away-2",
     district: "Broadway (Touring)",
     theaters: [
-      { name: "Detroit Fisher Theatre", date: "2025-02-15", location: "Detroit" }
+      { name: "Detroit Fisher Theatre", date: "2025-02-15" }
     ]
   },
   { 
-    name: "Gypsy", 
+    id: 37,
+    name: "John Proctor is the Villain", 
     rank: 4, 
+    slug: "john-proctor-is-the-villain",
+    district: "Broadway",
+    theaters: [
+      { name: "Booth Theatre", date: "2025-08-02" }
+    ]
+  },
+  { 
+    id: 33,
+    name: "Gypsy", 
+    rank: 5, 
     slug: "gypsy",
     district: "Broadway",
     theaters: [
@@ -77,8 +94,9 @@ export const theatreShowList: TheatreShow[] = [
     ]
   },
   { 
+    id: 9,
     name: "Water for Elephants", 
-    rank: 5, 
+    rank: 6, 
     slug: "water-for-elephants",
     district: "Broadway",
     theaters: [
@@ -86,8 +104,19 @@ export const theatreShowList: TheatreShow[] = [
     ]
   },
   { 
+    id: 38,
+    name: "Death Becomes Her", 
+    rank: 7, 
+    slug: "death-becomes-her",
+    district: "Broadway",
+    theaters: [
+      { name: "Lunt-Fontanne Theatre", date: "2025-08-03" }
+    ]
+  },
+  { 
+    id: 24,
     name: "Sunset Blvd.", 
-    rank: 6, 
+    rank: 8, 
     slug: "sunset-blvd",
     district: "Broadway",
     theaters: [
@@ -95,8 +124,9 @@ export const theatreShowList: TheatreShow[] = [
     ]
   },
   { 
+    id: 12,
     name: "The Outsiders", 
-    rank: 7, 
+    rank: 9, 
     slug: "the-outsiders",
     district: "Broadway",
     theaters: [
@@ -104,8 +134,9 @@ export const theatreShowList: TheatreShow[] = [
     ]
   },
   { 
+    id: 31,
     name: "Floyd Collins", 
-    rank: 8, 
+    rank: 10, 
     slug: "floyd-collins",
     district: "Broadway",
     theaters: [
@@ -113,8 +144,9 @@ export const theatreShowList: TheatreShow[] = [
     ]
   },
   { 
+    id: 4,
     name: "Moulin Rouge", 
-    rank: 9, 
+    rank: 11, 
     slug: "moulin-rouge",
     district: "Broadway",
     theaters: [
@@ -122,8 +154,9 @@ export const theatreShowList: TheatreShow[] = [
     ]
   },
   { 
+    id: 3,
     name: "Wicked", 
-    rank: 10, 
+    rank: 12, 
     slug: "wicked",
     district: "Broadway",
     theaters: [
@@ -131,33 +164,17 @@ export const theatreShowList: TheatreShow[] = [
     ]
   },
   { 
+    id: 1,
     name: "POTUS", 
-    rank: 11, 
+    rank: 13, 
     slug: "potus",
     district: "Broadway",
     theaters: [
-      { name: "Shubert Theatre", date: "2024-10-25" }
+      { name: "Shubert Theatre", date: "2022-05-01" }
     ]
   },
   { 
-    name: "Call Me Izzy", 
-    rank: 12, 
-    slug: "call-me-izzy",
-    district: "Broadway",
-    theaters: [
-      { name: "Studio 54", date: "2025-06-22" }
-    ]
-  },
-  { 
-    name: "Les Misérables", 
-    rank: 13, 
-    slug: "les-miserables",
-    district: "Playhouse Square",
-    theaters: [
-      { name: "Connor Palace", date: "2024-09-19" }
-    ]
-  },
-  { 
+    id: 8,
     name: "Job", 
     rank: 14, 
     slug: "job",
@@ -167,8 +184,29 @@ export const theatreShowList: TheatreShow[] = [
     ]
   },
   { 
-    name: "Some Like It Hot", 
+    id: 13,
+    name: "Les Misérables", 
     rank: 15, 
+    slug: "les-miserables",
+    district: "Playhouse Square",
+    theaters: [
+      { name: "Connor Palace", date: "2024-09-19" }
+    ]
+  },
+  { 
+    id: 32,
+    name: "Call Me Izzy", 
+    rank: 16, 
+    slug: "call-me-izzy",
+    district: "Broadway",
+    theaters: [
+      { name: "Studio 54", date: "2025-06-22" }
+    ]
+  },
+  { 
+    id: 18,
+    name: "Some Like It Hot", 
+    rank: 17, 
     slug: "some-like-it-hot",
     district: "Playhouse Square",
     theaters: [
@@ -176,8 +214,9 @@ export const theatreShowList: TheatreShow[] = [
     ]
   },
   { 
+    id: 21,
     name: "Hell's Kitchen", 
-    rank: 16, 
+    rank: 18, 
     slug: "hells-kitchen",
     district: "Broadway",
     theaters: [
@@ -185,8 +224,9 @@ export const theatreShowList: TheatreShow[] = [
     ]
   },
   { 
+    id: 20,
     name: "Parade", 
-    rank: 17, 
+    rank: 19, 
     slug: "parade",
     district: "Playhouse Square",
     theaters: [
@@ -194,8 +234,9 @@ export const theatreShowList: TheatreShow[] = [
     ]
   },
   { 
+    id: 29,
     name: "The Last 5 Years", 
-    rank: 18, 
+    rank: 20, 
     slug: "the-last-5-years",
     district: "Broadway",
     theaters: [
@@ -203,8 +244,9 @@ export const theatreShowList: TheatreShow[] = [
     ]
   },
   { 
+    id: 16,
     name: "The Great Gatsby", 
-    rank: 19, 
+    rank: 21, 
     slug: "the-great-gatsby",
     district: "Broadway",
     theaters: [
@@ -212,8 +254,9 @@ export const theatreShowList: TheatreShow[] = [
     ]
   },
   { 
+    id: 28,
     name: "Fiddler on the Roof", 
-    rank: 20, 
+    rank: 22, 
     slug: "fiddler-on-the-roof",
     district: "Playhouse Square",
     theaters: [
@@ -221,62 +264,69 @@ export const theatreShowList: TheatreShow[] = [
     ]
   },
   { 
+    id: 19,
     name: "Shucked", 
-    rank: 21, 
+    rank: 23, 
     slug: "shucked",
     district: "Playhouse Square",
     theaters: [
-      { name: "Connor Palace", date: "2025-05-06" }
+      { name: "Connor Palace", date: "2024-11-15" }
     ]
   },
   { 
+    id: 22,
     name: "Life of Pi", 
-    rank: 22, 
+    rank: 24, 
     slug: "life-of-pi",
     district: "Playhouse Square",
     theaters: [
-      { name: "Connor Palace", date: "2024-11-30" }
+      { name: "Connor Palace", date: "2024-12-10" }
     ]
   },
   { 
+    id: 17,
     name: "In the Heights", 
-    rank: 23, 
+    rank: 25, 
     slug: "in-the-heights",
     district: "Playhouse Square",
     theaters: [
-      { name: "Allen Theatre", date: "2024-05-15" }
+      { name: "Connor Palace", date: "2024-10-20" }
     ]
   },
   { 
+    id: 14,
     name: "Pride & Prejudice", 
-    rank: 24, 
+    rank: 26, 
     slug: "pride-prejudice",
     district: "Playhouse Square",
     theaters: [
-      { name: "Allen Theatre", date: "2024-09-17" }
+      { name: "Connor Palace", date: "2024-09-25" }
     ]
   },
   { 
+    id: 30,
     name: "Dead Outlaw", 
-    rank: 25, 
+    rank: 27, 
     slug: "dead-outlaw",
     district: "Broadway",
     theaters: [
-      { name: "Longacre Theatre", date: "2025-06-15" }
+      { name: "Audible Theatre", date: "2025-06-15" }
     ]
   },
   { 
+    id: 5,
     name: "Dear Evan Hansen", 
-    rank: 26, 
+    rank: 28, 
     slug: "dear-evan-hansen",
     district: "Playhouse Square",
     theaters: [
-      { name: "Connor Palace", date: "2024-10-10" }
+      { name: "Connor Palace", date: "2023-05-17" }
     ]
   },
   { 
+    id: 27,
     name: "& Juliet", 
-    rank: 27, 
+    rank: 29, 
     slug: "and-juliet",
     district: "Playhouse Square",
     theaters: [
@@ -284,8 +334,9 @@ export const theatreShowList: TheatreShow[] = [
     ]
   },
   { 
+    id: 15,
     name: "Harry Potter and the Cursed Child", 
-    rank: 28, 
+    rank: 30, 
     slug: "harry-potter-cursed-child",
     district: "Broadway",
     theaters: [
@@ -293,17 +344,19 @@ export const theatreShowList: TheatreShow[] = [
     ]
   },
   { 
+    id: 6,
     name: "A Strange Loop", 
-    rank: 29, 
+    rank: 31, 
     slug: "a-strange-loop",
     district: "Broadway",
     theaters: [
-      { name: "Lyceum Theatre", date: "2024-08-20" }
+      { name: "Lyceum Theatre", date: "2023-08-20" } // FIXME: Check this date
     ]
   },
   { 
+    id: 2,
     name: "Book of Mormon", 
-    rank: 30, 
+    rank: 32, 
     slug: "book-of-mormon",
     district: "Broadway",
     theaters: [
@@ -311,8 +364,19 @@ export const theatreShowList: TheatreShow[] = [
     ]
   },
   { 
+    id: 36,
+    name: "Lord Nil: Seven Deadly Sins", 
+    rank: 33, 
+    slug: "lord-nil-seven-deadly-sins",
+    district: "Broadway",
+    theaters: [
+      { name: "Stage 42", date: "2025-08-01" }
+    ]
+  },
+  { 
+    id: 35,
     name: "Stranger Things: The First Shadow", 
-    rank: 31, 
+    rank: 34, 
     slug: "stranger-things-first-shadow",
     district: "Broadway",
     theaters: [
@@ -320,91 +384,23 @@ export const theatreShowList: TheatreShow[] = [
     ]
   },
   { 
+    id: 0,
     name: "Company", 
-    rank: 32, 
+    rank: 35, 
     slug: "company",
     district: "Broadway",
     theaters: [
-      { name: "Bernard B. Jacobs Theatre", date: "2024-12-10" }
+      { name: "Bernard B. Jacobs Theatre", date: "2022-04-30" }
     ]
   },
   { 
+    id: 11,
     name: "Six", 
-    rank: 33, 
+    rank: 36, 
     slug: "six",
     district: "Playhouse Square",
     theaters: [
       { name: "Connor Palace", date: "2024-09-05" }
     ]
   }
-];
-
-// Helper functions
-export const getBaseShowName = (showName: string): string => {
-  // Remove viewing number from show name (e.g., "Hadestown (2)" -> "Hadestown")
-  // But keep original names like "Hadestown" unchanged
-  return showName.replace(/\s*\(\d+\)$/, '');
-};
-
-export const getShowRank = (showName: string): number => {
-  const baseShowName = getBaseShowName(showName);
-  const show = theatreShowList.find(s => getBaseShowName(s.name) === baseShowName);
-  return show ? show.rank : 0;
-};
-
-export const getShowBySlug = (slug: string): TheatreShow | undefined => {
-  return theatreShowList.find(s => s.slug === slug);
-};
-
-export const getTotalShows = (): number => {
-  // Count unique shows, not individual viewings
-  const uniqueShows = new Set(theatreShowList.map(s => getBaseShowName(s.name)));
-  return uniqueShows.size;
-};
-
-export const getShowTheaters = (showName: string): TheaterInfo[] => {
-  const baseShowName = getBaseShowName(showName);
-  const shows = theatreShowList.filter(s => getBaseShowName(s.name) === baseShowName);
-  return shows.flatMap(s => s.theaters);
-};
-
-export const getShowDates = (showName: string): string[] => {
-  const theaters = getShowTheaters(showName);
-  return theaters.map(t => t.date).filter(Boolean) as string[];
-};
-
-export const formatShowings = (theaters: TheaterInfo[]): string => {
-  if (theaters.length === 1) {
-    const theater = theaters[0];
-    const dateStr = theater.date ? ` - ${theater.date}` : '';
-    return `${theater.name}${theater.location ? ` (${theater.location})` : ''}${dateStr}`;
-  }
-  return theaters.map(theater => {
-    const dateStr = theater.date ? ` - ${theater.date}` : '';
-    return `${theater.name}${theater.location ? ` (${theater.location})` : ''}${dateStr}`;
-  }).join(', ');
-};
-
-export const getOrdinalSuffix = (num: number): string => {
-  const j = num % 10;
-  const k = num % 100;
-  if (j === 1 && k !== 11) {
-    return "st";
-  }
-  if (j === 2 && k !== 12) {
-    return "nd";
-  }
-  if (j === 3 && k !== 13) {
-    return "rd";
-  }
-  return "th";
-};
-
-export const formatRank = (rank: number, total: number): string => {
-  return `${rank}${getOrdinalSuffix(rank)} of ${total}`;
-};
-
-export const getShowDistrict = (showName: string): string => {
-  const show = theatreShowList.find(s => s.name === showName);
-  return show?.district || 'Broadway';
-};
+]; 

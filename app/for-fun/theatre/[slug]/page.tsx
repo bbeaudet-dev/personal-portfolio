@@ -1,4 +1,4 @@
-import { getTheatreReviews, formatDate, calculateAverageRating } from 'app/for-fun/theatre/utils'
+import { getTheatreReviews, formatDate, calculateAverageRating } from 'app/for-fun/theatre/server-utils'
 import { MDXRemote } from 'next-mdx-remote/rsc'
 import { notFound } from 'next/navigation'
 

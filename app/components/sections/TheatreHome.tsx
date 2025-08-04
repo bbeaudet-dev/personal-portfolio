@@ -1,4 +1,4 @@
-import { getTheatreReviews } from 'app/for-fun/theatre/utils'
+import { getTheatreReviews } from 'app/for-fun/theatre/server-utils'
 
 export interface TheatreItem {
   slug: string

@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
-import { getShowRank, getTotalShows, formatRank, getShowBySlug, getShowDistrict } from 'app/for-fun/theatre/reviews/show-list'
+import { getShowRank, getTotalShows, formatRank, getShowBySlug, getShowDistrict } from 'app/for-fun/theatre/utils'
 import { ContentList } from 'app/components/ContentListItem'
 
 interface TheatreClientProps {
@@ -23,14 +23,8 @@ export default function TheatreClient({ reviews }: TheatreClientProps) {
 
   return (
     <section>
-      <div className="flex justify-between items-center mb-6">
+      <div className="mb-6">
         <h1 className="text-2xl font-bold">Theatre Reviews</h1>
-        <Link 
-          href="/for-fun/theatre/blog" 
-          className="text-sm text-primary hover:underline"
-        >
-          Theatre Blog →
-        </Link>
       </div>
       
       <div className="prose prose-neutral dark:prose-invert mb-8">
@@ -49,7 +43,10 @@ export default function TheatreClient({ reviews }: TheatreClientProps) {
         {isExpanded && (
           <>
             <p className="text-sm text-neutral-600 dark:text-neutral-400 mb-6">
-            I didn't even *anticipate* liking Broadway shows very much - in fact, I primarily was in town to play in a squash tournament and watch the Tournament of Champions at Grand Central Terminal. So while the two of them went ["show-maxxing"](/for-fun/theatre/blog/show-maxxing) (a term we apparently coined), I spent most of the weekend playing and watching squash. Eventually I went with them to see POTUS and I was hooked from there. I think we have Rose to thank for the introduction.
+            I didn't even *anticipate* liking Broadway shows very much - in fact, I primarily was in town to play in a squash tournament and watch the Tournament of Champions at Grand Central Terminal. So while the two of them went ["show-maxxing"](/blog/show-maxxing) (a term we apparently coined), I spent most of the weekend playing and watching squash. Eventually I went with them to see POTUS and I was hooked from there. We have Rose to thank for the introduction.
+            </p>
+            <p className="text-sm text-neutral-600 dark:text-neutral-400 mb-6">
+              Since then, my wife and I have indulged in many show-maxxing weekends in the big city, and we began paying attention to the theatre scene in Cleveland, which happens to be quite good as well.  
             </p>
           </>
         )}
