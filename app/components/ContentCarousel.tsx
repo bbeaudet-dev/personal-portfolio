@@ -9,15 +9,11 @@ import { ReactNode } from 'react'
 // Simple date formatting function for client component
 function formatDate(dateString: string | undefined): string {
   if (!dateString) return ''
-  const date = new Date(dateString)
+  // Ensure the date is interpreted in UTC to match server-side formatting
+  const date = new Date(dateString + 'T00:00:00Z')
   const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
-  return `${months[date.getMonth()]} ${date.getDate()}, ${date.getFullYear()}`
+  return `${months[date.getUTCMonth()]} ${date.getUTCDate()}, ${date.getUTCFullYear()}`
 }
-
-// Import Swiper styles
-import 'swiper/css'
-import 'swiper/css/navigation'
-import 'swiper/css/free-mode'
 
 interface ContentCarouselProps {
   title: string | ReactNode

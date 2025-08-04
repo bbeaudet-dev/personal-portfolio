@@ -9,7 +9,8 @@ export function cn(...inputs: ClassValue[]) {
 export function getBadgeVariant(collection?: string, tag?: string) {
   // Check for project-specific tags first
   if (tag) {
-    switch (tag.toLowerCase()) {
+    const normalizedTag = tag.toLowerCase();
+    switch (normalizedTag) {
       case 'published':
         return 'published'
       case 'deployed':
@@ -27,6 +28,8 @@ export function getBadgeVariant(collection?: string, tag?: string) {
         return 'playhouse-square'
       case 'broadway (touring)':
         return 'broadway-touring'
+      case 'theatre':
+        return 'theatre'
       // If it's not a project tag, fall through to collection logic
     }
   }
