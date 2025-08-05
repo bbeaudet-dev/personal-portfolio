@@ -57,6 +57,12 @@ export const sectionConfig: SectionConfig = {
         },
       ],
     },
+    {
+      id: 'about',
+      name: 'about',
+      href: '/about',
+      description: 'Learn more about Ben Beaudet',
+    },
   ],
 }
 
