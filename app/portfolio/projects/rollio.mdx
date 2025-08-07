@@ -1,34 +1,60 @@
 ---
-title: "Rollio Dice Game"
-completedAt: "2025-07-09"
-summary: "A modular dice-rolling roguelike game with CLI, Web, and React interfaces. Implements full game logic, scoring, and multiple play modes."
-technologies: "TypeScript, React, Node.js, Express, Vite, Tailwind CSS"
+title: "Rollio - Multiplayer Dice Roguelike"
+completedAt: "2025-01-15"
+summary: "A full-stack real-time multiplayer dice game combining Farkle mechanics with Balatro's roguelike progression"
+technologies: "TypeScript, React, Node.js, Express, Socket.io, Vercel, Render"
 githubUrl: "https://github.com/bbeaudet-dev/rollio"
-liveUrl: ""
-prominence: 3
-tag: "In-Progress"
+liveUrl: "https://rollio.vercel.app"
+prominence: 1
+tag: "Deployed"
 ---
 
 **Play Time:** 10-30 minutes
 
-A CLI-first dice-rolling game blending mechanics and rules of _Farkle_ with the roguelike deck-builder _Balatro_.
+A real-time multiplayer dice game that blends risk-it-all dice-rolling with roguelike progression elements. Players compete in live sessions with WebSocket-powered real-time updates, featuring a full-stack architecture deployed across multiple platforms.
+
+Rollio represents my journey from CLI-first development to a complete full-stack multiplayer experience. Starting as a command-line game to focus on core mechanics and making a simple, _delightful_ game, it eventually scaled into a full-stack application.
 
 ## Features
 
-- Playable via CLI (browser version planned)
-- Modular architecture with shared game logic
-- Full ruleset and scoring
-- Intuitive and engaging CLI user experience
+- Real-time multiplayer gameplay with live WebSocket connections
+- Farkle-inspired dice mechanics with strategic decision-making
+- Roguelike progression system with persistent player stats
+- Cross-platform deployment (Vercel frontend, Render backend)
+- Live game state synchronization across all connected players
+- Session management with unique game rooms
 
 ## Technologies Used
 
-- TypeScript (core logic and all interfaces)
-- Node.js & Express (API/server)
+- TypeScript (core logic and type safety across frontend/backend)
+- React (modern frontend with real-time state management)
+- Node.js & Express (RESTful API and WebSocket server)
+- Socket.io (real-time bidirectional communication)
+- Vercel (frontend deployment with automatic scaling)
+- Render (backend deployment with persistent WebSocket connections)
+
+## Play the Game
+
+<LaunchButton
+  href="https://rollio.vercel.app"
+  title="Play Rollio Live"
+  description="Join a real-time multiplayer session"
+  icon="🎲"
+  color="purple"
+/>
+
+## API Endpoints
+
+- **Health Check**: `https://rollio-backend.onrender.com/health`
+- **Game Sessions**: RESTful API for room creation and management
+- **WebSocket Events**: Real-time game updates and player actions
+
+## Screenshots
+
+_Screenshots coming soon - game interface captures will be added here_
 
 ## Links
 
-- [GitHub Repository](https://github.com/bbeaudet-dev/rollio)
-
-My goal with Rollio was to create a dice-rolling game that is delightful and can be run purely from the command line. This inspiration came from many tough lessons learned by poor separation of concerns, i.e. mixing the game engine between frontend and backend, and from getting too far into making something look pretty before it's fun.
-
-See Balatrice game -
+- [Live Game](https://rollio.vercel.app)
+- [Github Repository](https://github.com/bbeaudet-dev/rollio)
+- [Health Check](https://rollio-backend.onrender.com/health)

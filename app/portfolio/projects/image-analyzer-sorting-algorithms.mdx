@@ -4,45 +4,53 @@ completedAt: 2025-06-27
 summary: "A visual algorithm demonstration tool for analyzing and sorting images"
 technologies: "JavaScript, HTML5 Canvas, CSS3"
 githubUrl: "https://github.com/bbeaudet-dev/visual-algorithm"
-liveUrl: ""
+liveUrl: "https://visual-algorithm-wheat.vercel.app/"
 prominence: 4
-tag: "Finished"
+tag: "Deployed"
 ---
 
-A visual demonstration tool that showcases various sorting algorithms through the lens of image analysis and manipulation.
+A visual demonstration tool for sorting algorithms, with the ability to upload and analyze your own pictures.
 
-## Overview
+## Try the App
 
-This project provides an interactive way to visualize how different sorting algorithms work by applying them to image data. Users can upload images and watch as various sorting algorithms process and reorganize the pixel data in real-time.
+<LaunchButton
+  href="https://visual-algorithm-wheat.vercel.app/"
+  title="Open on Vercel (Full Experience)"
+  description="Opens in a new tab"
+  icon="🔗"
+  color="blue"
+/>
 
-## Features
-
-- Image upload and processing
-- Multiple sorting algorithm implementations
-- Real-time visual feedback
-- Interactive controls for algorithm selection
-- Performance comparison between algorithms
-
-## Technologies Used
-
-- JavaScript (ES6+)
-- HTML5 Canvas API
-- CSS3 for styling
-- File API for image handling
+<div className="my-8 -mx-4 md:-mx-8 lg:-mx-16">
+  <div className="max-w-6xl mx-auto px-4">
+    <div className="border border-gray-300 dark:border-gray-600 rounded-lg shadow-lg overflow-hidden">
+      <iframe
+        src="https://visual-algorithm-wheat.vercel.app/"
+        className="w-full h-[700px]"
+        style={{
+          border: "none",
+          zoom: "0.8",
+        }}
+        title="Visual Algorithms - Image Analyzer"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      />
+    </div>
+  </div>
+</div>
 
 ## Screenshots
 
 <Image
-  src="/portfolio/algorithms1.jpg"
-  alt="Image Analyzer screenshot 1"
+  src="/portfolio/algorithms2.jpg"
+  alt="Image Analyzer screenshot 2"
   width={800}
   height={600}
   className="rounded-lg my-4"
 />
 
 <Image
-  src="/portfolio/algorithms2.jpg"
-  alt="Image Analyzer screenshot 2"
+  src="/portfolio/algorithms1.jpg"
+  alt="Image Analyzer screenshot 1"
   width={800}
   height={600}
   className="rounded-lg my-4"
