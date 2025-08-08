@@ -40,38 +40,71 @@ export default function Page() {
         getKey={(project) => project.slug}
       />
       <h2 className="font-semibold text-2xl mb-8 tracking-tighter">Mechanical Engineering</h2>
-      <ul>
-        <li>
-          <a href="/portfolio/mechanical-engineering/project-10">EEG Data Serial Communication and API Integration</a>
-        </li>
-        <li>
-          <a href="/portfolio/mechanical-engineering/project-9">Railroad Trackwork Design Automation Programs</a>
-        </li>
-        <li>
-          <a href="/portfolio/mechanical-engineering/project-8">Railroad Trackwork Design Portfolio</a>
-        </li>
-        <li>
-          <a href="/portfolio/mechanical-engineering/project-7">Surgical Device Demonstration Kit</a>
-        </li>
-        <li>
-          <a href="/portfolio/mechanical-engineering/project-6">Mirror Therapy Medical Rehab Device</a>
-        </li>
-        <li>
-          <a href="/portfolio/mechanical-engineering/project-5">Mandelbrot Set Fractal Generator</a>
-        </li>
-        <li>
-          <a href="/portfolio/mechanical-engineering/project-4">Aeroelastic Instability of Aircraft Wings</a>
-        </li>
-        <li>
-          <a href="/portfolio/mechanical-engineering/project-3">Piston-Cylinder Pump Design & Manufacturing</a>
-        </li>
-        <li>
-          <a href="/portfolio/mechanical-engineering/project-2">Solar Go-Kart</a>
-        </li>
-        <li>
-          <a href="/portfolio/mechanical-engineering/project-1">Civil Land Surveying</a>
-        </li>
-      </ul>
+      <ContentList
+        items={[
+          {
+            slug: 'cerelog',
+            metadata: {
+              title: 'Brainwave Data Flow & Serial Communication',
+              completedAt: '2025-06-27',
+              tag: 'Internship',
+              prominence: 1
+            }
+          },
+          {
+            slug: 'trackwork-automation',
+            metadata: {
+              title: 'CAD Automation for Trackwork',
+              completedAt: '2025-02-01',
+              tag: 'Automation',
+              prominence: 2
+            }
+          },
+          {
+            slug: 'or-free',
+            metadata: {
+              title: 'Surgical Device Demonstration Kit',
+              completedAt: '2023-01-01',
+              tag: 'Medical Device',
+              prominence: 3
+            }
+          },
+          {
+            slug: 'birkdale',
+            metadata: {
+              title: 'Mirror Therapy Rehabilitation Device',
+              completedAt: '2019-06-01',
+              tag: 'Medical Device',
+              prominence: 4
+            }
+          },
+          {
+            slug: 'aeroelastic-instability',
+            metadata: {
+              title: 'Aeroelastic Instability (Flutter) Case Study',
+              completedAt: '2019-05-01',
+              tag: 'Research',
+              prominence: 5
+            }
+          },
+          {
+            slug: 'cylinder-piston-pump',
+            metadata: {
+              title: 'Piston-Cylinder Pump Design & Manufacturing',
+              completedAt: '2019-03-01',
+              tag: 'Mechanical Design',
+              prominence: 6
+            }
+          }
+        ]}
+        getItemProps={(project) => ({
+          date: formatDate(project.metadata.completedAt),
+          title: project.metadata.title,
+          href: `/portfolio/${project.slug}`,
+          tag: project.metadata.tag,
+        })}
+        getKey={(project) => project.slug}
+      />
       </section>
   )
 } 

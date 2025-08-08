@@ -10,6 +10,7 @@ export function Navbar() {
   const [hoveredItem, setHoveredItem] = useState<string | null>(null)
   const [isSubNavVisible, setIsSubNavVisible] = useState(false)
   const [forFunPosition, setForFunPosition] = useState(0)
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const navRef = useRef<HTMLDivElement>(null)
   const timeoutRef = useRef<NodeJS.Timeout | null>(null)
 
@@ -108,10 +109,80 @@ export function Navbar() {
   return (
     <aside className="-ml-[8px] mb-16 tracking-tight">
       <div className="lg:sticky lg:top-20 relative">
-        {/* Main Navigation */}
+        {/* Mobile Menu Button */}
+        <div className="md:hidden mb-4">
+          <button
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            className="flex items-center px-3 py-2 border rounded text-neutral-600 dark:text-neutral-400 border-neutral-300 dark:border-neutral-600 hover:text-neutral-800 dark:hover:text-neutral-200"
+          >
+            <span className="mr-2">Menu</span>
+            <svg
+              className="w-4 h-4"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              {isMobileMenuOpen ? (
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              ) : (
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+              )}
+            </svg>
+          </button>
+        </div>
+
+        {/* Mobile Navigation */}
+        {isMobileMenuOpen && (
+          <div className="md:hidden mb-6 border border-neutral-200 dark:border-neutral-700 rounded-lg p-4">
+            <nav className="flex flex-col space-y-2">
+              {sectionConfig.sections.map((item) => {
+                const isItemActive = isParentActive(item)
+                
+                return (
+                  <div key={item.id}>
+                    <Link
+                      href={item.href || '/for-fun'}
+                      className={`block px-3 py-2 rounded transition-colors ${
+                        isItemActive 
+                          ? 'font-bold text-neutral-800 dark:text-neutral-200 bg-neutral-100 dark:bg-neutral-800' 
+                          : 'text-neutral-600 dark:text-neutral-400 hover:text-neutral-800 dark:hover:text-neutral-200 hover:bg-neutral-50 dark:hover:bg-neutral-700'
+                      }`}
+                      onClick={() => setIsMobileMenuOpen(false)}
+                    >
+                      {item.name}
+                    </Link>
+                    {item.children && isItemActive && (
+                      <div className="ml-4 mt-2 space-y-1">
+                        {item.children.map((child) => {
+                          const isChildActive = isActive(child.href)
+                          return (
+                            <Link
+                              key={child.href}
+                              href={child.href!}
+                              className={`block px-3 py-1 rounded text-sm transition-colors ${
+                                isChildActive 
+                                  ? 'font-bold text-neutral-800 dark:text-neutral-200 bg-neutral-100 dark:bg-neutral-800' 
+                                  : 'text-neutral-600 dark:text-neutral-400 hover:text-neutral-800 dark:hover:text-neutral-200 hover:bg-neutral-50 dark:hover:bg-neutral-700'
+                              }`}
+                              onClick={() => setIsMobileMenuOpen(false)}
+                            >
+                              {child.name}
+                            </Link>
+                          )
+                        })}
+                      </div>
+                    )}
+                  </div>
+                )
+              })}
+            </nav>
+          </div>
+        )}
+
+        {/* Desktop Navigation */}
         <nav
           ref={navRef}
-          className="flex flex-row items-start relative px-0 pb-0 fade md:overflow-auto scroll-pr-6 md:relative"
+          className="hidden md:flex flex-row items-start relative px-0 pb-0 fade md:overflow-auto scroll-pr-6 md:relative"
           id="nav"
           onMouseLeave={handleMouseLeave}
         >
@@ -142,9 +213,9 @@ export function Navbar() {
           </div>
         </nav>
 
-        {/* Sub Navigation - Absolute positioned to prevent content bumping */}
+        {/* Desktop Sub Navigation - Absolute positioned to prevent content bumping */}
         <div 
-          className={`transition-all duration-200 ease-in-out overflow-hidden absolute top-full left-0 right-0 ${
+          className={`hidden md:block transition-all duration-200 ease-in-out overflow-hidden absolute top-full left-0 right-0 ${
             shouldShowSubNav() ? 'max-h-12 opacity-100' : 'max-h-0 opacity-0'
           }`}
           onMouseEnter={handleSubNavMouseEnter}
