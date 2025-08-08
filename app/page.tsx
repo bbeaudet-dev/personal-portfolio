@@ -1,5 +1,4 @@
 import { ContentCarousel } from 'app/components/ContentCarousel'
-import { ForFunOverview } from 'app/components/ForFunOverview'
 import { Introduction } from 'app/components/Introduction'
 import { BlogHome, PortfolioHome } from 'app/components/sections'
 
@@ -31,7 +30,6 @@ export default function Page() {
           items={blogItems} 
           type="blog" 
         />
-        <ForFunOverview />
       </section>
     </div>
   )
