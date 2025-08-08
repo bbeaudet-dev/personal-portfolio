@@ -30,14 +30,8 @@ export function getBadgeVariant(collection?: string, tag?: string) {
         return 'firmware'
       case 'mechanical':
         return 'mechanical'
-      case 'computation':
-        return 'computation'
       case 'game dev':
         return 'game-dev'
-      case 'creative':
-        return 'creative'
-      case 'ai':
-        return 'ai'
       
       // Theatre district tags
       case 'broadway':

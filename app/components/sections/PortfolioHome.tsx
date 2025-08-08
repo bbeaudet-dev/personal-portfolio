@@ -3,7 +3,7 @@ import { getPortfolioProjects } from '../../portfolio/utils'
 export interface PortfolioItem {
   title: string
   href: string
-  tag?: string
+  tags?: string[]
   date: string
   summary: string
 }
@@ -21,7 +21,7 @@ export function PortfolioHome() {
   const portfolioItems: PortfolioItem[] = sortedProjects.map(project => ({
     title: project.metadata.title,
     href: `/portfolio/${project.slug}`,
-    tag: project.metadata.tag,
+    tags: project.metadata.tags,
     date: project.metadata.completedAt,
     summary: project.metadata.summary,
   }))

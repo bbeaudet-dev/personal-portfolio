@@ -35,7 +35,7 @@ export default function Page() {
           date: formatDate(project.metadata.completedAt),
           title: project.metadata.title,
           href: `/portfolio/${project.slug}`,
-          tags: project.metadata.tags || (project.metadata.tag ? [project.metadata.tag] : []),
+          tags: project.metadata.tags || [],
         })}
         getKey={(project) => project.slug}
       />

@@ -11,7 +11,6 @@ type Metadata = {
   githubUrl?: string
   liveUrl?: string
   prominence?: string | number
-  tag?: string
   tags?: string[]
   [key: string]: any
 }
@@ -40,12 +39,23 @@ function parseFrontmatter(fileContent: string) {
   frontMatterLines.forEach((line) => {
     let [key, ...valueArr] = line.split(': ')
     let value = valueArr.join(': ').trim()
-    value = value.replace(/^['"](.*)['"]$/, '$1') // Remove quotes
     
     // Handle tags array specially
     if (key.trim() === 'tags') {
-      metadata[key.trim() as keyof Metadata] = value.split(',').map(tag => tag.trim())
+      // Parse array format like ["tag1", "tag2"] or ["tag1", "tag2"]
+      try {
+        // Remove outer quotes if present
+        const cleanValue = value.replace(/^['"](.*)['"]$/, '$1')
+        // Parse as JSON array
+        const parsedTags = JSON.parse(cleanValue)
+        metadata[key.trim() as keyof Metadata] = Array.isArray(parsedTags) ? parsedTags : [parsedTags]
+      } catch {
+        // Fallback to comma-separated parsing
+        const cleanValue = value.replace(/^['"](.*)['"]$/, '$1')
+        metadata[key.trim() as keyof Metadata] = cleanValue.split(',').map(tag => tag.trim().replace(/^['"](.*)['"]$/, '$1'))
+      }
     } else {
+      value = value.replace(/^['"](.*)['"]$/, '$1') // Remove quotes
       metadata[key.trim() as keyof Metadata] = value
     }
   })

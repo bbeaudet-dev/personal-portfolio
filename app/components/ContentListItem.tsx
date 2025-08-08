@@ -9,7 +9,6 @@ interface ContentListItemProps {
   extra?: string
   href: string
   vertical?: boolean
-  tag?: string
   tags?: string[]
   collection?: string
 }
@@ -17,7 +16,7 @@ interface ContentListItemProps {
 // Map collection to badge variant
 
 
-export function ContentListItem({ date, title, subtitle, extra, href, vertical = false, tag, tags, collection }: ContentListItemProps) {
+export function ContentListItem({ date, title, subtitle, extra, href, vertical = false, tags, collection }: ContentListItemProps) {
 
   if (vertical) {
     return (
@@ -42,11 +41,6 @@ export function ContentListItem({ date, title, subtitle, extra, href, vertical =
                 {tagItem}
               </Badge>
             ))}
-            {tag && !tags && (
-              <Badge variant={getBadgeVariant(collection, tag)} className="text-[10px]">
-                {tag}
-              </Badge>
-            )}
           </div>
           {subtitle && (
             <p className="text-neutral-600 dark:text-neutral-400 text-xs leading-tight mt-1">{subtitle}</p>
@@ -70,11 +64,6 @@ export function ContentListItem({ date, title, subtitle, extra, href, vertical =
               {tagItem}
             </Badge>
           ))}
-          {tag && !tags && (
-            <Badge variant={getBadgeVariant(collection, tag)} className="text-[10px]">
-              {tag}
-            </Badge>
-            )}
         </div>
         {extra && (
           <span className="text-sm font-semibold text-neutral-900 dark:text-neutral-100 ml-2">
