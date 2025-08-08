@@ -9,63 +9,40 @@ prominence: 1
 tags: ["Game Dev"]
 ---
 
-_A subversive mobile game where players solve sensor-based puzzles to rid their device of a malicious entity's infection_
-
-**Play Time:** 20-30 minutes
-
-A subversive mobile puzzle game that presents as a simple tower defense game, but quickly transforms when the player's phone becomes "infected" and they must solve puzzles using mobile device capabilities to clear the infection and restore their phone's functions.
-
-## Demo Video
-
 <div className="flex flex-col md:flex-row md:items-start md:gap-6 my-8">
   <div className="flex-1">
-    <h3 className="text-lg font-semibold mb-3">The Deception</h3>
-    <p className="text-base leading-relaxed mb-4">
-      The game begins innocently enough - players see what looks like a typical
-      tower defense interface. But as they progress, strange glitches appear,
-      the UI becomes corrupted, and they realize something is wrong with their
-      device. The "tower defense" elements are actually a facade, masking the
-      real challenge: their phone has been infected, and they need to restore
-      its native capabilities through clever puzzle-solving.
-    </p>
+    <div className="mb-4">
+      <p className="text-base leading-relaxed mb-2">
+        <em>Core Defender is a subversive mobile game where players solve sensor-based puzzles to rid their device of a malicious entity's infection</em>
+      </p>
+      <p className="text-sm text-neutral-600 dark:text-neutral-400">
+        <strong>Play Time:</strong> 20-30 minutes
+      </p>
+      <p className="text-sm text-neutral-600 dark:text-neutral-400">
+        <a href="/blog/wk5-reflection" className="underline hover:text-neutral-800 dark:hover:text-neutral-200 transition-colors">
+          Read about the development process →
+        </a>
+      </p>
 
-    <h3 className="text-lg font-semibold mb-3 mt-6">
-      Native Capability Puzzles
-    </h3>
-    <p className="text-base leading-relaxed mb-2">
-      The game transforms your phone into a puzzle-solving device by utilizing:
-    </p>
-    <ul className="list-disc list-inside space-y-1 text-sm mb-4">
-      <li>
-        <strong>Accelerometer/Gyroscope</strong>: One puzzle requires players to
-        achieve 75+ m/s² acceleration (over 7.5 g-forces) - solved by literally
-        throwing your phone into a couch cushion
-      </li>
-      <li>
-        <strong>Magnetometer (Compass)</strong>: Navigational puzzles using the
-        device's magnetic field detection
-      </li>
-      <li>
-        <strong>Screen Brightness</strong>: Puzzles that require adjusting
-        brightness to specific levels
-      </li>
-      <li>
-        <strong>Location Services</strong>: GPS-based challenges and
-        location-aware puzzles
-      </li>
-      <li>
-        <strong>Microphone</strong>: Audio-based puzzles and voice recognition
-        challenges
-      </li>
-      <li>
-        <strong>Camera</strong>: Visual puzzles requiring photo capture or
-        real-world object recognition
-      </li>
-      <li>
-        <strong>Flashlight</strong>: Light-based puzzles and environmental
-        interaction
-      </li>
-    </ul>
+      <div className="mt-6">
+        <h3 className="text-lg font-semibold mb-3">Technical</h3>
+        <ul className="list-disc list-inside space-y-1 text-sm mb-4">
+          <li><strong>App Framework</strong>: React Native with Expo Go</li>
+          <li><strong>AI Integration</strong>: Sora AI for generating the creepy demon</li>
+          <li><strong>Video Production</strong>: Final Cut Pro for transitions</li>
+          <li><strong>Sensor Integration</strong>: Comprehensive use of device APIs</li>
+        </ul>
+
+        <h3 className="text-lg font-semibold mb-3">Inspirations</h3>
+        <ul className="list-disc list-inside space-y-1 text-sm">
+          <li><strong>There Is No Game</strong>: Subversion of gaming expectations</li>
+          <li><strong>Blackbox</strong>: Clever use of device capabilities</li>
+          <li><strong>Pony Island</strong>: Meta-narrative and deception</li>
+          <li><strong>Her Story</strong>: Unconventional storytelling through interaction</li>
+          <li><strong>Thronglets</strong>: New Black Mirror game</li>
+        </ul>
+      </div>
+    </div>
 
   </div>
 
@@ -85,31 +62,6 @@ A subversive mobile puzzle game that presents as a simple tower defense game, bu
     </div>
   </div>
 </div>
-
-## Live Demo Highlights
-
-The live demonstration included the infamous "phone chucking" puzzle, where I achieved 103 m/s² (over 10 g-forces) by throwing my phone into a couch cushion - successfully solving the accelerometer puzzle and proving the game's innovative approach to mobile interaction.
-
-## Technical Implementation
-
-- **App Framework**: React Native with Expo Go for cross-platform compatibility
-- **AI Integration**: Sora AI for generating the creepy demon character and narrative elements
-- **Video Production**: Final Cut Pro for editing transitions and creating the deceptive presentation
-- **Sensor Integration**: Comprehensive use of device APIs for authentic puzzle mechanics
-
-## Inspirations
-
-- **There Is No Game**: Subversion of gaming expectations
-- **Blackbox**: Clever use of device capabilities
-- **Pony Island**: Meta-narrative and deception
-- **Her Story**: Unconventional storytelling through interaction
-- **Thronglets**: New Black Mirror game
-
-## The Experience
-
-Core Defender explores how we interact with our devices and what happens when those familiar interfaces become corrupted. It challenges players to think outside the box, using their phone in unexpected ways - from throwing it across the room to shining its flashlight in specific patterns.
-
-The game makes players question their assumptions about mobile gaming while showcasing the potential of modern smartphone capabilities when used creatively.
 
 ## Screenshots
 
@@ -173,13 +125,6 @@ The game makes players question their assumptions about mobile gaming while show
   <Image
     src="/portfolio/core-defender/IMG_8395.PNG"
     alt="Core Defender screenshot 9"
-    width={400}
-    height={300}
-    className="rounded-lg"
-  />
-  <Image
-    src="/portfolio/core-defender/IMG_8396.PNG"
-    alt="Core Defender screenshot 10"
     width={400}
     height={300}
     className="rounded-lg"

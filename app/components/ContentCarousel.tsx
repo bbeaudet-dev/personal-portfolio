@@ -20,7 +20,7 @@ interface ContentCarouselProps {
   items: Array<{
     title: string
     href: string
-    tag?: string
+    tags?: string[]
     date?: string
     summary?: string
     collection?: string
@@ -115,12 +115,12 @@ export function ContentCarousel({ title, items, type }: ContentCarouselProps) {
                       </p>
                     )}
                     
-                    {/* Tag for all types */}
-                    {item.tag && (
-                      <Badge variant={getBadgeVariant(item.collection, item.tag)} className="text-xs">
-                        {item.tag}
+                    {/* Tags for all types */}
+                    {item.tags && item.tags.map((tag, index) => (
+                      <Badge key={index} variant={getBadgeVariant(item.collection, tag)} className="text-xs">
+                        {tag}
                       </Badge>
-                    )}
+                    ))}
                   </div>
                 </a>
               </div>

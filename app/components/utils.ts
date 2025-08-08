@@ -44,6 +44,15 @@ export function getBadgeVariant(collection?: string, tag?: string) {
         return 'theatre'
       case 'gaming':
         return 'gaming'
+      // Fractal tags
+      case 'fractal':
+      case 'fractal 1':
+      case 'fractal 2':
+      case 'fractal 3':
+      case 'fractal 4':
+      case 'fractal 5':
+      case 'fractal 6':
+        return 'fractal'
       // If it's not a project tag, fall through to collection logic
     }
   }

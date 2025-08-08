@@ -7,10 +7,6 @@ export default function ForFunPage() {
         For Fun
       </h1>
       <div className="prose prose-neutral dark:prose-invert">
-        <p className="text-neutral-600 dark:text-neutral-400 mb-8">
-          Beyond my professional work, I have a variety of hobbies and interests that bring me joy and help me stay creative. 
-          Here you'll find my thoughts on theatre, gaming adventures, and musical discoveries.
-        </p>
       </div>
       
       <ForFunOverview />

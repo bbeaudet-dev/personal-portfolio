@@ -7,9 +7,10 @@ type Metadata = {
   date?: string
   summary: string
   image?: string
-  tag?: string
+  tags?: string[]
   collection?: string
   prominence?: string | number
+  [key: string]: any
 }
 
 function parseFrontmatter(fileContent: string) {
@@ -30,8 +31,24 @@ function parseFrontmatter(fileContent: string) {
     if (line.trim() && line.includes(': ')) {
       let [key, ...valueArr] = line.split(': ')
       let value = valueArr.join(': ').trim()
-      value = value.replace(/^['"](.*)['"]$/, '$1') // Remove quotes
-      metadata[key.trim() as keyof Metadata] = value
+      
+      // Handle tags array specially
+      if (key.trim() === 'tags') {
+        try {
+          // Remove outer quotes if present
+          const cleanValue = value.replace(/^['"](.*)['"]$/, '$1')
+          // Parse as JSON array
+          const parsedTags = JSON.parse(cleanValue)
+          metadata[key.trim() as keyof Metadata] = Array.isArray(parsedTags) ? parsedTags : [parsedTags]
+        } catch {
+          // Fallback to comma-separated parsing
+          const cleanValue = value.replace(/^['"](.*)['"]$/, '$1')
+          metadata[key.trim() as keyof Metadata] = cleanValue.split(',').map(tag => tag.trim().replace(/^['"](.*)['"]$/, '$1'))
+        }
+      } else {
+        value = value.replace(/^['"](.*)['"]$/, '$1') // Remove quotes
+        metadata[key.trim() as keyof Metadata] = value
+      }
     }
   })
 

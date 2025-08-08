@@ -13,7 +13,10 @@ export function Introduction() {
           {/* Introduction Section */}
           <div className="mb-4 space-y-4">
             <p className="text-base leading-relaxed">
-              A mechanical engineer pivoting to software engineering with a passion for creative design and game development, currently learning about embedded systems, full-stack development, AI integration, and indie game development.
+              Mechanical engineer pivoting to software engineering with a passion for creative design and game development.
+            </p>
+            <p className="text-base leading-relaxed">
+              Currently exploring fullstack development, embedded systems, AI integration, and indie game development.
             </p>
           </div>
         </div>

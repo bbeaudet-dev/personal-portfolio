@@ -3,7 +3,7 @@ import { getBlogPosts } from '../../blog/utils'
 export interface BlogItem {
   title: string
   href: string
-  tag?: string
+  tags?: string[]
   collection?: string
   date: string
   summary: string
@@ -27,7 +27,7 @@ export function BlogHome() {
   const blogItems: BlogItem[] = sortedBlogs.map(post => ({
     title: post.metadata.title,
     href: `/blog/${post.slug}`,
-    tag: post.metadata.tag,
+    tags: post.metadata.tags || [],
     collection: post.metadata.collection,
     date: post.metadata.publishedAt,
     summary: post.metadata.summary,

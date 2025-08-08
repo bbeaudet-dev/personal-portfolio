@@ -17,7 +17,7 @@ export default function Page() {
           date: formatDate(post.metadata.publishedAt, false),
           title: post.metadata.title,
           href: `/blog/${post.slug}`,
-          tag: post.metadata.tag,
+          tags: post.metadata.tags || [],
           collection: post.metadata.collection,
         })}
         getKey={(post) => post.slug}

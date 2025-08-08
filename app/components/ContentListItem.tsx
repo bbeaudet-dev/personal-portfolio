@@ -36,7 +36,7 @@ export function ContentListItem({ date, title, subtitle, extra, href, vertical =
             {title}
           </p>
           <div className="flex items-center gap-2 mb-1">
-            {tags && tags.map((tagItem, index) => (
+            {tags && Array.isArray(tags) && tags.map((tagItem, index) => (
               <Badge key={index} variant={getBadgeVariant(collection, tagItem)} className="text-[10px]">
                 {tagItem}
               </Badge>
@@ -59,7 +59,7 @@ export function ContentListItem({ date, title, subtitle, extra, href, vertical =
           <p className="text-neutral-900 dark:text-neutral-100 tracking-tight">
             {title}
           </p>
-          {tags && tags.map((tagItem, index) => (
+          {tags && Array.isArray(tags) && tags.map((tagItem, index) => (
             <Badge key={index} variant={getBadgeVariant(collection, tagItem)} className="text-[10px]">
               {tagItem}
             </Badge>
