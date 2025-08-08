@@ -9,15 +9,10 @@ export const metadata = {
 
 export default function Page() {
   const allProjects = getPortfolioProjects().sort((a, b) => {
-    // Sort by prominence first (lower prominence = first), then by date
-    const aProminence = a.metadata.prominence || 999
-    const bProminence = b.metadata.prominence || 999
-    
-    if (aProminence !== bProminence) {
-      return (aProminence as number) - (bProminence as number)
-    }
-    
-    return new Date(b.metadata.completedAt).getTime() - new Date(a.metadata.completedAt).getTime()
+    // Sort by date, newest first
+    const aDate = new Date(a.metadata.completedAt || '1900-01-01')
+    const bDate = new Date(b.metadata.completedAt || '1900-01-01')
+    return bDate.getTime() - aDate.getTime()
   })
   
   return (
@@ -35,7 +30,7 @@ export default function Page() {
           date: formatDate(project.metadata.completedAt),
           title: project.metadata.title,
           href: `/portfolio/${project.slug}`,
-          tags: project.metadata.tags || (project.metadata.tag ? [project.metadata.tag] : []),
+          tags: project.metadata.tags || [],
         })}
         getKey={(project) => project.slug}
       />

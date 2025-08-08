@@ -68,7 +68,7 @@ export default function TheatreClient({ reviews }: TheatreClientProps) {
             title: displayName,
             href: `/for-fun/theatre/${review.slug}`,
             extra: formatRank(rank, totalShows),
-            tag: locationTag,
+            tags: locationTag ? [locationTag] : [],
             collection: 'theatre',
           }
         }}

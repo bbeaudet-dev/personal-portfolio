@@ -7,7 +7,7 @@ export function ForFunOverview() {
   const forFunItems = forFunSections.map(section => ({
     title: section.name.charAt(0).toUpperCase() + section.name.slice(1),
     href: section.href!,
-    tag: section.name.charAt(0).toUpperCase() + section.name.slice(1),
+    tags: [section.name.charAt(0).toUpperCase() + section.name.slice(1)],
     summary: section.description,
   }))
 

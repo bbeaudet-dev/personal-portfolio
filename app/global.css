@@ -2,6 +2,49 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Responsive item display for ContentListHome */
+.responsive-items {
+  /* Default: show 3 items on mobile */
+  --items-to-show: 3;
+}
+
+/* Show 6 items on small screens (2 columns) */
+@media (min-width: 640px) {
+  .responsive-items {
+    --items-to-show: 6;
+  }
+}
+
+/* Show 9 items on medium screens (3 columns) */
+@media (min-width: 768px) {
+  .responsive-items {
+    --items-to-show: 9;
+  }
+}
+
+/* Hide items beyond the responsive count */
+.responsive-items .grid > *:nth-child(n+4) {
+  display: none;
+}
+
+@media (min-width: 640px) {
+  .responsive-items .grid > *:nth-child(n+4) {
+    display: block;
+  }
+  .responsive-items .grid > *:nth-child(n+7) {
+    display: none;
+  }
+}
+
+@media (min-width: 768px) {
+  .responsive-items .grid > *:nth-child(n+7) {
+    display: block;
+  }
+  .responsive-items .grid > *:nth-child(n+10) {
+    display: none;
+  }
+}
+
 /* Swiper styles */
 @import 'swiper/css';
 @import 'swiper/css/navigation';
