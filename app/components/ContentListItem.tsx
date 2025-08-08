@@ -10,13 +10,14 @@ interface ContentListItemProps {
   href: string
   vertical?: boolean
   tag?: string
+  tags?: string[]
   collection?: string
 }
 
 // Map collection to badge variant
 
 
-export function ContentListItem({ date, title, subtitle, extra, href, vertical = false, tag, collection }: ContentListItemProps) {
+export function ContentListItem({ date, title, subtitle, extra, href, vertical = false, tag, tags, collection }: ContentListItemProps) {
 
   if (vertical) {
     return (
@@ -36,7 +37,12 @@ export function ContentListItem({ date, title, subtitle, extra, href, vertical =
             {title}
           </p>
           <div className="flex items-center gap-2 mb-1">
-            {tag && (
+            {tags && tags.map((tagItem, index) => (
+              <Badge key={index} variant={getBadgeVariant(collection, tagItem)} className="text-[10px]">
+                {tagItem}
+              </Badge>
+            ))}
+            {tag && !tags && (
               <Badge variant={getBadgeVariant(collection, tag)} className="text-[10px]">
                 {tag}
               </Badge>
@@ -59,11 +65,16 @@ export function ContentListItem({ date, title, subtitle, extra, href, vertical =
           <p className="text-neutral-900 dark:text-neutral-100 tracking-tight">
             {title}
           </p>
-          {tag && (
+          {tags && tags.map((tagItem, index) => (
+            <Badge key={index} variant={getBadgeVariant(collection, tagItem)} className="text-[10px]">
+              {tagItem}
+            </Badge>
+          ))}
+          {tag && !tags && (
             <Badge variant={getBadgeVariant(collection, tag)} className="text-[10px]">
               {tag}
             </Badge>
-          )}
+            )}
         </div>
         {extra && (
           <span className="text-sm font-semibold text-neutral-900 dark:text-neutral-100 ml-2">

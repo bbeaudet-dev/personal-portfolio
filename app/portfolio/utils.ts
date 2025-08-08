@@ -4,6 +4,7 @@ import path from 'path'
 type Metadata = {
   title: string
   completedAt?: string
+  duration?: string
   summary: string
   image?: string
   technologies?: string
@@ -11,6 +12,8 @@ type Metadata = {
   liveUrl?: string
   prominence?: string | number
   tag?: string
+  tags?: string[]
+  [key: string]: any
 }
 
 function parseFrontmatter(fileContent: string) {
@@ -38,7 +41,13 @@ function parseFrontmatter(fileContent: string) {
     let [key, ...valueArr] = line.split(': ')
     let value = valueArr.join(': ').trim()
     value = value.replace(/^['"](.*)['"]$/, '$1') // Remove quotes
-    metadata[key.trim() as keyof Metadata] = value
+    
+    // Handle tags array specially
+    if (key.trim() === 'tags') {
+      metadata[key.trim() as keyof Metadata] = value.split(',').map(tag => tag.trim())
+    } else {
+      metadata[key.trim() as keyof Metadata] = value
+    }
   })
 
   return { metadata: metadata as Metadata, content }

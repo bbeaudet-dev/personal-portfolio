@@ -11,6 +11,7 @@ export function getBadgeVariant(collection?: string, tag?: string) {
   if (tag) {
     const normalizedTag = tag.toLowerCase();
     switch (normalizedTag) {
+      // Status tags
       case 'published':
         return 'published'
       case 'deployed':
@@ -21,6 +22,23 @@ export function getBadgeVariant(collection?: string, tag?: string) {
         return 'in-progress'
       case 'experiment':
         return 'experiment'
+      
+      // Project type tags
+      case 'software':
+        return 'software'
+      case 'firmware':
+        return 'firmware'
+      case 'mechanical':
+        return 'mechanical'
+      case 'computation':
+        return 'computation'
+      case 'game dev':
+        return 'game-dev'
+      case 'creative':
+        return 'creative'
+      case 'ai':
+        return 'ai'
+      
       // Theatre district tags
       case 'broadway':
         return 'broadway'
