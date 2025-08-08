@@ -30,6 +30,8 @@ export function getBadgeVariant(collection?: string, tag?: string) {
         return 'broadway-touring'
       case 'theatre':
         return 'theatre'
+      case 'gaming':
+        return 'gaming'
       // If it's not a project tag, fall through to collection logic
     }
   }
