@@ -28,50 +28,17 @@ export default function Page() {
           View Resumé
         </a>
       </div>
-      <h2 className="font-semibold text-2xl mb-8 tracking-tighter">Software Engineering</h2>
+      <h2 className="font-semibold text-2xl mb-8 tracking-tighter">All Projects</h2>
       <ContentList
         items={allProjects}
         getItemProps={(project) => ({
           date: formatDate(project.metadata.completedAt),
           title: project.metadata.title,
           href: `/portfolio/${project.slug}`,
-          tag: project.metadata.tag,
+          tags: project.metadata.tags || (project.metadata.tag ? [project.metadata.tag] : []),
         })}
         getKey={(project) => project.slug}
       />
-      <h2 className="font-semibold text-2xl mb-8 tracking-tighter">Mechanical Engineering</h2>
-      <ul>
-        <li>
-          <a href="/portfolio/mechanical-engineering/project-10">EEG Data Serial Communication and API Integration</a>
-        </li>
-        <li>
-          <a href="/portfolio/mechanical-engineering/project-9">Railroad Trackwork Design Automation Programs</a>
-        </li>
-        <li>
-          <a href="/portfolio/mechanical-engineering/project-8">Railroad Trackwork Design Portfolio</a>
-        </li>
-        <li>
-          <a href="/portfolio/mechanical-engineering/project-7">Surgical Device Demonstration Kit</a>
-        </li>
-        <li>
-          <a href="/portfolio/mechanical-engineering/project-6">Mirror Therapy Medical Rehab Device</a>
-        </li>
-        <li>
-          <a href="/portfolio/mechanical-engineering/project-5">Mandelbrot Set Fractal Generator</a>
-        </li>
-        <li>
-          <a href="/portfolio/mechanical-engineering/project-4">Aeroelastic Instability of Aircraft Wings</a>
-        </li>
-        <li>
-          <a href="/portfolio/mechanical-engineering/project-3">Piston-Cylinder Pump Design & Manufacturing</a>
-        </li>
-        <li>
-          <a href="/portfolio/mechanical-engineering/project-2">Solar Go-Kart</a>
-        </li>
-        <li>
-          <a href="/portfolio/mechanical-engineering/project-1">Civil Land Surveying</a>
-        </li>
-      </ul>
       </section>
   )
 } 
