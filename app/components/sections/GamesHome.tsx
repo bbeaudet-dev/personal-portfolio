@@ -1,19 +1,32 @@
 import { getGames } from 'app/for-fun/games/utils'
 
-export interface GamesItem {
+export interface GameData {
   slug: string
   metadata: {
     title: string
-    genre: string
-    platform: string
-    playtime: string
-    rating: number
-    image?: string
-    summary: string
+    images: string[]
+    size: number
+    periods: ('childhood' | 'teenager' | 'adult')[]
+    blogPosts?: Array<{
+      title: string
+      slug: string
+    }>
+    portfolioProjects?: Array<{
+      title: string
+      slug: string
+    }>
+    series?: Array<{
+      title: string
+      platform?: string
+    }>
+    other?: Array<{
+      title: string
+      url: string
+    }>
   }
   content: string
 }
 
-export function GamesHome(): GamesItem[] {
+export function GamesHome(): GameData[] {
   return getGames()
 } 

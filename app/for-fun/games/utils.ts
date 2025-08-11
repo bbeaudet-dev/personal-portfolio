@@ -1,14 +1,25 @@
-import fs from 'fs'
-import path from 'path'
+import { gamesData, type GameData } from './games-data'
 
 export interface GameMetadata {
   title: string
-  genre: string
-  platform: string
-  playtime: string
-  rating: number
-  image: string
-  summary: string
+  images: string[]
+  size: number
+  periods: ('childhood' | 'teenager' | 'adult')[]
+  blogPosts?: Array<{
+    title: string
+    slug: string
+  }>
+  portfolioProjects?: Array<{
+    title: string
+    slug: string
+  }>
+  other?: Array<{
+    title: string
+    url: string
+  }>
+  series?: Array<{
+    title: string
+  }>
 }
 
 export interface Game {
@@ -17,96 +28,48 @@ export interface Game {
   content: string
 }
 
-function parseFrontmatter(fileContent: string) {
-  let frontmatterRegex = /---\s*([\s\S]*?)\s*---/
-  let match = frontmatterRegex.exec(fileContent)
-  
-  if (!match) {
-    // If no frontmatter found, return empty metadata
-    return { metadata: {} as GameMetadata, content: fileContent.trim() }
-  }
-  
-  let frontMatterBlock = match[1]
-  let content = fileContent.replace(frontmatterRegex, '').trim()
-  let frontMatterLines = frontMatterBlock.trim().split('\n')
-  let metadata: Partial<GameMetadata> = {}
-
-  frontMatterLines.forEach((line) => {
-    if (line.trim() && line.includes(': ')) {
-      let [key, ...valueArr] = line.split(': ')
-      let value = valueArr.join(': ').trim()
-      value = value.replace(/^['"](.*)['"]$/, '$1') // Remove quotes
-      
-      // Convert rating to number if it's the rating field
-      if (key.trim() === 'rating') {
-        metadata[key.trim() as keyof GameMetadata] = parseInt(value) as any
-      } else {
-        metadata[key.trim() as keyof GameMetadata] = value as any
-      }
-    }
-  })
-
-  return { metadata: metadata as GameMetadata, content }
-}
-
-function getMDXFiles(dir: string) {
-  return fs.readdirSync(dir).filter((file) => path.extname(file) === '.mdx')
-}
-
-function readMDXFile(filePath: string) {
-  let rawContent = fs.readFileSync(filePath, 'utf-8')
-  return parseFrontmatter(rawContent)
-}
-
-function getMDXData(dir: string) {
-  let mdxFiles = getMDXFiles(dir)
-  return mdxFiles.map((file) => {
-    let { metadata, content } = readMDXFile(path.join(dir, file))
-    let slug = path.basename(file, path.extname(file))
-
-    return {
-      metadata,
-      slug,
-      content,
-    }
-  })
-}
-
-const gamesDirectory = path.join(process.cwd(), 'app/for-fun/games/games')
-
 export function getGames(): Game[] {
-  const mainGames = getMDXData(gamesDirectory)
-
-  // Sort games by rating (highest first), then by title
-  return mainGames.sort((a, b) => {
-    if (b.metadata.rating !== a.metadata.rating) {
-      return b.metadata.rating - a.metadata.rating
-    }
-    return a.metadata.title.localeCompare(b.metadata.title)
-  })
+  // Convert GameData to Game format for compatibility
+  return gamesData.map(game => ({
+    slug: game.slug,
+    metadata: {
+      title: game.title,
+      images: game.images,
+      size: game.size,
+      periods: game.periods,
+      blogPosts: game.blogPosts,
+      portfolioProjects: game.portfolioProjects,
+      series: game.series,
+      other: game.other
+    },
+    content: '' // No content needed since we're not using individual pages
+  }))
 }
 
 export function getGameBySlug(slug: string): Game | undefined {
-  try {
-    const fullPath = path.join(gamesDirectory, `${slug}.mdx`)
-    const { metadata, content } = readMDXFile(fullPath)
-
-    return {
-      slug,
-      metadata,
-      content,
-    }
-  } catch {
-    return undefined
+  const gameData = gamesData.find(game => game.slug === slug)
+  
+  if (!gameData) return undefined
+  
+  return {
+    slug: gameData.slug,
+    metadata: {
+      title: gameData.title,
+      images: gameData.images,
+      size: gameData.size,
+      periods: gameData.periods,
+      blogPosts: gameData.blogPosts,
+      portfolioProjects: gameData.portfolioProjects,
+      series: gameData.series,
+      other: gameData.other,
+    },
+    content: ''
   }
 }
 
-export function getGamesByGenre(genre: string): Game[] {
-  return getGames().filter(game => 
-    game.metadata.genre.toLowerCase().includes(genre.toLowerCase())
-  )
-}
-
 export function getTopRatedGames(limit: number = 5): Game[] {
-  return getGames().slice(0, limit)
+  // Sort by size (largest first) and return top games
+  return getGames()
+    .sort((a, b) => (b.metadata.size || 0) - (a.metadata.size || 0))
+    .slice(0, limit)
 } 

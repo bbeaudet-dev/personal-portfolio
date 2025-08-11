@@ -18,7 +18,7 @@ export default function AboutPage() {
         <div className="float-right ml-4 mb-3 md:ml-6 md:mb-4">
           <div className="w-48 h-48">
             <Image
-              src="/images/Professional Headshot.JPG"
+              src="/Professional Headshot.JPG"
               alt="Ben Beaudet - Professional Headshot"
               width={192}
               height={192}

@@ -25,7 +25,7 @@ export function Introduction() {
         <div className="flex-shrink-0 mb-6 md:mb-0">
           <div className="w-48 h-48 mx-auto md:mx-0">
             <Image
-              src="/images/Professional Headshot.JPG"
+              src="/Professional Headshot.JPG"
               alt="Ben Beaudet - Professional Headshot"
               width={192}
               height={192}

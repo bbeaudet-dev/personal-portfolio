@@ -21,6 +21,7 @@
     "next-mdx-remote": "^4.4.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "react-wordcloud": "^1.2.7",
     "sugar-high": "^0.6.0",
     "swiper": "^11.2.10",
     "tailwind-merge": "^2.5.5",

@@ -1,20 +1,79 @@
 'use client'
 
-import { useState } from 'react'
-import Image from 'next/image'
-import { GamesItem } from 'app/components/sections'
+import { useState, useMemo } from 'react'
+import { GameData } from 'app/components/sections'
+import GameWordCloud from 'app/components/GameWordCloud'
 
 interface GamesClientProps {
-  games: GamesItem[]
+  games: GameData[]
 }
 
 export default function GamesClient({ games }: GamesClientProps) {
   const [isExpanded, setIsExpanded] = useState(false)
+  const [filter, setFilter] = useState<'all' | 'childhood' | 'teenager' | 'adult'>('all')
+
+  // Filter games based on selected period
+  const filteredGames = useMemo(() => {
+    return games.filter(game => {
+      if (filter === 'all') return true
+      return game.metadata.periods.includes(filter)
+    })
+  }, [games, filter])
 
   return (
     <section>
-      <h1 className="font-semibold text-2xl mb-8 tracking-tighter">Games & Puzzles</h1>
+      <h1 className="font-semibold text-2xl mb-8 tracking-tighter"></h1>
       
+      {/* Game Cloud */}
+      <div className="mb-8">
+        <GameWordCloud games={filteredGames} />
+      </div>
+
+      {/* Filter Controls */}
+      <div className="flex justify-center space-x-2 mb-8">
+        <button
+          onClick={() => setFilter('all')}
+          className={`px-2 py-1 rounded text-xs font-medium transition-colors ${
+            filter === 'all'
+              ? 'bg-blue-600 text-white'
+              : 'bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-300 dark:hover:bg-gray-600'
+          }`}
+        >
+          All ({games.length})
+        </button>
+        <button
+          onClick={() => setFilter('childhood')}
+          className={`px-2 py-1 rounded text-xs font-medium transition-colors ${
+            filter === 'childhood'
+              ? 'bg-blue-600 text-white'
+              : 'bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-300 dark:hover:bg-gray-600'
+          }`}
+        >
+          Childhood ({games.filter(g => g.metadata.periods.includes('childhood')).length})
+        </button>
+        <button
+          onClick={() => setFilter('teenager')}
+          className={`px-2 py-1 rounded text-xs font-medium transition-colors ${
+            filter === 'teenager'
+              ? 'bg-blue-600 text-white'
+              : 'bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-300 dark:hover:bg-gray-600'
+          }`}
+        >
+          Teenager ({games.filter(g => g.metadata.periods.includes('teenager')).length})
+        </button>
+        <button
+          onClick={() => setFilter('adult')}
+          className={`px-2 py-1 rounded text-xs font-medium transition-colors ${
+            filter === 'adult'
+              ? 'bg-blue-600 text-white'
+              : 'bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-300 dark:hover:bg-gray-600'
+          }`}
+        >
+          Adult ({games.filter(g => g.metadata.periods.includes('adult')).length})
+        </button>
+      </div>
+
+      {/* Introduction Paragraph */}
       <div className="prose prose-neutral dark:prose-invert mb-8">
         <p className="text-sm text-neutral-600 dark:text-neutral-400 mb-6">
           My relationship with games has evolved significantly over the years. Some of my earliest memories are of playing <strong>Pokemon</strong> on long car rides, simply something to do to fill the in-between time.
@@ -51,42 +110,6 @@ export default function GamesClient({ games }: GamesClientProps) {
             </p>
           </>
         )}
-      </div>
-
-      <div className="mb-8">
-        <h2 className="font-semibold text-xl mb-4">My Games</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {games.map((game) => (
-            <a
-              key={game.slug}
-              href={`/for-fun/games/${game.slug}`}
-              className="border border-neutral-200 dark:border-neutral-700 rounded-lg p-6 hover:border-neutral-300 dark:hover:border-neutral-600 transition-colors"
-            >
-              {game.metadata.image && (
-                <div className="mb-4 relative h-32 w-full">
-                  <Image
-                    src={game.metadata.image}
-                    alt={game.metadata.title}
-                    fill
-                    className="object-cover rounded-md"
-                  />
-                </div>
-              )}
-              <h3 className="font-medium mb-2">{game.metadata.title}</h3>
-              <p className="text-sm text-neutral-600 dark:text-neutral-400 mb-3">
-                {game.metadata.summary}
-              </p>
-              <div className="flex gap-2">
-                <span className="text-xs bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 px-2 py-1 rounded">
-                  {game.metadata.genre}
-                </span>
-                <span className="text-xs bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 px-2 py-1 rounded">
-                  {game.metadata.rating}/10
-                </span>
-              </div>
-            </a>
-          ))}
-        </div>
       </div>
     </section>
   )
