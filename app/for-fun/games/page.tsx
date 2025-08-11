@@ -1,4 +1,4 @@
-import { GamesHome, type GamesItem } from 'app/components/sections'
+import { GamesHome, type GameData } from 'app/components/sections'
 import GamesClient from './GamesClient'
 
 export const metadata = {
