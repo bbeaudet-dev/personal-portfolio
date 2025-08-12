@@ -2,43 +2,16 @@
 
 import { useState, useEffect, useMemo, useCallback } from 'react'
 import Image from 'next/image'
-
-interface GameData {
-  slug: string
-  metadata: {
-    title: string
-    images: string[]
-    size: number
-    periods: ('childhood' | 'teenager' | 'adult')[]
-    blogPosts?: Array<{
-      title: string
-      slug: string
-    }>
-    portfolioProjects?: Array<{
-      title: string
-      slug: string
-    }>
-    other?: Array<{
-      title: string
-      url: string
-    }>
-    series?: Array<{
-      title: string
-    }>
-  }
-  content: string
-}
+import { type GameData } from 'app/for-fun/games/utils'
+import { 
+  type PositionedGame, 
+  createWordCloudLayout, 
+  getObjectPosition 
+} from './GameWordCloudAnimation'
+import RelatedGameContent from './RelatedGameContent'
 
 interface GameWordCloudProps {
   games: GameData[]
-}
-
-interface PositionedGame {
-  game: GameData
-  x: number
-  y: number
-  width: number
-  height: number
 }
 
 export default function GameWordCloud({ games }: GameWordCloudProps) {
@@ -54,7 +27,7 @@ export default function GameWordCloud({ games }: GameWordCloudProps) {
   const filteredGames = useMemo(() => {
     return games.filter(game => {
       if (filter === 'all') return true
-      return game.metadata.periods.includes(filter)
+      return game.periods.includes(filter)
     })
   }, [games, filter])
 
@@ -64,7 +37,7 @@ export default function GameWordCloud({ games }: GameWordCloudProps) {
     const initialOpacity: Record<string, number> = {}
     const initialScale: Record<string, number> = {}
     games.forEach(game => {
-      if (game.metadata.images.length > 1) {
+      if (game.images.length > 1) {
         initialIndexes[game.slug] = 0
         initialOpacity[game.slug] = 1
       }
@@ -80,164 +53,13 @@ export default function GameWordCloud({ games }: GameWordCloudProps) {
     setImageIndexes(prev => {
       const newIndexes = { ...prev }
       filteredGames.forEach(game => {
-        if (game.metadata.images.length > 1 && !(game.slug in newIndexes)) {
+        if (game.images.length > 1 && !(game.slug in newIndexes)) {
           newIndexes[game.slug] = 0
         }
       })
       return newIndexes
     })
   }, [filteredGames])
-
-  // Calculate base size for games (1-10 scale) with dynamic scaling based on game count
-  const getBaseSize = (size: number = 5) => {
-    const gameCount = filteredGames.length
-    
-    // Base sizes for different game count ranges - increased overall scale
-    let minSize, maxSize
-    
-    if (gameCount <= 20) {
-      // Small collection - use larger sizes
-      minSize = 35
-      maxSize = 180
-    } else if (gameCount <= 40) {
-      // Medium collection - scale down by 15%
-      minSize = 30
-      maxSize = 153
-    } else if (gameCount <= 60) {
-      // Large collection - scale down by 25%
-      minSize = 26
-      maxSize = 135
-    } else if (gameCount <= 80) {
-      // Very large collection - scale down by 35%
-      minSize = 23
-      maxSize = 117
-    } else {
-      // Massive collection - scale down by 45%
-      minSize = 19
-      maxSize = 99
-    }
-    
-    const step = (maxSize - minSize) / 9 // 10 sizes total
-    const baseSize = Math.round(minSize + (size - 1) * step)
-    
-    // Much smaller size adjustment for better packing (±3%)
-    const isEven = size % 2 === 0
-    const adjustedSize = isEven ? Math.round(baseSize * 0.97) : baseSize // 3% smaller for even sizes
-    
-    return adjustedSize
-  }
-
-  // Check if a rectangle can fit at a given position
-  const canFitAt = (x: number, y: number, width: number, height: number, placedRects: Array<{x: number, y: number, width: number, height: number}>) => {
-    // Calculate dynamic margin based on item size
-    // Smaller items get smaller margins, larger items get proportional margins
-    const margin = Math.max(2, Math.min(12, width * 0.08)) // 8% of width, min 2px, max 12px
-    
-    // Check bounds - increased height to 800px
-    if (x < 0 || y < 0 || x + width > 800 || y + height > 800) {
-      return false
-    }
-    
-    // Check collision with existing rectangles using dynamic margin
-    for (const rect of placedRects) {
-      if (x < rect.x + rect.width + margin && x + width + margin > rect.x && y < rect.y + rect.height + margin && y + height + margin > rect.y) {
-        return false
-      }
-    }
-    
-    return true
-  }
-
-  // Find the best position for a rectangle using spiral search
-  const findBestPosition = (width: number, height: number, placedRects: Array<{x: number, y: number, width: number, height: number}>) => {
-    const centerX = 400
-    const centerY = 400
-    const maxRadius = 400
-    
-    // Simple spiral search - no size adjustments for now
-    let angle = 0
-    let radius = 0
-    const angleStep = 0.1
-    const radiusStep = 2
-    
-    while (radius <= maxRadius) {
-      const x = centerX + radius * Math.cos(angle) - width / 2
-      const y = centerY + radius * Math.sin(angle) - height / 2
-      
-      if (canFitAt(x, y, width, height, placedRects)) {
-        return { x, y, width, height }
-      }
-      
-      angle += angleStep
-      radius += radiusStep * (angleStep / (2 * Math.PI))
-    }
-    
-    // Fall back to grid search
-    for (let x = 0; x <= 800 - width; x += 20) {
-      for (let y = 0; y <= 800 - height; y += 20) {
-        if (canFitAt(x, y, width, height, placedRects)) {
-          return { x, y, width, height }
-        }
-      }
-    }
-    
-    // Last resort: place with minimal overlap
-    let bestX = 0
-    let bestY = 0
-    let minOverlap = Infinity
-    
-    for (let x = 0; x <= 800 - width; x += 10) {
-      for (let y = 0; y <= 800 - height; y += 10) {
-        let totalOverlap = 0
-        
-        for (const rect of placedRects) {
-          const overlapX = Math.max(0, Math.min(x + width, rect.x + rect.width) - Math.max(x, rect.x))
-          const overlapY = Math.max(0, Math.min(y + height, rect.y + rect.height) - Math.max(y, rect.y))
-          totalOverlap += overlapX * overlapY
-        }
-        
-        if (totalOverlap < minOverlap) {
-          minOverlap = totalOverlap
-          bestX = x
-          bestY = y
-        }
-      }
-    }
-    
-    return { x: bestX, y: bestY, width, height }
-  }
-
-  // Create the word cloud layout
-  const createWordCloudLayout = (games: GameData[]) => {
-    const sortedGames = [...games].sort((a, b) => (b.metadata.size || 0) - (a.metadata.size || 0))
-    const positioned: PositionedGame[] = []
-    const placedRects: Array<{x: number, y: number, width: number, height: number}> = []
-    
-    for (const game of sortedGames) {
-      const baseSize = getBaseSize(game.metadata.size)
-      const width = baseSize
-      const height = baseSize
-      
-      const position = findBestPosition(width, height, placedRects)
-      
-      positioned.push({
-        game,
-        x: position.x,
-        y: position.y,
-        width: position.width,
-        height: position.height
-      })
-      
-      placedRects.push({
-        x: position.x,
-        y: position.y,
-        width: position.width,
-        height: position.height
-      })
-    }
-    
-    return positioned
-  }
 
   // Update layout when filtered games change
   useEffect(() => {
@@ -247,22 +69,6 @@ export default function GameWordCloud({ games }: GameWordCloudProps) {
 
   const handleGameClick = (game: GameData) => {
     setSelectedGame(selectedGame?.slug === game.slug ? null : game)
-  }
-
-  // Function to get object-position for specific games
-  const getObjectPosition = (gameSlug: string) => {
-    switch (gameSlug) {
-      case 'outer-wilds':
-        return '50% 25%' // Move up more to hide text at bottom
-      case 'state-of-decay':
-        return '50% 20%' // Move towards top of image
-      case 'anatomy':
-        return '50% 50%' // Center, but we'll use object-contain instead
-      case 'smash-bros':
-        return '50% 30%' // Zoom in on Wii U Smash Bros image
-      default:
-        return '50% 50%' // Center
-    }
   }
 
   // Wave animation for all games (alternating patterns)
@@ -294,20 +100,7 @@ export default function GameWordCloud({ games }: GameWordCloudProps) {
           })
           break
           
-        case 2: // Inwards from outer ring to center
-          gamesInOrder.sort((a, b) => {
-            const gameA = positionedGames.find(pg => pg.game.slug === a.slug)
-            const gameB = positionedGames.find(pg => pg.game.slug === b.slug)
-            if (!gameA || !gameB) return 0
-            const centerX = 400 // Approximate center
-            const centerY = 300
-            const distanceA = Math.sqrt((gameA.x - centerX) ** 2 + (gameA.y - centerY) ** 2)
-            const distanceB = Math.sqrt((gameB.x - centerX) ** 2 + (gameB.y - centerY) ** 2)
-            return distanceB - distanceA // Furthest to closest
-          })
-          break
-          
-        case 3: // Bottom-right to top-left diagonal
+        case 2: // Bottom-right to top-left diagonal
           gamesInOrder.sort((a, b) => {
             const gameA = positionedGames.find(pg => pg.game.slug === a.slug)
             const gameB = positionedGames.find(pg => pg.game.slug === b.slug)
@@ -318,7 +111,7 @@ export default function GameWordCloud({ games }: GameWordCloudProps) {
           })
           break
           
-        case 4: // Bottom-left to top-right diagonal
+        case 3: // Bottom-left to top-right diagonal
           gamesInOrder.sort((a, b) => {
             const gameA = positionedGames.find(pg => pg.game.slug === a.slug)
             const gameB = positionedGames.find(pg => pg.game.slug === b.slug)
@@ -329,7 +122,7 @@ export default function GameWordCloud({ games }: GameWordCloudProps) {
           })
           break
           
-        case 5: // Outwards from center to edges
+        case 4: // Outwards from center to edges
           gamesInOrder.sort((a, b) => {
             const gameA = positionedGames.find(pg => pg.game.slug === a.slug)
             const gameB = positionedGames.find(pg => pg.game.slug === b.slug)
@@ -339,6 +132,19 @@ export default function GameWordCloud({ games }: GameWordCloudProps) {
             const distanceA = Math.sqrt((gameA.x - centerX) ** 2 + (gameA.y - centerY) ** 2)
             const distanceB = Math.sqrt((gameB.x - centerX) ** 2 + (gameB.y - centerY) ** 2)
             return distanceA - distanceB // Closest to furthest
+          })
+          break
+          
+        case 5: // Inwards from edges to center
+          gamesInOrder.sort((a, b) => {
+            const gameA = positionedGames.find(pg => pg.game.slug === a.slug)
+            const gameB = positionedGames.find(pg => pg.game.slug === b.slug)
+            if (!gameA || !gameB) return 0
+            const centerX = 400 // Approximate center
+            const centerY = 300
+            const distanceA = Math.sqrt((gameA.x - centerX) ** 2 + (gameA.y - centerY) ** 2)
+            const distanceB = Math.sqrt((gameB.x - centerX) ** 2 + (gameB.y - centerY) ** 2)
+            return distanceB - distanceA // Furthest to closest
           })
           break
       }
@@ -356,7 +162,7 @@ export default function GameWordCloud({ games }: GameWordCloudProps) {
           
           // Change image at peak size (after 150ms of growing)
           setTimeout(() => {
-            if (game.metadata.images.length > 1) {
+            if (game.images.length > 1) {
               // Start cross-fade
               setImageOpacity(prev => ({
                 ...prev,
@@ -369,7 +175,7 @@ export default function GameWordCloud({ games }: GameWordCloudProps) {
                   const currentIndex = prev[game.slug] || 0
                   return {
                     ...prev,
-                    [game.slug]: (currentIndex + 1) % game.metadata.images.length
+                    [game.slug]: (currentIndex + 1) % game.images.length
                   }
                 })
                 
@@ -396,7 +202,7 @@ export default function GameWordCloud({ games }: GameWordCloudProps) {
       setCurrentPattern((prev) => (prev + 1) % 6)
       
     }, 2000) // Every 2 seconds
-
+    
     return () => {
       clearInterval(interval)
     }
@@ -421,7 +227,7 @@ export default function GameWordCloud({ games }: GameWordCloudProps) {
             }}
             onClick={() => handleGameClick(positionedGame.game)}
           >
-            {positionedGame.game.metadata.images.length > 0 ? (
+            {positionedGame.game.images.length > 0 ? (
               <div 
                 className="w-full h-full overflow-hidden"
                 style={{ borderRadius: `${Math.max(2, Math.min(8, positionedGame.width * 0.1))}px` }}
@@ -438,8 +244,8 @@ export default function GameWordCloud({ games }: GameWordCloudProps) {
                     {/* Current image */}
                     <Image
                       key={`${positionedGame.game.slug}-current-${imageIndexes[positionedGame.game.slug] || 0}`}
-                      src={positionedGame.game.metadata.images[imageIndexes[positionedGame.game.slug] || 0]}
-                      alt={positionedGame.game.metadata.title}
+                      src={positionedGame.game.images[imageIndexes[positionedGame.game.slug] || 0]}
+                      alt={positionedGame.game.title}
                       width={positionedGame.width}
                       height={positionedGame.height}
                       className={`absolute inset-0 w-full h-full transition-opacity ease-in-out ${
@@ -453,11 +259,11 @@ export default function GameWordCloud({ games }: GameWordCloudProps) {
                     />
                     
                     {/* Next image (for cross-fade) */}
-                    {positionedGame.game.metadata.images.length > 1 && (
+                    {positionedGame.game.images.length > 1 && (
                       <Image
-                        key={`${positionedGame.game.slug}-next-${((imageIndexes[positionedGame.game.slug] || 0) + 1) % positionedGame.game.metadata.images.length}`}
-                        src={positionedGame.game.metadata.images[((imageIndexes[positionedGame.game.slug] || 0) + 1) % positionedGame.game.metadata.images.length]}
-                        alt={positionedGame.game.metadata.title}
+                        key={`${positionedGame.game.slug}-next-${((imageIndexes[positionedGame.game.slug] || 0) + 1) % positionedGame.game.images.length}`}
+                        src={positionedGame.game.images[((imageIndexes[positionedGame.game.slug] || 0) + 1) % positionedGame.game.images.length]}
+                        alt={positionedGame.game.title}
                         width={positionedGame.width}
                         height={positionedGame.height}
                         className={`absolute inset-0 w-full h-full transition-opacity ease-in-out ${
@@ -488,7 +294,7 @@ export default function GameWordCloud({ games }: GameWordCloudProps) {
                     lineHeight: '1.1'
                   }}
                 >
-                  {positionedGame.game.metadata.title}
+                  {positionedGame.game.title}
                 </span>
               </div>
             )}
@@ -499,57 +305,10 @@ export default function GameWordCloud({ games }: GameWordCloudProps) {
       {/* Selected Game Details */}
       {selectedGame && (
         <div className="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-lg border border-gray-200 dark:border-gray-700">
-          <h3 className="text-xl font-semibold mb-3">{selectedGame.metadata.title}</h3>
+          <h3 className="text-xl font-semibold mb-3">{selectedGame.title}</h3>
           
           {/* Related Content */}
-          {(selectedGame.metadata.blogPosts?.length || selectedGame.metadata.portfolioProjects?.length || selectedGame.metadata.other?.length || selectedGame.metadata.series?.length) && (
-            <div className="space-y-3">
-              <h4 className="font-medium text-gray-800 dark:text-gray-200">Related Content:</h4>
-               
-              {selectedGame.metadata.series?.map((game, index) => (
-                <div key={index} className="text-sm">
-                  <span className="text-gray-600 dark:text-gray-400">
-                    🎮 {game.title}
-                  </span>
-                </div>
-              ))}
-              
-              {selectedGame.metadata.blogPosts?.map((post) => (
-                <div key={post.slug} className="text-sm">
-                  <a 
-                    href={`/blog/${post.slug}`}
-                    className="text-blue-600 dark:text-blue-400 hover:underline"
-                  >
-                    📝 {post.title}
-                  </a>
-                </div>
-              ))}
-              
-              {selectedGame.metadata.portfolioProjects?.map((project) => (
-                <div key={project.slug} className="text-sm">
-                  <a 
-                    href={`/portfolio/${project.slug}`}
-                    className="text-blue-600 dark:text-blue-400 hover:underline"
-                  >
-                    💼 {project.title}
-                  </a>
-                </div>
-              ))}
-              
-              {selectedGame.metadata.other?.map((link, index) => (
-                <div key={index} className="text-sm">
-                  <a 
-                    href={link.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-blue-600 dark:text-blue-400 hover:underline"
-                  >
-                    🔗 {link.title}
-                  </a>
-                </div>
-              ))}
-            </div>
-          )}
+          <RelatedGameContent game={selectedGame} />
         </div>
       )}
     </div>

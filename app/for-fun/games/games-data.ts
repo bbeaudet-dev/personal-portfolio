@@ -1,38 +1,4 @@
-export interface GameData {
-  // Core game info
-  slug: string
-  title: string
-  rating: number
-  periods: ('childhood' | 'teenager' | 'adult')[]
-  
-  // Series information
-  series?: Array<{
-    title: string
-    platform: string
-  }>
-  
-  // Media
-  images: string[]
-  
-  // Related content
-  blogPosts?: Array<{
-    title: string
-    slug: string
-  }>
-  portfolioProjects?: Array<{
-    title: string
-    slug: string
-  }>
-  achievements?: Array<{
-    title: string
-    description: string
-  }>
-  other?: Array<{
-    title: string
-    url: string
-  }>
-}
-
+import { type GameData } from './utils'
 
 export const gamesData: GameData[] = [
   {
