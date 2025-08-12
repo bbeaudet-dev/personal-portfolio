@@ -90,13 +90,13 @@ export const gamesData: GameData[] = [
     // Pokemon ROM Hacks
     rating: 5, periods: ['teenager', 'adult'], slug: 'pokemon-rom-hacks', title: 'Pokemon ROM Hacks',
     series: [{ title: 'Pokemon XG: NeXt Gen', platform: 'PC' }, { title: 'Pokemon Uranium', platform: 'PC' }, { title: 'Pokemon Light Platinum', platform: 'PC' }, { title: 'Pokemon Radical Red', platform: 'PC' }, { title: 'Pokemon Blaze Black 2 Redux', platform: 'PC' }, { title: 'Pokemon Unbound', platform: 'PC' }],
-    images: ['/images-games/pokemon-xg-next-gen.webp', '/images-games/pokemon-uranium.webp', '/images-games/pokemon-radical-red.jpg', '/images-games/pokemon-blaze-black-2-redux.jpg', '/images-games/pokemon-unbound.jpg', '/images-games/pokemon-light-platinum.webp'],
+    images: ['/images-games/pokemon-xg-nextgen.jpg', '/images-games/pokemon-uranium.webp', '/images-games/pokemon-radical-red.jpg', '/images-games/pokemon-blaze-black-2-redux.png', '/images-games/pokemon-unbound.webp', '/images-games/pokemon-light-platinum.webp'],
   },
   {
     // Pokemon Emerald/Ruby/Sapphire
     rating: 7, periods: ['childhood'], slug: 'pokemon-emerald', title: 'Pokemon Emerald/Ruby/Sapphire',
     series: [{ title: 'Pokemon Emerald', platform: 'Game Boy Advance' }, { title: 'Pokemon Ruby', platform: 'Game Boy Advance' }, { title: 'Pokemon Sapphire', platform: 'Game Boy Advance' }],
-    images: ['/images-games/emerald.jpg', '/images-games/pokemon-ruby.jpg', '/images-games/pokemon-sapphire.jpg']
+    images: ['/images-games/pokemon-emerald.jpg', '/images-games/pokemon-ruby.jpg', '/images-games/pokemon-sapphire.jpg']
   },
   {
     // Pokemon Platinum/Diamond/Pearl
@@ -109,7 +109,7 @@ export const gamesData: GameData[] = [
     // Pokemon Colosseum/XD Gale of Darkness
     rating: 8, periods: ['childhood'], slug: 'pokemon-colosseum', title: 'Pokemon Colosseum/XD Gale of Darkness',
     series: [{ title: 'Pokemon Colosseum', platform: 'GameCube' }, { title: 'Pokemon XD: Gale of Darkness', platform: 'GameCube' }],
-    images: ['/images-games/colosseum.jpeg', '/images-games/gale-of-darkness.jpg']
+    images: ['/images-games/pokemon-colosseum.jpeg', '/images-games/pokemon-gale-of-darkness.jpg']
   },
   {
     // Pokemon FireRed/LeafGreen
