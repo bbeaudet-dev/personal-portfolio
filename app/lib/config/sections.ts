@@ -49,12 +49,6 @@ export const sectionConfig: SectionConfig = {
           href: '/for-fun/games',
           description: 'My favorite games, achievements, and gaming experiences',
         },
-        {
-          id: 'music',
-          name: 'music',
-          href: '/for-fun/music',
-          description: 'Vinyl collection, piano playing, and musical experiences',
-        },
       ],
     },
     {
