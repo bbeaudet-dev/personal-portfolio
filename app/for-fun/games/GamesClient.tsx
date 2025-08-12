@@ -94,7 +94,7 @@ export default function GamesClient({ games }: GamesClientProps) {
             </p>
             
             <p className="text-sm text-neutral-600 dark:text-neutral-400 mb-6">
-              Out of college, I discovered transformative story-driven games that changed me as a person - starting with <strong>Horizon Zero Dawn</strong> and <strong>Subnautica</strong>, and then, once I met my good friend Parth, games like<strong>Undertale</strong>, <strong>Firewatch</strong>, <strong>Hollow Knight</strong>, <strong>Celeste</strong>, and <strong>Outer Wilds</strong> became foundational to this relationship.
+              Out of college, I discovered transformative story-driven games that changed me as a person - starting with <strong>Horizon Zero Dawn</strong> and <strong>Subnautica</strong>, and then, once I met my good friend Parth, games like <strong>Undertale</strong>, <strong>Firewatch</strong>, <strong>Hollow Knight</strong>, <strong>Celeste</strong>, and <strong>Outer Wilds</strong> became foundational.
             </p>
             
             <p className="text-sm text-neutral-600 dark:text-neutral-400 mb-6">
