@@ -49,6 +49,7 @@ export function generateMetadata({ params }) {
       type: 'article',
       publishedTime,
       url: `${baseUrl}/blog/${post.slug}`,
+      siteName: 'Ben Beaudet\'s Blog',
       images: [
         {
           url: ogImage,
@@ -60,6 +61,10 @@ export function generateMetadata({ params }) {
       title,
       description,
       images: [ogImage],
+    },
+    other: {
+      'twitter:label1': 'Reading time',
+      'twitter:data1': `${Math.ceil(post.content.split(' ').length / 200)} min read`,
     },
   }
 }
@@ -164,7 +169,7 @@ export default function Blog({ params }) {
             url: `${baseUrl}/blog/${post.slug}`,
             author: {
               '@type': 'Person',
-              name: 'just another blog',
+              name: 'Ben Beaudet',
             },
           }),
         }}

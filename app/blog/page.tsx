@@ -10,7 +10,7 @@ export default function Page() {
   const allBlogs = getBlogPosts().sort((a, b) => new Date(b.metadata.publishedAt).getTime() - new Date(a.metadata.publishedAt).getTime())
   return (
     <section>
-      <h1 className="font-semibold text-2xl mb-8 tracking-tighter">just another blog</h1>
+      <h1 className="font-semibold text-2xl mb-8 tracking-tighter">Ben Beaudet's Blog</h1>
       <ContentList
         items={allBlogs}
         getItemProps={(post) => ({

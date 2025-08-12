@@ -4,6 +4,8 @@ import { useState } from 'react'
 import Link from 'next/link'
 import { getShowRank, getTotalShows, formatRank, getShowBySlug, getShowDistrict } from 'app/for-fun/theatre/utils'
 import { ContentList } from 'app/components/ContentListItem'
+import TheatreCloud from 'app/components/TheatreCloud'
+import { theatreShowList } from './data/shows'
 
 interface TheatreClientProps {
   reviews: any[]
@@ -24,9 +26,17 @@ export default function TheatreClient({ reviews }: TheatreClientProps) {
   return (
     <section>
       <div className="mb-6">
-        <h1 className="text-2xl font-bold">Theatre Reviews</h1>
+        <h1 className="text-2xl font-bold relative z-10">Showbiz, Baby</h1>
       </div>
+      <p className="text-sm text-neutral-600 dark:text-neutral-400 mb-6">
+        My rankings, reviews, and thoughts on shows and the magic of theatre
+      </p>
       
+      {/* Contextual subtitle and cloud */}
+      <div className="mb-8">
+        <TheatreCloud shows={theatreShowList} />
+      </div>
+
       <div className="prose prose-neutral dark:prose-invert mb-8">
         <p className="text-sm text-neutral-600 dark:text-neutral-400 mb-6">
           My first trip to New York City (in 2022) was with my then-fiancee Sophia and her friend Rose. Despite living in the city with the second-largest theatre district (Cleveland's Playhouse Square), it was this trip that truly unlocked the magic of theatre for me.

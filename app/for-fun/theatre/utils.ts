@@ -18,31 +18,29 @@ export const getShowBySlug = (slug: string): TheatreShow | undefined => {
 };
 
 export const getTotalShows = (): number => {
-  // Count unique shows, not individual viewings
-  const uniqueShows = new Set(theatreShowList.map(s => getBaseShowName(s.name)));
-  return uniqueShows.size;
+  return theatreShowList.length;
 };
 
-export const getShowTheaters = (showName: string) => {
+export const getShowVisits = (showName: string) => {
   const baseShowName = getBaseShowName(showName);
-  const shows = theatreShowList.filter(s => getBaseShowName(s.name) === baseShowName);
-  return shows.flatMap(s => s.theaters);
+  const show = theatreShowList.find(s => getBaseShowName(s.name) === baseShowName);
+  return show ? show.visits : [];
 };
 
 export const getShowDates = (showName: string): string[] => {
-  const theaters = getShowTheaters(showName);
-  return theaters.map(t => t.date).filter(Boolean) as string[];
+  const visits = getShowVisits(showName);
+  return visits.map(v => v.date).filter(Boolean);
 };
 
-export const formatShowings = (theaters: any[]): string => {
-  if (theaters.length === 1) {
-    const theater = theaters[0];
-    const dateStr = theater.date ? ` - ${theater.date}` : '';
-    return `${theater.name}${theater.location ? ` (${theater.location})` : ''}${dateStr}`;
+export const formatShowings = (visits: any[]): string => {
+  if (visits.length === 1) {
+    const visit = visits[0];
+    const dateStr = visit.date ? ` - ${visit.date}` : '';
+    return `${visit.theatre}${visit.district ? ` (${visit.district})` : ''}${dateStr}`;
   }
-  return theaters.map(theater => {
-    const dateStr = theater.date ? ` - ${theater.date}` : '';
-    return `${theater.name}${theater.location ? ` (${theater.location})` : ''}${dateStr}`;
+  return visits.map(visit => {
+    const dateStr = visit.date ? ` - ${visit.date}` : '';
+    return `${visit.theatre}${visit.district ? ` (${visit.district})` : ''}${dateStr}`;
   }).join(', ');
 };
 
@@ -67,5 +65,5 @@ export const formatRank = (rank: number, total: number): string => {
 
 export const getShowDistrict = (showName: string): string => {
   const show = theatreShowList.find(s => s.name === showName);
-  return show?.district || 'Broadway';
+  return show?.visits[0]?.district || 'Broadway';
 }; 

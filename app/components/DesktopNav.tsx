@@ -19,7 +19,13 @@ export function DesktopNav() {
   }
 
   const isParentActive = (item: Section) => {
-    if (item.href) return isActive(item.href)
+    if (item.href) {
+      // Special case for "for fun" - check if we're on any of its child pages
+      if (item.id === 'for-fun') {
+        return pathname.startsWith('/for-fun')
+      }
+      return isActive(item.href)
+    }
     if (item.children) {
       return item.children.some(child => isActive(child.href))
     }
