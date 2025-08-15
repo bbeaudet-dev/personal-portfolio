@@ -45,38 +45,39 @@ export function ContentListHomeResponsive({
                   style={{
                     backgroundImage: item.image ? `url(${item.image})` : undefined,
                     backgroundSize: 'cover',
-                    backgroundPosition: 'center',
+                    backgroundPosition: item.title === "Corrupted Phone Game" ? 'center top' : 
+                                       item.title === "AI ChatBot" ? 'center 30%' : 'center',
                     backgroundRepeat: 'no-repeat'
                   }}
                 >
                   {/* Background overlay for better text readability */}
                   {item.image && (
-                    <div className="absolute inset-0 bg-black/60 backdrop-blur-sm"></div>
+                    <div className="absolute inset-0 bg-black/60 backdrop-blur-[0.5px]"></div>
                   )}
                   
                   {/* Content with proper z-index */}
                   <div className="relative z-10 flex flex-col h-full">
-                    <div className="flex items-center gap-2 mb-2">
-                      <h3 className="font-medium text-white group-hover:text-neutral-200 transition-colors text-sm flex-1 drop-shadow-lg">
+                    <div className="flex flex-col gap-1 mb-2">
+                      <h3 className="font-medium text-white group-hover:text-neutral-200 transition-colors text-sm drop-shadow-lg">
                         {item.title}
                       </h3>
+                      {item.tags && Array.isArray(item.tags) && (
+                        <div className="flex items-center gap-1">
+                          {item.tags.map((tag, tagIndex) => (
+                            <Badge key={tagIndex} variant={getBadgeVariant(item.collection, tag)} className="text-[8px] flex-shrink-0 bg-white/20 text-white border-white/30 backdrop-blur-sm">
+                              {tag}
+                            </Badge>
+                          ))}
+                        </div>
+                      )}
                     </div>
                     {item.summary && (
                       <p className="text-xs text-neutral-200 line-clamp-2 flex-1 drop-shadow-lg">
                         {item.summary}
                       </p>
                     )}
-                    {item.tags && Array.isArray(item.tags) && (
-                      <div className="flex items-center gap-2 mt-auto">
-                        {item.tags.map((tag, tagIndex) => (
-                          <Badge key={tagIndex} variant={getBadgeVariant(item.collection, tag)} className="text-[10px] flex-shrink-0 bg-white/20 text-white border-white/30 backdrop-blur-sm">
-                            {tag}
-                          </Badge>
-                        ))}
-                      </div>
-                    )}
                     {item.date && (
-                      <span className="text-xs text-neutral-300 mt-2 text-right drop-shadow-lg">
+                      <span className="text-xs text-neutral-300 mt-auto text-right drop-shadow-lg">
                         {getRelativeDate(item.date)}
                       </span>
                     )}
