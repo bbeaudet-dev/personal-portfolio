@@ -37,6 +37,7 @@ export default function Page() {
             title: project.metadata.title,
             href: `/portfolio/${project.slug}`,
             tags: project.metadata.tags,
+            image: project.metadata.image,
           }))}
           viewAllHref="/portfolio"
           variant="compact"
