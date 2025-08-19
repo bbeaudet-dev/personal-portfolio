@@ -5,7 +5,7 @@ export function getRelativeDate(dateString: string): string {
   
   // Check if date is in the future
   if (date > now) {
-    return "in the future"
+    return "in-progress"
   }
   
   // Check if it's today (same date) - handle timezone issues
