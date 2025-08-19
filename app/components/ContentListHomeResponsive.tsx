@@ -48,7 +48,8 @@ export function ContentListHomeResponsive({
                     backgroundImage: item.image && !item.collection ? `url(${item.image})` : undefined,
                     backgroundSize: 'cover',
                     backgroundPosition: item.title === "Corrupted Phone Game" ? 'center top' : 
-                                       item.title === "AI ChatBot" ? 'center 30%' : 'center',
+                                       item.title === "AI ChatBot" ? 'center 30%' : 
+                                       item.title === "AI Smart Mirror" ? 'right center' : 'center',
                     backgroundRepeat: 'no-repeat'
                   }}
                 >
