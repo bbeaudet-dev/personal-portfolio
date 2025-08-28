@@ -209,9 +209,10 @@ export default function Resume() {
               <div>
                 <h4 className="font-medium mb-2">AI & Development Tools</h4>
                 <div className="flex flex-wrap gap-2">
-                  <Badge variant="in-progress">Cursor</Badge>
-                  <Badge variant="in-progress">Claude + Claude Code</Badge>
-                  <Badge variant="in-progress">ChatGPT</Badge>
+                  <Badge variant="in-progress">Claude Code</Badge>
+                  <Badge variant="in-progress">OpenAI Vision API</Badge>
+                  <Badge variant="in-progress">OpenAI TTS</Badge>
+                  <Badge variant="in-progress">ElevenLabs TTS</Badge>
                   <Badge variant="in-progress">Replit</Badge>
                   <Badge variant="in-progress">v0</Badge>
                 </div>
@@ -222,7 +223,6 @@ export default function Resume() {
                   <Badge variant="broadway">Final Cut Pro</Badge>
                   <Badge variant="broadway">iMovie</Badge>
                   <Badge variant="broadway">Logo Design</Badge>
-                  <Badge variant="broadway">Game Assets</Badge>
                 </div>
               </div>
               <div>
@@ -245,41 +245,22 @@ export default function Resume() {
 
             <div className="mb-4">
               <div className="flex flex-col md:flex-row justify-between mb-1">
-                <h4 className="font-medium">Full-Stack Web Applications</h4>
+                <h4 className="font-medium">AI Smart Mirror</h4>
                 <div className="flex gap-2">
                   <Badge variant="finished">React</Badge>
-                  <Badge variant="finished">Next.js</Badge>
-                  <Badge variant="finished">TypeScript</Badge>
-                  <Badge variant="finished">Supabase</Badge>
+                  <Badge variant="finished">OpenAI Vision API</Badge>
+                  <Badge variant="finished">OpenAI TTS</Badge>
+                  <Badge variant="finished">Raspberry Pi</Badge>
                 </div>
               </div>
               <p className="text-sm text-muted-foreground mb-1">
-                Developed modern web applications using React ecosystem with TypeScript and cloud databases.
+                Interactive smart mirror with AI-powered computer vision and text-to-speech.
               </p>
               <ul className="list-disc list-outside ml-5 space-y-1 text-sm">
-                <li>Built responsive frontend interfaces with React and Next.js</li>
-                <li>Implemented backend APIs using Node.js and Express</li>
-                <li>Integrated PostgreSQL databases with Supabase and Neon for data management</li>
-                <li>Deployed applications on Vercel, Netlify, and Render platforms</li>
-              </ul>
-            </div>
-
-            <div className="mb-4">
-              <div className="flex flex-col md:flex-row justify-between mb-1">
-                <h4 className="font-medium">Mobile Development</h4>
-                <div className="flex gap-2">
-                  <Badge variant="published">React Native</Badge>
-                  <Badge variant="published">JavaScript</Badge>
-                  <Badge variant="published">Cross-Platform</Badge>
-                </div>
-              </div>
-              <p className="text-sm text-muted-foreground mb-1">
-                Cross-platform mobile application development using React Native.
-              </p>
-              <ul className="list-disc list-outside ml-5 space-y-1 text-sm">
-                <li>Developed mobile applications with shared codebase for iOS and Android</li>
-                <li>Implemented native device features and responsive mobile UI</li>
-                <li>Integrated with backend APIs and real-time data synchronization</li>
+                <li>Integrated OpenAI Vision API for real-time object recognition and analysis</li>
+                <li>Implemented text-to-speech functionality using OpenAI TTS for voice interactions</li>
+                <li>Built responsive React interface for mirror display and user interactions</li>
+                <li>Deployed on Raspberry Pi with custom hardware integration for mirror display</li>
               </ul>
             </div>
 
@@ -290,7 +271,6 @@ export default function Resume() {
                   <Badge variant="deployed">VBA</Badge>
                   <Badge variant="deployed">iLogic</Badge>
                   <Badge variant="deployed">CAD APIs</Badge>
-                  <Badge variant="deployed">Python</Badge>
                 </div>
               </div>
               <p className="text-sm text-muted-foreground mb-1">
@@ -298,29 +278,9 @@ export default function Resume() {
               </p>
               <ul className="list-disc list-outside ml-5 space-y-1 text-sm">
                 <li>Built 5,000+ lines of VBA and iLogic code to automate 80% of design processes</li>
-                <li>Integrated with CAD APIs and database systems using Python scripts</li>
+                <li>Integrated with CAD APIs and database systems using modern development practices</li>
                 <li>Implemented version control with Git and collaborative development workflows</li>
-                <li>Used AI tools (ChatGPT, Claude) for code optimization and debugging</li>
-              </ul>
-            </div>
-
-            <div className="mb-4">
-              <div className="flex flex-col md:flex-row justify-between mb-1">
-                <h4 className="font-medium">IoT & Embedded Systems</h4>
-                <div className="flex gap-2">
-                  <Badge variant="experiment">Arduino</Badge>
-                  <Badge variant="experiment">C/C++</Badge>
-                  <Badge variant="experiment">IoT</Badge>
-                  <Badge variant="experiment">Bluetooth</Badge>
-                </div>
-              </div>
-              <p className="text-sm text-muted-foreground mb-1">
-                Hardware programming and IoT device development with sensor integration.
-              </p>
-              <ul className="list-disc list-outside ml-5 space-y-1 text-sm">
-                <li>Programmed Arduino-based systems with C/C++ for medical device applications</li>
-                <li>Implemented Bluetooth connectivity and sensor data processing</li>
-                <li>Created interactive interfaces bridging hardware and software systems</li>
+                <li>Used AI tools for code optimization and debugging</li>
               </ul>
             </div>
           </section>
