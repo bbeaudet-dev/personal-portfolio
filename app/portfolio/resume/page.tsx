@@ -64,11 +64,8 @@ export default function Resume() {
           <section className="mb-6">
             <h3 className="text-lg font-semibold mb-2">Summary</h3>
             <p className="text-muted-foreground">
-              Full-stack software engineer with expertise in React, Next.js, and Node.js ecosystem. Proven track record
-              of building scalable web applications, automating complex workflows, and delivering high-impact technical
-              solutions. Experience spans from frontend development with React/TypeScript to backend systems with
-              PostgreSQL and cloud deployment. Strong background in automation, having developed 5,000+ lines of code
-              that saved thousands of engineering hours.
+              Software engineer with a mechanical engineering background, passionate about bridging hardware and software systems. 
+              Specializing in embedded systems, AI applications, computer vision, and creative design solutions. 
             </p>
           </section>
 
