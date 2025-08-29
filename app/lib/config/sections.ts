@@ -26,6 +26,12 @@ export const sectionConfig: SectionConfig = {
       description: 'My software engineering and mechanical engineering projects',
     },
     {
+      id: 'resume',
+      name: 'resume',
+      href: '/portfolio/resume',
+      description: 'Professional resume and experience',
+    },
+    {
       id: 'blog',
       name: 'blog',
       href: '/blog',
@@ -51,12 +57,12 @@ export const sectionConfig: SectionConfig = {
         },
       ],
     },
-    {
-      id: 'about',
-      name: 'about',
-      href: '/about',
-      description: 'Learn more about Ben Beaudet',
-    },
+    // {
+    //   id: 'about',
+    //   name: 'about',
+    //   href: '/about',
+    //   description: 'Learn more about Ben Beaudet',
+    // },
   ],
 }
 
