@@ -15,6 +15,10 @@ export function DesktopNav() {
 
   const isActive = (href?: string) => {
     if (!href) return false
+    // Special case for resume - exact match only
+    if (href === '/portfolio/resume') {
+      return pathname === href
+    }
     return pathname === href || pathname.startsWith(href + '/')
   }
 

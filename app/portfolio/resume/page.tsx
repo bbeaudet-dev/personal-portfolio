@@ -84,7 +84,7 @@ export default function Resume() {
               <div className="flex flex-col md:flex-row justify-between mb-2">
                 <div className="flex items-center gap-2">
                   <h5 className="text-muted-foreground">BATS-TOI</h5>
-                  <Badge variant="in-progress">Contract</Badge>
+                  <Badge variant="finished">Contract</Badge>
                 </div>
                 <span className="text-muted-foreground text-sm">Brooklyn, NY</span>
               </div>
