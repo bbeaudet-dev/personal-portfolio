@@ -11,18 +11,18 @@ import { baseUrl } from './sitemap'
 export const metadata: Metadata = {
   metadataBase: new URL(baseUrl),
   title: {
-    default: 'Ben Beaudet\'s Blog',
-    template: '%s | Ben Beaudet\'s Blog',
+    default: 'Ben Beaudet\'s Website',
+    template: '%s | Ben Beaudet\'s Website',
   },
   description: 'Personal blog and portfolio of Ben Beaudet',
   icons: {
     icon: '/favicon.svg',
   },
   openGraph: {
-    title: 'Ben Beaudet\'s Blog',
+    title: 'Ben Beaudet\'s Website',
     description: 'Personal blog and portfolio of Ben Beaudet',
     url: baseUrl,
-    siteName: "Ben Beaudet's Blog",
+    siteName: "Ben Beaudet\'s Website",
     locale: 'en_US',
     type: 'website',
   },
