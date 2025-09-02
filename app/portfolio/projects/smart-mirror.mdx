@@ -1,33 +1,194 @@
 ---
 title: "AI Smart Mirror"
 completedAt: "2025-08-30"
-summary: "An AI-infused smart mirror using built on Raspberry Pi"
-technologies: "React, Node.js, Raspberry Pi, OpenAI API, Google Calendar API"
+summary: "An AI-infused smart mirror built on Raspberry Pi with motion detection and outfit analysis"
+technologies: "React, Node.js, Raspberry Pi, OpenAI API, Google Calendar API, WeatherAPI, NewsAPI"
 githubUrl: "https://github.com/bbeaudet-dev/ai-smart-mirror"
 liveUrl: ""
-tags: ["Firmware", "AI"]
-image: "/images-portfolio/smart-mirror.jpg"
+tags: ["Hardware", "AI", "Full-Stack"]
+image: "/images-portfolio/smart-mirror/smart-mirror1.jpg"
 ---
 
-_A Raspberry Pi-powered smart mirror with OpenAI integration_
+_A Raspberry Pi-powered smart mirror with AI outfit analysis and motion detection_
 
-## Overview
+<div className="my-8">
+  <video
+    controls
+    className="w-full max-w-2xl mx-auto rounded-lg shadow-lg"
+    poster="/images-portfolio/smart-mirror.jpg"
+  >
+    <source
+      src="/images-portfolio/smart-mirror/smart-mirror-demo-30sec.mp4"
+      type="video/mp4"
+    />
+    Your browser does not support the video tag.
+  </video>
+</div>
 
-Inspired by the magical wardrobe from Beauty and the Beast, this smart mirror serves as your personal AI assistant for daily routines, displaying weather, calendar events, and news while providing AI-powered outfit recommendations and motivational content.
+{" "}
 
-## Development Process
+<p className="text-base leading-relaxed mb-6">
+  <em>
+    Built in 10 days for Fractal Tech demo day, this smart mirror
+    uses motion detection to trigger AI-powered outfit analysis with weather
+    context and multiple personalities.
+  </em>
+</p>
 
-1. **Foundation**: Raspberry Pi setup, React web app, and Node.js server
-2. **Core Features**: API integrations for weather, calendar, and news
-3. **AI Integration**: OpenAI API for contextual recommendations
-4. **Hardware**: Two-way mirror construction and custom frame assembly
+{" "}
 
-## Screenshots
+<div className="mt-8">
+  <h3 className="text-lg font-semibold mb-3">Technical Implementation</h3>
+  <ul className="list-disc list-inside space-y-1 text-sm mb-6">
+    <li>
+      <strong>Hardware</strong>: Raspberry Pi 5 (8GB), ARZOPA 16" monitor,
+      two-way acrylic panel, Logitech C920 webcam, custom frame
+    </li>
+    <li>
+      <strong>Frontend</strong>: React/Electron interface for mirror display
+    </li>
+    <li>
+      <strong>Backend</strong>: Node.js/Express server with motion detection and
+      API integrations
+    </li>
+    <li>
+      <strong>AI Integration</strong>: OpenAI Vision API for outfit analysis,
+      Text-to-Speech with personality voices
+    </li>
+    <li>
+      <strong>APIs</strong>: WeatherAPI, Google Calendar, NewsAPI for contextual
+      data
+    </li>
+  </ul>
+</div>
 
-<Image
-  src="/images-portfolio/smart-mirror.jpg"
-  alt="Smart Mirror showing morning routine interface"
-  width={800}
-  height={600}
-  className="rounded-lg my-4"
-/>
+{" "}
+
+<div className="mt-8">
+  <h3 className="text-lg font-semibold mb-3">Core Features</h3>
+  <ul className="list-disc list-inside space-y-1 text-sm mb-6">
+    <li>
+      <strong>Motion Detection</strong>: Server-side frame analysis triggers AI
+      interactions
+    </li>
+    <li>
+      <strong>AI Personalities</strong>: Snow White mirror, Snoop Dogg, nihilist
+      with custom voices
+    </li>
+    <li>
+      <strong>Outfit Analysis</strong>: Weather-aware outfit feedback using
+      OpenAI Vision
+    </li>
+    <li>
+      <strong>Smart Display</strong>: Real-time weather, calendar events, news
+      headlines
+    </li>
+    <li>
+      <strong>Audio System</strong>: Pre-generated motion/welcome/sendoff
+      messages with configurable content
+    </li>
+  </ul>
+</div>
+
+{" "}
+
+<div className="mt-8">
+  <h3 className="text-lg font-semibold mb-3">User Experience</h3>
+  <ul className="list-disc list-inside space-y-1 text-sm mb-6">
+    <li>
+      <strong>Interaction Flow</strong>: Motion → welcome message → AI analysis
+      → sendoff (20-30 seconds total)
+    </li>
+    <li>
+      <strong>Event Integration</strong>: Configurable messages for specific
+      events (e.g., "Welcome to Fractal game night!")
+    </li>
+    <li>
+      <strong>Responsive Design</strong>: Smooth interactions with minimal
+      waiting time
+    </li>
+  </ul>
+</div>
+
+{" "}
+
+<div className="mt-8">
+  <h3 className="text-lg font-semibold mb-3">Development Process</h3>
+  <ul className="list-disc list-inside space-y-1 text-sm mb-6">
+    <li>
+      <strong>Day 1-4</strong>: Basic smart mirror setup and API integrations
+    </li>
+    <li>
+      <strong>Day 5</strong>: Motion detection implementation and AI
+      brainstorming
+    </li>
+    <li>
+      <strong>Day 6-9</strong>: AI integration, text-to-speech, and personality
+      development
+    </li>
+    <li>
+      <strong>Day 10</strong>: Final testing and demo preparation
+    </li>
+  </ul>
+</div>
+
+{" "}
+
+<div className="mt-8">
+  <h3 className="text-lg font-semibold mb-3">Screenshots</h3>
+  <Image
+    src="/images-portfolio/smart-mirror.jpg"
+    alt="Smart Mirror showing morning routine interface"
+    width={800}
+    height={600}
+    className="rounded-lg my-4"
+  />
+</div>
+
+{" "}
+
+<div className="mt-8">
+  <h3 className="text-lg font-semibold mb-3">Future Development</h3>
+  <ul className="list-disc list-inside space-y-1 text-sm mb-6">
+    <li>
+      <strong>Hardware</strong>: Better glass instead of acrylic, improved
+      mounting
+    </li>
+    <li>
+      <strong>AI Enhancement</strong>: Local LLMs, Roboflow computer vision
+      integration
+    </li>
+    <li>
+      <strong>Commercial Applications</strong>: Event fit-check systems, retail
+      applications
+    </li>
+    <li>
+      <strong>Phone Integration</strong>: WebRTC interface for multi-user
+      experiences
+    </li>
+  </ul>
+</div>
+
+{" "}
+
+<div className="mt-8">
+  <h3 className="text-lg font-semibold mb-3">Links</h3>
+  <div className="flex gap-4">
+    <a
+      href="https://x.com/ben_beaudet/status/1961182161161339212"
+      target="_blank"
+      rel="noopener noreferrer"
+      className="text-blue-500 hover:text-blue-700 underline"
+    >
+      Twitter Post →
+    </a>
+    <a
+      href="https://www.linkedin.com/feed/update/urn:li:activity:7367228911371358208/"
+      target="_blank"
+      rel="noopener noreferrer"
+      className="text-blue-500 hover:text-blue-700 underline"
+    >
+      LinkedIn Post →
+    </a>
+  </div>
+</div>

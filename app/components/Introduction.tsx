@@ -13,10 +13,7 @@ export function Introduction() {
           {/* Introduction Section */}
           <div className="mb-4 space-y-4">
             <p className="text-base leading-relaxed">
-              I'm a software engineer with a mechanical engineering background, specializing in embedded systems, computer-aided design, and sensor integration.
-            </p>
-            <p className="text-base leading-relaxed">
-              I love to work on indie games and other creative projects in my free time and I dream of owning an indie game studio one day.
+              After 5 years as a mechanical engineer, I discovered my passion for coding and pivoted to software engineering. I'm drawn to projects that blend physical and digital worlds—from developing AI-powered smart mirrors to designing medical devices for stroke rehab and EEG brainwave monitoring. I'm seeking opportunities in fullstack development and AI engineering to drive meaningful innovation.
             </p>
           </div>
         </div>
