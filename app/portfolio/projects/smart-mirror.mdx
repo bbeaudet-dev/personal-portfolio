@@ -43,21 +43,15 @@ _An Ai-powered Smart Mirror that gasses up your outfit_
 {" "}
 
 <div className="my-8">
-  <video
-    controls
+  <iframe
     className="w-full max-w-2xl mx-auto rounded-lg shadow-lg"
-    poster="/images-portfolio/smart-mirror/smart-mirror.jpg"
-    autoPlay
-    muted
-    loop
-    playsInline
-  >
-    <source
-      src="/images-portfolio/smart-mirror/smart-mirror-demo-30sec-compatible.mp4"
-      type="video/mp4"
-    />
-    Your browser does not support the video tag.
-  </video>
+    style={{ aspectRatio: "16/9" }}
+    src="https://www.youtube.com/embed/WqydxASTtls?autoplay=1&mute=1&loop=1&playlist=WqydxASTtls"
+    title="Smart Mirror Demo"
+    frameBorder="0"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+    allowFullScreen
+  ></iframe>
 </div>
 
 {" "}
@@ -186,40 +180,40 @@ _An Ai-powered Smart Mirror that gasses up your outfit_
 <div className="mt-8">
   <h3 className="text-lg font-semibold mb-3">Development Process</h3>
   <ul className="list-disc list-outside space-y-2 text-sm mb-6 ml-4">
-    <li>
-      <strong>Day 1</strong>: Configure Raspberry Pi and display barebones mirror display on the monitor
-    </li>
-    <li>
-      <strong>Day 2</strong>: Weather, news, and calendar API integrations with basic Express server
-    </li>
-    <li>
-      <strong>Day 3</strong>: 
-    </li>
 
     <li>
-      <strong>Day 9</strong>: Set up motion detection and use to trigger messages/interactions
+      <strong>Day 1</strong>: Brainstormed project ideas; purchased Raspberry Pi
     </li>
     <li>
-      <strong>Day 10</strong>: Configure audio messages and Ai prompts
-    </li>
-
-
-
-    <li>
-      <strong>Day 1-4</strong>: Basic smart mirror setup and API integrations
+      <strong>Day 2</strong>: Initial project presentation; configured Raspberry Pi and created a barebones mirror interface webpage and Express server; configured WeatherAPI, able to send data to OpenAI for a basic outfit recommendation
     </li>
     <li>
-      <strong>Day 5</strong>: Motion detection implementation and AI
-      brainstorming
+      <strong>Day 3</strong>: Spent all day trying to get my application to work with the existing MagicMirror library (eventually scrapped)
     </li>
     <li>
-      <strong>Day 6-9</strong>: AI integration, text-to-speech, and personality
-      development
+      <strong>Day 4</strong>: Fundamental shift away from MagicMirror library; resumed work on custom React/Electron app; purchased custom acrylic sheets from local plastic shop
     </li>
     <li>
-      <strong>Day 10</strong>: Final testing and demo preparation
+      <strong>Day 5</strong>: Created mobile interface with WebRTC integration (eventually scrapped)
     </li>
-
+    <li>
+      <strong>Day 6</strong>: Fundamental shift away from phone interface; purchased and integrated USB webcam
+    </li>
+    <li>
+      <strong>Day 7</strong>: Mock demos + improvements to weather and UI
+    </li>
+    <li>
+      <strong>Day 8</strong>: Designed full assembly; purchased easel, foam sheets, video/power cables, and mounting hardware
+    </li>
+    <li>
+      <strong>Day 9</strong>: Text-to-speech integration
+    </li>
+    <li>
+      <strong>Day 10</strong>: Full assembly and testing
+    </li>
+    <li>
+      <strong>Demo Day</strong>: Demo day! Set up motion detection and integration with triggering messages/interactions; configure audio messages and Ai prompts; code freeze at 4:30, then at like 7 lol
+    </li>
   </ul>
 </div>
 
@@ -233,17 +227,16 @@ _An Ai-powered Smart Mirror that gasses up your outfit_
     </li>
 
     <li>
-      <strong>AI Enhancement</strong>: run LLMs locally; Roboflow computer vision integration
-    </li>
-
-    <li>
-      <strong>Commercial Applications</strong>: Event fit-check systems, retail
-      applications
+      <strong>AI Enhancements</strong>: run LLMs locally; Roboflow computer vision integration; improve prompts and personalities
     </li>
     <li>
-      <strong>Phone Integration</strong>: WebRTC interface for multi-user
-      experiences
+      <strong>Audio System</strong>: Integrate ElevenLabs (or similar) for text-to-speech improvements; sync interactions to individual voices/personalities
     </li>
-
+    <li>
+      <strong>Multi-Device Integration</strong>: WebRTC interface has potential for endless interactive experiences
+    </li>
+    <li>
+      <strong>Retail Applications</strong>: Personalized smart mirrors tailored to small businesses and personal use
+    </li>  
   </ul>
 </div>
