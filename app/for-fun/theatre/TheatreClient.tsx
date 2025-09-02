@@ -33,7 +33,7 @@ export default function TheatreClient({ reviews }: TheatreClientProps) {
       </p>
       
       {/* Contextual subtitle and cloud */}
-      <div className="mb-8">
+      <div className="mb-2">
         <TheatreCloud shows={theatreShowList} />
       </div>
 

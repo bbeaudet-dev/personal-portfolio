@@ -9,10 +9,18 @@ tags: ["Hardware", "AI"]
 image: "/images-portfolio/smart-mirror/smart-mirror1.jpg"
 ---
 
-_A Raspberry Pi-powered smart mirror with AI outfit analysis and motion detection_
+_An Ai-powered Smart Mirror that gasses up your outfit_
 
 <div>
   <div className="flex gap-4">
+    <a
+      href="https://www.linkedin.com/feed/update/urn:li:activity:7367228911371358208/"
+      target="_blank"
+      rel="noopener noreferrer"
+      className="text-blue-500 hover:text-blue-700 underline"
+    >
+      LinkedIn Post →
+    </a>
     <a
       href="https://x.com/ben_beaudet/status/1961182161161339212"
       target="_blank"
@@ -28,14 +36,6 @@ _A Raspberry Pi-powered smart mirror with AI outfit analysis and motion detectio
       className="text-blue-500 hover:text-blue-700 underline"
     >
       Twitter Post →
-    </a>
-    <a
-      href="https://www.linkedin.com/feed/update/urn:li:activity:7367228911371358208/"
-      target="_blank"
-      rel="noopener noreferrer"
-      className="text-blue-500 hover:text-blue-700 underline"
-    >
-      LinkedIn Post →
     </a>
   </div>
 </div>
@@ -58,25 +58,23 @@ _A Raspberry Pi-powered smart mirror with AI outfit analysis and motion detectio
 
 {" "}
 
-<p className="text-base leading-relaxed mb-6">
-  <em>
-    Built in 10 days for Fractal Tech demo day, this smart mirror uses motion
-    detection to trigger AI-powered outfit analysis with weather context and
-    multiple personalities.
-  </em>
+<p className="text-base leading-relaxed mb-6 italic">
+  Built in 10 days for Fractal Tech demo day, this smart mirror is powered by a
+  Raspberry Pi and uses motion detection to trigger Ai-fueled outfit analysis
+  with weather context and multiple personalities.
 </p>
 
 {" "}
 
 <div className="mt-8">
   <h3 className="text-lg font-semibold mb-3">Technical Implementation</h3>
-  <ul className="list-disc list-inside space-y-1 text-sm mb-6">
+  <ul className="list-disc list-outside space-y-2 text-sm mb-6 ml-4">
     <li>
       <strong>Hardware</strong>: Raspberry Pi 5 (8GB), ARZOPA 16" monitor,
-      two-way acrylic panel, Logitech C920 webcam, custom frame
+      Logitech C920 webcam
     </li>
     <li>
-      <strong>Frontend</strong>: React/Electron interface for mirror display
+      <strong>Frontend</strong>: Custom React/Electron app for mirror display
     </li>
     <li>
       <strong>Backend</strong>: Node.js/Express server with motion detection and
@@ -84,39 +82,47 @@ _A Raspberry Pi-powered smart mirror with AI outfit analysis and motion detectio
     </li>
     <li>
       <strong>AI Integration</strong>: OpenAI Vision API for outfit analysis,
-      Text-to-Speech with personality voices
+      OpenAI Text-to-Speech API for voice messages, OpenAI for news headline
+      summarization
     </li>
     <li>
-      <strong>APIs</strong>: WeatherAPI, Google Calendar, NewsAPI for contextual
-      data
+      <strong>APIs</strong>: WeatherAPI, NewsAPI, and Google Calendar for
+      personalized contextual data
+    </li>
+    <li>
+      <strong>Mechanical</strong>: Custom 12"x18" drilled two-way mirror with
+      matching clear back panel, custom foam display window, #4-40 nylon machine
+      bolts and standoffs, and adjustable easel
     </li>
   </ul>
 </div>
+
+{" "}
 
 {" "}
 
 <div className="mt-8">
   <h3 className="text-lg font-semibold mb-3">Core Features</h3>
-  <ul className="list-disc list-inside space-y-1 text-sm mb-6">
+  <ul className="list-disc list-outside space-y-2 text-sm mb-6 ml-4">
     <li>
-      <strong>Motion Detection</strong>: Server-side frame analysis triggers AI
-      interactions
+      <strong>Motion Detection</strong>: Server-side frame-by-frame analysis of
+      webcam feed to trigger interactions
     </li>
     <li>
-      <strong>AI Personalities</strong>: Snow White mirror, Snoop Dogg, nihilist
-      with custom voices
+      <strong>Outfit Analysis</strong>: Uses weather data and object detection
+      to provide useful outfit recommendations and positive affirmations
     </li>
     <li>
-      <strong>Outfit Analysis</strong>: Weather-aware outfit feedback using
-      OpenAI Vision
+      <strong>AI Personalities</strong>: Snow White magic mirror, Snoop Dogg,
+      and apathetic nihilist with unique voices and messages
     </li>
     <li>
       <strong>Smart Display</strong>: Real-time weather, calendar events, news
-      headlines
+      headlines, and more
     </li>
     <li>
-      <strong>Audio System</strong>: Pre-generated motion/welcome/sendoff
-      messages with configurable content
+      <strong>Audio System</strong>: Customizable "welcome" messages allow for
+      instantaneous mirror feedback while Ai calls are processing
     </li>
   </ul>
 </div>
@@ -124,28 +130,58 @@ _A Raspberry Pi-powered smart mirror with AI outfit analysis and motion detectio
 {" "}
 
 <div className="mt-8">
-  <h3 className="text-lg font-semibold mb-3">User Experience</h3>
-  <ul className="list-disc list-inside space-y-1 text-sm mb-6">
-    <li>
-      <strong>Interaction Flow</strong>: Motion → welcome message → AI analysis
-      → sendoff (20-30 seconds total)
-    </li>
-    <li>
-      <strong>Event Integration</strong>: Configurable messages for specific
-      events (e.g., "Welcome to Fractal game night!")
-    </li>
-    <li>
-      <strong>Responsive Design</strong>: Smooth interactions with minimal
-      waiting time
-    </li>
-  </ul>
+  <h3 className="text-lg font-semibold mb-3">Project Photos</h3>
+  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+    <Image
+      src="/images-portfolio/smart-mirror/CR3A9500_compressed.jpg"
+      alt="Smart Mirror setup and hardware components"
+      width={800}
+      height={600}
+      className="rounded-lg"
+    />
+    <Image
+      src="/images-portfolio/smart-mirror/CR3A9502_compressed.jpg"
+      alt="Smart Mirror interface and display"
+      width={800}
+      height={600}
+      className="rounded-lg"
+    />
+    <Image
+      src="/images-portfolio/smart-mirror/CR3A9738_compressed.jpg"
+      alt="Smart Mirror final assembly and testing"
+      width={800}
+      height={600}
+      className="rounded-lg"
+    />
+    <Image
+      src="/images-portfolio/smart-mirror/CR3A9733_compressed.jpg"
+      alt="Smart Mirror hardware integration"
+      width={800}
+      height={600}
+      className="rounded-lg"
+    />
+    <Image
+      src="/images-portfolio/smart-mirror/CR3A9721_compressed.jpg"
+      alt="Smart Mirror construction and assembly"
+      width={800}
+      height={600}
+      className="rounded-lg"
+    />
+    <Image
+      src="/images-portfolio/smart-mirror/CR3A9751_compressed.jpg"
+      alt="Smart Mirror completed project showcase"
+      width={800}
+      height={600}
+      className="rounded-lg"
+    />
+  </div>
 </div>
 
 {" "}
 
 <div className="mt-8">
   <h3 className="text-lg font-semibold mb-3">Development Process</h3>
-  <ul className="list-disc list-inside space-y-1 text-sm mb-6">
+  <ul className="list-disc list-outside space-y-2 text-sm mb-6 ml-4">
     <li>
       <strong>Day 1-4</strong>: Basic smart mirror setup and API integrations
     </li>
@@ -166,21 +202,8 @@ _A Raspberry Pi-powered smart mirror with AI outfit analysis and motion detectio
 {" "}
 
 <div className="mt-8">
-  <h3 className="text-lg font-semibold mb-3">Screenshots</h3>
-  <Image
-    src="/images-portfolio/smart-mirror.jpg"
-    alt="Smart Mirror showing morning routine interface"
-    width={800}
-    height={600}
-    className="rounded-lg my-4"
-  />
-</div>
-
-{" "}
-
-<div className="mt-8">
   <h3 className="text-lg font-semibold mb-3">Future Development</h3>
-  <ul className="list-disc list-inside space-y-1 text-sm mb-6">
+  <ul className="list-disc list-outside space-y-2 text-sm mb-6 ml-4">
     <li>
       <strong>Hardware</strong>: Better glass instead of acrylic, improved
       mounting

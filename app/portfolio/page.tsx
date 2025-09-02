@@ -1,6 +1,6 @@
 import { getPortfolioProjects } from 'app/portfolio/utils'
 import { formatDate } from 'app/blog/utils'
-import { ContentList } from 'app/components/ContentListItem'
+import { ContentListHomeResponsive } from 'app/components/ContentListHomeResponsive'
 
 export const metadata = {
   title: "Ben's Portfolio",
@@ -24,16 +24,20 @@ export default function Page() {
         </a>
       </div>
       <h2 className="font-semibold text-2xl mb-8 tracking-tighter">All Projects</h2>
-      <ContentList
-        items={allProjects}
-        getItemProps={(project) => ({
-          date: formatDate(project.metadata.completedAt),
+      <ContentListHomeResponsive
+        title="Portfolio Projects"
+        viewAllHref="/portfolio"
+        variant="detailed"
+        items={allProjects.map(project => ({
+          date: project.metadata.completedAt,
           title: project.metadata.title,
           href: `/portfolio/${project.slug}`,
           tags: project.metadata.tags || [],
-        })}
-        getKey={(project) => project.slug}
+          summary: project.metadata.summary,
+          image: project.metadata.image,
+          collection: 'portfolio'
+        }))}
       />
-      </section>
+    </section>
   )
 } 
