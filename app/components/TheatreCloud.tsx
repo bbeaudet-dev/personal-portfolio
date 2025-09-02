@@ -240,8 +240,11 @@ export default function TheatreCloud({ shows }: TheatreCloudProps) {
 
   return (
     <div>
-      {/* Theatre Cloud */}
-      <div className="relative" style={{ width: '800px', height: '800px' }}>
+      {/* Top section: Cloud and Detail Box side by side */}
+      <div className="flex flex-col lg:flex-row gap-8">
+        {/* Theatre Cloud - Left side */}
+        <div className="flex-1">
+          <div className="relative" style={{ width: '800px', height: '800px' }}>
         {positionedShows.map((positionedShow) => (
           <div
             key={positionedShow.show.slug}
@@ -326,9 +329,32 @@ export default function TheatreCloud({ shows }: TheatreCloudProps) {
             )}
           </div>
         ))}
+        </div>
       </div>
 
-      {/* Filter Controls - moved underneath and styled like games */}
+      {/* Selected Show Details - Right side */}
+      {selectedShow && (
+        <div className="flex-1 lg:max-w-2xl">
+          <div className="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-lg border border-gray-200 dark:border-gray-700">
+            <h3 className="text-xl font-semibold mb-3">{selectedShow.name}</h3>
+            
+            {/* Show Info */}
+            <div className="space-y-2 text-sm text-gray-600 dark:text-gray-400">
+              <p><strong>Rank:</strong> #{selectedShow.rank} of {shows.length}</p>
+              <p><strong>Total Visits:</strong> {selectedShow.visits.length}</p>
+              {selectedShow.visits.map((visit, index) => (
+                <div key={visit.chronologicalId} className="ml-4">
+                  <p><strong>Visit {index + 1}:</strong> {visit.theatre} ({visit.district}) - {visit.date}</p>
+                  {visit.notes && <p className="ml-4 italic">Notes: {visit.notes}</p>}
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
+      </div>
+
+      {/* Filter Controls - underneath the cloud */}
       <div className="flex justify-center space-x-2 mt-8 mb-8">
         <button
           onClick={() => setFilter('all')}
@@ -372,24 +398,6 @@ export default function TheatreCloud({ shows }: TheatreCloudProps) {
         </button>
       </div>
 
-      {/* Selected Show Details */}
-      {selectedShow && (
-        <div className="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-lg border border-gray-200 dark:border-gray-700 mt-6">
-          <h3 className="text-xl font-semibold mb-3">{selectedShow.name}</h3>
-          
-          {/* Show Info */}
-          <div className="space-y-2 text-sm text-gray-600 dark:text-gray-400">
-            <p><strong>Rank:</strong> #{selectedShow.rank} of {shows.length}</p>
-            <p><strong>Total Visits:</strong> {selectedShow.visits.length}</p>
-            {selectedShow.visits.map((visit, index) => (
-              <div key={visit.chronologicalId} className="ml-4">
-                <p><strong>Visit {index + 1}:</strong> {visit.theatre} ({visit.district}) - {visit.date}</p>
-                {visit.notes && <p className="ml-4 italic">Notes: {visit.notes}</p>}
-              </div>
-            ))}
-          </div>
-        </div>
-      )}
     </div>
   )
 } 

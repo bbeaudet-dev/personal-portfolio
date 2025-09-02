@@ -8,6 +8,11 @@
   --items-to-show: 3;
 }
 
+/* Portfolio items - show ALL items without limits */
+.portfolio-items {
+  /* No limits - show all items */
+}
+
 /* Show 6 items on small screens (2 columns) */
 @media (min-width: 640px) {
   .responsive-items {

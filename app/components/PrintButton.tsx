@@ -11,7 +11,7 @@ export function PrintButton() {
   return (
     <Button onClick={handlePrint} variant="outline" className="print:hidden flex items-center gap-2 bg-transparent">
       <Printer className="h-4 w-4" />
-      Print Résumé
+      Print Resume
     </Button>
   )
 } 
