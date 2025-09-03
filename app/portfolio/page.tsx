@@ -17,17 +17,13 @@ export default function Page() {
   
   return (
     <section>
-      <h1 className="font-semibold text-2xl mb-8 tracking-tighter">Project Portfolio</h1>
-      <div className="mb-6">
-        <a href="/portfolio/resume" className="inline-block px-6 py-2 rounded-lg bg-neutral-100 dark:bg-neutral-800 text-neutral-900 dark:text-neutral-100 font-medium shadow hover:bg-neutral-200 dark:hover:bg-neutral-700 transition-colors">
-          View Resumé
-        </a>
-      </div>
-      <h2 className="font-semibold text-2xl mb-8 tracking-tighter">All Projects</h2>
+      <a href="/portfolio/resume" className="inline-block px-6 py-2 rounded-lg bg-neutral-100 dark:bg-neutral-800 text-neutral-900 dark:text-neutral-100 font-medium shadow hover:bg-neutral-200 dark:hover:bg-neutral-700 transition-colors">
+        View Resume
+      </a>
       <ContentListHomeResponsive
         title="Portfolio Projects"
-        viewAllHref="/portfolio"
-        variant="detailed"
+        variant="compact"
+        showViewAll={false}
         items={allProjects.map(project => ({
           date: project.metadata.completedAt,
           title: project.metadata.title,

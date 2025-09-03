@@ -210,8 +210,11 @@ export default function GameWordCloud({ games }: GameWordCloudProps) {
 
   return (
     <div>
-      {/* Game Cloud */}
-      <div className="relative" style={{ width: '800px', height: '800px' }}>
+      {/* Top section: Cloud and Detail Box side by side */}
+      <div className="flex flex-col lg:flex-row gap-8">
+        {/* Game Cloud - Left side */}
+        <div className="flex-1">
+          <div className="relative" style={{ width: '800px', height: '800px' }}>
         {positionedGames.map((positionedGame) => (
           <div
             key={positionedGame.game.slug}
@@ -300,17 +303,66 @@ export default function GameWordCloud({ games }: GameWordCloudProps) {
             )}
           </div>
         ))}
+        </div>
       </div>
 
-      {/* Selected Game Details */}
+      {/* Selected Game Details - Right side */}
       {selectedGame && (
-        <div className="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-lg border border-gray-200 dark:border-gray-700">
-          <h3 className="text-xl font-semibold mb-3">{selectedGame.title}</h3>
-          
-          {/* Related Content */}
-          <RelatedGameContent game={selectedGame} />
+        <div className="flex-1 lg:max-w-2xl">
+          <div className="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-lg border border-gray-200 dark:border-gray-700">
+            <h3 className="text-xl font-semibold mb-3">{selectedGame.title}</h3>
+            
+            {/* Related Content */}
+            <RelatedGameContent game={selectedGame} />
+          </div>
         </div>
       )}
+      </div>
+
+      {/* Filter Controls - underneath the cloud */}
+      <div className="flex justify-center space-x-2 mt-8 mb-8">
+        <button
+          onClick={() => setFilter('all')}
+          className={`px-2 py-1 rounded text-xs font-medium transition-colors ${
+            filter === 'all'
+              ? 'bg-blue-600 text-white'
+              : 'bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-300 dark:hover:bg-gray-600'
+          }`}
+        >
+          All ({games.length})
+        </button>
+        <button
+          onClick={() => setFilter('childhood')}
+          className={`px-2 py-1 rounded text-xs font-medium transition-colors ${
+            filter === 'childhood'
+              ? 'bg-blue-600 text-white'
+              : 'bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-300 dark:hover:bg-gray-600'
+          }`}
+        >
+          Childhood ({games.filter(g => g.periods.includes('childhood')).length})
+        </button>
+        <button
+          onClick={() => setFilter('teenager')}
+          className={`px-2 py-1 rounded text-xs font-medium transition-colors ${
+            filter === 'teenager'
+              ? 'bg-blue-600 text-white'
+              : 'bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-300 dark:hover:bg-gray-600'
+          }`}
+        >
+          Teenager ({games.filter(g => g.periods.includes('teenager')).length})
+        </button>
+        <button
+          onClick={() => setFilter('adult')}
+          className={`px-2 py-1 rounded text-xs font-medium transition-colors ${
+            filter === 'adult'
+              ? 'bg-blue-600 text-white'
+              : 'bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-300 dark:hover:bg-gray-600'
+          }`}
+        >
+          Adult ({games.filter(g => g.periods.includes('adult')).length})
+        </button>
+      </div>
+
     </div>
   )
 }

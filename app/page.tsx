@@ -38,6 +38,7 @@ export default function Page() {
             href: `/portfolio/${project.slug}`,
             tags: project.metadata.tags,
             image: project.metadata.image,
+            summary: project.metadata.summary,
           }))}
           viewAllHref="/portfolio"
           variant="compact"
