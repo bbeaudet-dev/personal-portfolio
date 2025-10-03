@@ -13,8 +13,8 @@ export function Introduction() {
           {/* Introduction Section */}
           <div className="mb-4 space-y-4">
             <p className="text-base leading-relaxed">
-              I'm a software engineer with a mechanical engineering background and a passion for building software to enable hardware.
-              From medical devices and railroad trackwork to multiplayer games and AI smart mirrors, I love to blend technical and creative design to solve meaningful problems and be on the cutting-edge of new technologies.
+              I'm a software engineer with a mechanical background and a passion for building software to enable hardware.
+              From medical devices and railroad trackwork to multiplayer games and AI smart mirrors, I love to blend technical and creative design to solve meaningful problems and push the cutting edge of technology.
             </p>
           </div>
         </div>
