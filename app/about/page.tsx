@@ -11,7 +11,7 @@ export default function AboutPage() {
     <div className="overflow-x-hidden">
       <section className="max-w-3xl mx-auto px-4">
         <h1 className="mb-8 text-2xl font-semibold tracking-tighter">
-          hey, I'm ben
+          Hey, I'm Ben
         </h1>
         
         {/* Profile picture with float for text wrap-around */}
