@@ -7,19 +7,53 @@ githubUrl: "https://github.com/bbeaudet-dev/rollio"
 liveUrl: "https://rollio.vercel.app"
 prominence: 1
 tags: ["Game Dev"]
-image: "/images-portfolio/rollio-mpgame.jpg"
+image: "/images-portfolio/rollio/rollio-mpgame.jpg"
 ---
 
-_A multiplayer dice game blending risk-it-all dice-rolling, classic Farkle scoring, and roguelike progression and items_
+import Image from "next/image";
 
-Play Time: 10-30 minutes
+_A multiplayer dice game blending risk-it-all dice-rolling, Farkle-inspired scoring, and roguelike progression_
+
+Rollio started out as a CLI-only game experienced exclusively within a terminal window:
+
+<video
+  src="/images-portfolio/rollio/rollio-cli-demo.mov"
+  controls
+  className="rounded-lg my-6 w-full max-w-2xl mx-auto"
+>
+  Your browser does not support the video tag.
+</video>
+
+This idea came to me after several iterations of Balatro-inspired dice-rolling games fell to the same mistake: trying to make a game visually-appealing **before** making sure the core game mechanics _actually work_! I would get so caught up in trying to make the game feel somewhat "playable" and "polished", as well as constantly implementing new features, that the frontend UI would become entangled with the backend game engine, inevitably leading to the game utterly breaking and making debugging nearly impossible.
+
+Theoretically, all (or most) games should be playable from a command line interface _in some capacity_ - from Tic-Tac-Toe all the way to something like Skyrim! - since it's really the backend game engine that is manipulating the current _state_ of the game. For example, you don't really need a visible and clickable 3x3 board to play Tic-Tac-Toe - instead, the 3x3 array making up the board can be represented as a string of text, and you could place markers by inputting two-dimensional coordinates in the CLI. 
+
+Anyways, I wanted to prove that this was possible for my dice-rolling roguelike - and it ended up being a really great exercise for me as a software engineer! Once it was in a playable state, I created a web-based UI with multiplayer games and lobbying.
 
 <LaunchButton
   href="https://rollio.vercel.app"
-  title="Play Rollio"
+  title="Play Rollio on Web"
   icon="🎲"
   color="purple"
 />
+
+<Image
+  src="/images-portfolio/rollio/rollio-mpgame.jpg"
+  alt="Rollio multiplayer game interface"
+  width={800}
+  height={600}
+  className="rounded-lg my-6"
+/>
+
+<Image
+  src="/images-portfolio/rollio/rollio-lobby.jpg"
+  alt="Rollio game lobby"
+  width={800}
+  height={600}
+  className="rounded-lg my-6"
+/>
+
+Again, this was more of an exercise in proving that I could create a working frontend UI from a working backend game engine than it was me making a visually-appealing and fun dice-rolling game. I still consider the CLI-only version to be the "official in-progress" version of Rollio, and I plan to either expand the game or reuse elements in the creation of a new game.
 
 ## Technologies Used
 

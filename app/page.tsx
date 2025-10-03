@@ -41,6 +41,7 @@ export default function Page() {
             summary: project.metadata.summary,
           }))}
           viewAllHref="/portfolio"
+          viewAllText="see all Projects"
           variant="compact"
         />
         <ContentListHomeResponsive 
@@ -53,6 +54,7 @@ export default function Page() {
             collection: post.metadata.collection,
           }))}
           viewAllHref="/blog"
+          viewAllText="see all Posts"
           variant="compact"
         />
       </section>

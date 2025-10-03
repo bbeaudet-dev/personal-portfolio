@@ -6,6 +6,7 @@ import { getRelativeDate } from '../lib/date-utils'
 interface ContentListHomeResponsiveProps {
   title: string | React.ReactNode
   viewAllHref?: string
+  viewAllText?: string
   variant?: 'compact' | 'detailed'
   showViewAll?: boolean
   items: Array<{
@@ -22,6 +23,7 @@ interface ContentListHomeResponsiveProps {
 export function ContentListHomeResponsive({ 
   title, 
   viewAllHref, 
+  viewAllText = "See all",
   variant = 'detailed',
   showViewAll = true,
   items
@@ -37,7 +39,7 @@ export function ContentListHomeResponsive({
               href={viewAllHref}
               className="text-sm text-neutral-600 dark:text-neutral-400 hover:text-neutral-800 dark:hover:text-neutral-200 transition-colors"
             >
-              See all →
+              {viewAllText} →
             </Link>
           )}
         </div>
@@ -111,6 +113,16 @@ export function ContentListHomeResponsive({
             ))}
           </div>
         </div>
+        {showViewAll && viewAllHref && (
+          <div className="flex justify-center mt-6">
+            <Link 
+              href={viewAllHref}
+              className="text-sm text-neutral-600 dark:text-neutral-400 hover:text-neutral-800 dark:hover:text-neutral-200 transition-colors"
+            >
+              {viewAllText} →
+            </Link>
+          </div>
+        )}
       </div>
     )
   }
@@ -124,7 +136,7 @@ export function ContentListHomeResponsive({
             href={viewAllHref}
             className="text-sm text-neutral-600 dark:text-neutral-400 hover:text-neutral-800 dark:hover:text-neutral-200 transition-colors"
           >
-            See all →
+            {viewAllText} →
           </Link>
         )}
       </div>
@@ -162,6 +174,16 @@ export function ContentListHomeResponsive({
           </Link>
         ))}
       </div>
+      {showViewAll && viewAllHref && (
+        <div className="flex justify-center mt-6">
+          <Link 
+            href={viewAllHref}
+            className="text-sm text-neutral-600 dark:text-neutral-400 hover:text-neutral-800 dark:hover:text-neutral-200 transition-colors"
+          >
+            {viewAllText} →
+          </Link>
+        </div>
+      )}
     </div>
   )
 } 
