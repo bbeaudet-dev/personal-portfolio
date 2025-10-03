@@ -2,7 +2,7 @@ import TheatreClient from './TheatreClient'
 import { TheatreHome } from 'app/components/sections'
 
 export const metadata = {
-  title: "Showbiz, Baby",
+  title: "That's Showbiz, Baby",
   description: 'My theatre reviews and experiences from Broadway and beyond.',
 }
 

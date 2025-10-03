@@ -6,20 +6,24 @@ import { PrintButton } from "../../components/PrintButton"
 
 export default function Resume() {
   return (
-    <div className="min-h-screen bg-gray-100 dark:bg-gray-900 py-8 print:bg-white print:py-0">
-      <Card className="mx-auto max-w-4xl shadow-lg print:shadow-none">
+    <div className="min-h-screen print:bg-white print:py-0">
+      <div className="max-w-4xl mx-auto">
+        {/* Print Button */}
+        <div className="flex justify-end mb-4 px-8">
+          <PrintButton />
+        </div>
+        
+        <Card className="shadow-lg print:shadow-none">
         <CardContent className="p-8 print:p-4">
+
           {/* Header Section */}
-          <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-6">
-            <div>
-              <h1 className="text-3xl font-bold">Benjamin Beaudet</h1>
-              <h2 className="text-xl text-muted-foreground">Software & Mechanical Engineer</h2>
-            </div>
-            <PrintButton />
+          <div className="mb-2">
+            <h1 className="text-3xl font-bold">Benjamin Beaudet</h1>
+            <h2 className="text-xl text-muted-foreground">Software & Mechanical Engineer</h2>
           </div>
 
           {/* Contact Information */}
-          <div className="flex flex-wrap gap-4 mb-6 text-sm">
+          <div className="flex flex-wrap gap-x-4 gap-y-2 mb-4 text-sm">
             <div className="flex items-center gap-1">
               <Mail className="h-4 w-4" />
               <a href="mailto:bbeaudet0@gmail.com" className="hover:underline">
@@ -56,42 +60,30 @@ export default function Resume() {
             </div>
             <div className="flex items-center gap-1">
               <MapPin className="h-4 w-4" />
-              <span>Columbus, OH</span>
+              <span>Columbus, OH  /  Brooklyn, NY</span>
             </div>
           </div>
 
-          {/* Summary */}
-          <section className="mb-6">
-            <h3 className="text-lg font-semibold mb-2">Summary</h3>
-            <p className="text-muted-foreground">
-              Software engineer with a mechanical engineering background, passionate about bridging hardware and software systems. 
-              Specializing in embedded systems, AI applications, computer vision, and creative design solutions. 
-            </p>
-          </section>
-
-          <Separator className="my-6" />
-
           {/* Experience */}
           <section className="mb-6">
-            <h3 className="text-lg font-semibold mb-4">Professional Experience</h3>
+            <h3 className="text-lg font-semibold mb-2">Professional Experience</h3>
 
-            {/* Firmware & Mechanical Engineer */}
+            {/* AI Accelerator Program */}
             <div className="mb-5">
               <div className="flex flex-col md:flex-row justify-between mb-1">
-                <h4 className="font-medium">Firmware & Mechanical Engineer</h4>
-                <span className="text-muted-foreground text-sm">July 2025 - Present</span>
+                <h4 className="font-medium">Software Engineer</h4>
+                <span className="text-muted-foreground text-sm">Jun - Aug 2025</span>
               </div>
               <div className="flex flex-col md:flex-row justify-between mb-2">
                 <div className="flex items-center gap-2">
-                  <h5 className="text-muted-foreground">BATS-TOI</h5>
-                  <Badge variant="finished">Contract</Badge>
+                  <h5 className="text-muted-foreground">Fractal Tech</h5>
+                  <Badge variant="published">Full-Time</Badge>
                 </div>
                 <span className="text-muted-foreground text-sm">Brooklyn, NY</span>
               </div>
               <ul className="list-disc list-outside ml-5 space-y-1 text-sm">
-                <li>Developing smart helmet technology integrating speakers, microphones, and EEG sensors for real-time coach-player communication and concussion monitoring</li>
-                <li>Collaborating with ML engineer and CTO to implement computer vision and smart lens technology for augmented reality applications</li>
-                <li>Designing firmware and hardware integration solutions for sports and military applications using embedded systems</li>
+                <li>Built and deployed 20 full-stack apps including an AI-powered smart mirror, React Native mobile puzzle game, image analysis and algorithm visualization tool, and an AI riddle chatbot</li>
+                <li>Ripped 933 GitHub commits and 239 PRs with 800+ hours of hands-on-keys</li>
               </ul>
             </div>
 
@@ -297,9 +289,6 @@ export default function Resume() {
                 <p className="text-muted-foreground">Fractal Tech</p>
                 <span className="text-muted-foreground text-sm">Brooklyn, NY</span>
               </div>
-              <p className="text-sm text-muted-foreground mt-1">
-                Full-stack development, React/Next.js, mobile apps, AI integration, multiplayer games, real-time systems
-              </p>
             </div>
 
             <div className="mb-2">
@@ -311,9 +300,6 @@ export default function Resume() {
                 <p className="text-muted-foreground">Entrepreneurship fellowship program</p>
                 <span className="text-muted-foreground text-sm">Training Bootcamp: July 2021</span>
               </div>
-              <p className="text-sm text-muted-foreground mt-1">
-                Career development program for recent graduates to work at startups and revitalize American cities
-              </p>
             </div>
 
             <div className="mb-2">
@@ -343,6 +329,7 @@ export default function Resume() {
           
         </CardContent>
       </Card>
+      </div>
     </div>
   )
 } 

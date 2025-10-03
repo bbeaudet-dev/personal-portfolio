@@ -17,7 +17,7 @@ export default function Page() {
   
   return (
     <section>
-      <a href="/portfolio/resume" className="inline-block px-6 py-2 rounded-lg bg-neutral-100 dark:bg-neutral-800 text-neutral-900 dark:text-neutral-100 font-medium shadow hover:bg-neutral-200 dark:hover:bg-neutral-700 transition-colors">
+      <a href="/portfolio/resume" className="mb-4 inline-block px-6 py-2 rounded-lg bg-neutral-100 dark:bg-neutral-800 text-neutral-900 dark:text-neutral-100 font-medium shadow hover:bg-neutral-200 dark:hover:bg-neutral-700 transition-colors">
         View Resume
       </a>
       <ContentListHomeResponsive

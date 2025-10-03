@@ -7,13 +7,14 @@ export function Introduction() {
       <div className="flex flex-col md:flex-row md:items-start md:gap-8 mb-8">
         <div className="flex-1">
           <h1 className="mb-8 text-2xl font-semibold tracking-tighter">
-            hey, I'm ben
+            Hey, I'm Ben
           </h1>
           
           {/* Introduction Section */}
           <div className="mb-4 space-y-4">
             <p className="text-base leading-relaxed">
-              After 5 years as a mechanical engineer, I discovered my passion for coding and pivoted to software engineering. I'm drawn to projects that blend physical and digital worlds—from developing AI-powered smart mirrors to designing medical devices for stroke rehab and EEG brainwave monitoring. I'm seeking opportunities in fullstack development and AI engineering to drive meaningful innovation.
+              I'm a software engineer with a mechanical engineering background and a passion for building software to enable hardware.
+              From medical devices and railroad trackwork to multiplayer games and AI smart mirrors, I love to blend technical and creative design to solve meaningful problems and be on the cutting-edge of new technologies.
             </p>
           </div>
         </div>
