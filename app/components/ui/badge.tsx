@@ -31,11 +31,11 @@ const badgeVariants = cva(
               "playhouse-square": "bg-orange-100 text-orange-800 dark:bg-orange-900 dark:text-orange-300",
               "broadway-touring": "bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-300",
               // Project type variants
-              "software": "bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-300",
-              "firmware": "bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-300",
-              "mechanical": "bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-300",
-              "game-dev": "bg-orange-100 text-orange-800 dark:bg-orange-900 dark:text-orange-300",
-              "ai": "bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-300",
+              "software": "bg-gray-100 text-gray-800 dark:bg-gray-800 dark:text-gray-300",
+              "firmware": "bg-gray-100 text-gray-800 dark:bg-gray-800 dark:text-gray-300",
+              "mechanical": "bg-gray-100 text-gray-800 dark:bg-gray-800 dark:text-gray-300",
+              "game-dev": "bg-gray-100 text-gray-800 dark:bg-gray-800 dark:text-gray-300",
+              "ai": "bg-gray-100 text-gray-800 dark:bg-gray-800 dark:text-gray-300",
       },
     },
     defaultVariants: {
