@@ -203,3 +203,60 @@ table {
 .title {
   text-wrap: balance;
 }
+
+/* Print optimizations */
+@media print {
+  @page {
+    margin: 12mm;
+  }
+  body {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  .no-break {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+  .avoid-break-after {
+    break-after: avoid;
+    page-break-after: avoid;
+  }
+  .avoid-break-before {
+    break-before: avoid;
+    page-break-before: avoid;
+  }
+}
+
+/* Resume bullets: add a little spacing around the disc for readability */
+.resume-bullets li::marker {
+  font-size: 0.9em;
+}
+.resume-bullets li {
+  padding-left: 0.15rem; /* space after bullet */
+}
+
+/* Neutralize badge colors in Technical Skills for readability */
+.skills-neutral .inline-flex {
+  background-color: #f3f4f6; /* neutral-100 */
+  color: #374151; /* neutral-700 */
+  border: 1px solid #e5e7eb; /* neutral-200 */
+}
+
+@media (prefers-color-scheme: dark) {
+  .skills-neutral .inline-flex {
+    background-color: #111827; /* neutral-900 */
+    color: #e5e7eb; /* neutral-200 */
+    border-color: #374151; /* neutral-700 */
+  }
+}
+
+/* Resume global scaling using zoom (more reliable for print/layout) */
+.resume-zoom {
+  zoom: 0.85;
+}
+
+@media print {
+  .resume-zoom {
+    zoom: 0.73;
+  }
+}

@@ -3,11 +3,11 @@ import { type GameData } from './utils'
 export const gamesData: GameData[] = [
   {
     // Balatro
-    rating: 8, periods: ['adult'], slug: 'balatro', title: 'Balatro',
+    rating: 9, periods: ['adult'], slug: 'balatro', title: 'Balatro',
     series: [{ title: 'Balatro', platform: 'Mobile' }],
     images: ['/images-games/balatro.avif'],
     blogPosts: [{ title: 'The Completionist', slug: 'completionist' }], portfolioProjects: [{ title: 'Balatro Sticker Tracker', slug: 'balatro-sticker-tracker' }],
-    achievements: [{ title: '30/31 Achievements', description: 'Currently ~80% through Completionist++' }]
+    achievements: [{ title: '31/31 Achievements', description: 'All 31 Vanilla Achievements'}, { title: 'Unseeded Naneinfs', description: '2 successful unseeded naneinfs (no mods, no legendaries)' }]
   },
   {
     // Outer Wilds
