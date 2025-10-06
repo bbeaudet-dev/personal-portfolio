@@ -15,27 +15,30 @@ const badgeVariants = cva(
           "bg-destructive text-destructive-foreground hover:bg-destructive/80",
         outline:
           "text-foreground",
+        // Neutral badge for skills/tech lists
+        skill:
+          "bg-neutral-100 text-neutral-700 border border-neutral-200 dark:bg-neutral-900 dark:text-neutral-200 dark:border-neutral-700",
         // Collection-specific variants
-              fractal: "bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-300",
+        fractal: "bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-300",
               "beginner-programmer": "bg-teal-100 text-teal-800 dark:bg-teal-900 dark:text-teal-300",
-              theatre: "bg-pink-100 text-pink-800 dark:bg-pink-900 dark:text-pink-300",
-              gaming: "bg-orange-100 text-orange-800 dark:bg-orange-900 dark:text-orange-300",
-              // Project status variants
-              "published": "bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-300",
-              "deployed": "bg-emerald-100 text-emerald-800 dark:bg-emerald-900 dark:text-emerald-300",
-              "finished": "bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-300",
-              "in-progress": "bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-300",
-              "experiment": "bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-300",
-              // Theatre district variants
-              "broadway": "bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-300",
-              "playhouse-square": "bg-orange-100 text-orange-800 dark:bg-orange-900 dark:text-orange-300",
-              "broadway-touring": "bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-300",
-              // Project type variants
-              "software": "bg-gray-100 text-gray-800 dark:bg-gray-800 dark:text-gray-300",
-              "firmware": "bg-gray-100 text-gray-800 dark:bg-gray-800 dark:text-gray-300",
-              "mechanical": "bg-gray-100 text-gray-800 dark:bg-gray-800 dark:text-gray-300",
-              "game-dev": "bg-gray-100 text-gray-800 dark:bg-gray-800 dark:text-gray-300",
-              "ai": "bg-gray-100 text-gray-800 dark:bg-gray-800 dark:text-gray-300",
+        theatre: "bg-pink-100 text-pink-800 dark:bg-pink-900 dark:text-pink-300",
+        gaming: "bg-orange-100 text-orange-800 dark:bg-orange-900 dark:text-orange-300",
+        // Project status variants
+        "published": "bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-300",
+        "deployed": "bg-emerald-100 text-emerald-800 dark:bg-emerald-900 dark:text-emerald-300",
+        "finished": "bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-300",
+        "in-progress": "bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-300",
+        "experiment": "bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-300",
+        // Theatre district variants
+        "broadway": "bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-300",
+        "playhouse-square": "bg-orange-100 text-orange-800 dark:bg-orange-900 dark:text-orange-300",
+        "broadway-touring": "bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-300",
+        // Project type variants
+        "software": "bg-gray-100 text-gray-800 dark:bg-gray-800 dark:text-gray-300",
+        "firmware": "bg-gray-100 text-gray-800 dark:bg-gray-800 dark:text-gray-300",
+        "mechanical": "bg-gray-100 text-gray-800 dark:bg-gray-800 dark:text-gray-300",
+        "game-dev": "bg-gray-100 text-gray-800 dark:bg-gray-800 dark:text-gray-300",
+        "ai": "bg-gray-100 text-gray-800 dark:bg-gray-800 dark:text-gray-300",
       },
     },
     defaultVariants: {

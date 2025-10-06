@@ -1,4 +1,4 @@
-import { Mail, Phone, Github, Linkedin, MapPin } from "lucide-react"
+import { Mail, Phone, Github, Linkedin, MapPin, Globe } from "lucide-react"
 import { Badge } from "../../components/ui/badge"
 import { Card, CardContent } from "../../components/ui/card"
 import { Separator } from "../../components/ui/separator"
@@ -7,23 +7,25 @@ import { PrintButton } from "../../components/PrintButton"
 export default function Resume() {
   return (
     <div className="min-h-screen print:bg-white print:py-0">
-      <div className="max-w-4xl mx-auto">
+      <div className="max-w-4xl mx-auto print:max-w-none print:w-[8.5in] resume-zoom">
         {/* Print Button */}
-        <div className="flex justify-end mb-4 px-8">
+        <div className="flex justify-end mb-4 px-8 print:hidden">
           <PrintButton />
         </div>
         
-        <Card className="shadow-lg print:shadow-none">
+        <Card className="shadow-lg print:shadow-none print:rounded-none print:border-0">
         <CardContent className="p-8 print:p-4">
 
           {/* Header Section */}
-          <div className="mb-2">
-            <h1 className="text-3xl font-bold">Benjamin Beaudet</h1>
-            <h2 className="text-xl text-muted-foreground">Software & Mechanical Engineer</h2>
+          <div className="mb-2 no-break avoid-break-after">
+            <div className="flex justify-between items-center">
+              <h1 className="text-2xl font-bold">Benjamin Michael Beaudet</h1>
+              <h2 className="text-lg text-muted-foreground">Software & Mechanical Engineer</h2>
+            </div>
           </div>
 
           {/* Contact Information */}
-          <div className="flex flex-wrap gap-x-4 gap-y-2 mb-4 text-sm">
+          <div className="flex flex-wrap gap-x-4 gap-y-1 mb-4 text-sm no-break avoid-break-after">
             <div className="flex items-center gap-1">
               <Mail className="h-4 w-4" />
               <a href="mailto:bbeaudet0@gmail.com" className="hover:underline">
@@ -34,6 +36,12 @@ export default function Resume() {
               <Phone className="h-4 w-4" />
               <a href="tel:+12489776340" className="hover:underline">
                 (248) 977-6340
+              </a>
+            </div>
+            <div className="flex items-center gap-1">
+              <Globe className="h-4 w-4" />
+              <a href="https://benbeaudet.com" target="_blank" rel="noopener noreferrer" className="hover:underline">
+                Website & Portfolio (benbeaudet.com)
               </a>
             </div>
             <div className="flex items-center gap-1">
@@ -60,273 +68,179 @@ export default function Resume() {
             </div>
             <div className="flex items-center gap-1">
               <MapPin className="h-4 w-4" />
-              <span>Columbus, OH  /  Brooklyn, NY</span>
+              <span>Columbus OH  /  Brooklyn NY</span>
             </div>
           </div>
 
           {/* Experience */}
-          <section className="mb-6">
-            <h3 className="text-lg font-semibold mb-2">Professional Experience</h3>
+          <section className="mb-2 print:break-inside-avoid avoid-break-before">
+            <h3 className="text-lg font-semibold mb-1">Professional Experience</h3>
 
-            {/* AI Accelerator Program */}
-            <div className="mb-5">
-              <div className="flex flex-col md:flex-row justify-between mb-1">
-                <h4 className="font-medium">Software Engineer</h4>
-                <span className="text-muted-foreground text-sm">Jun - Aug 2025</span>
-              </div>
-              <div className="flex flex-col md:flex-row justify-between mb-2">
-                <div className="flex items-center gap-2">
+            {/* Fractal Tech */}
+            <div className="mb-3">
+              <div className="flex flex-wrap items-baseline justify-between gap-2 mb-0">
+                <div className="flex flex-wrap items-baseline gap-2">
+                  <h4 className="font-medium">Software Engineer</h4>
+                  <span className="text-muted-foreground">@</span>
                   <h5 className="text-muted-foreground">Fractal Tech</h5>
-                  <Badge variant="published">Full-Time</Badge>
                 </div>
-                <span className="text-muted-foreground text-sm">Brooklyn, NY</span>
+                <div className="whitespace-nowrap"><span className="text-muted-foreground text-xs opacity-80">Brooklyn, NY</span> <span className="text-muted-foreground text-sm">· Jun - Aug 2025</span></div>
               </div>
-              <ul className="list-disc list-outside ml-5 space-y-1 text-sm">
-                <li>Built and deployed 20 full-stack apps including an AI-powered smart mirror, React Native mobile puzzle game, image analysis and algorithm visualization tool, and an AI riddle chatbot</li>
-                <li>Ripped 933 GitHub commits and 239 PRs with 800+ hours of hands-on-keys</li>
+              <ul className="list-disc list-outside ml-5 space-y-1 text-sm resume-bullets">
+                <li>Built and deployed 20 full-stack apps, including an AI-powered smart mirror, interactive mobile puzzle game, image analysis and algorithm visualization tool, and AI riddle chatbot</li>
+                <li>Ripped 933 GitHub commits and 239 PRs with 800+ hours of hands-on-keys over 12 weeks</li>
               </ul>
             </div>
 
-            {/* Embedded Firmware Engineer */}
-            <div className="mb-5">
-              <div className="flex flex-col md:flex-row justify-between mb-1">
-                <h4 className="font-medium">Embedded Firmware Engineer</h4>
-                <span className="text-muted-foreground text-sm">Jun - Jul 2025</span>
-              </div>
-              <div className="flex flex-col md:flex-row justify-between mb-2">
-                <div className="flex items-center gap-2">
+            {/* Cerelog */}
+            <div className="mb-3">
+              <div className="flex flex-wrap items-baseline justify-between gap-2 mb-0">
+                <div className="flex flex-wrap items-baseline gap-2">
+                  <h4 className="font-medium">Firmware Engineer</h4>
+                  <span className="text-muted-foreground">@</span>
                   <h5 className="text-muted-foreground">Cerelog</h5>
-                  <Badge variant="finished">Contract</Badge>
                 </div>
-                <span className="text-muted-foreground text-sm">Brooklyn, NY</span>
+                <div className="whitespace-nowrap"><span className="text-muted-foreground text-xs opacity-80">Brooklyn, NY</span> <span className="text-muted-foreground text-sm">· Jun - Jul 2025</span></div>
               </div>
-              <ul className="list-disc list-outside ml-5 space-y-1 text-sm">
-                <li>Integrated Brainflow library with ESP32 microcontroller and ADS1289 EEG chip for real-time brain wave data processing</li>
-                <li>Implemented serial communication protocols with custom message packaging, error handling, and O(n) ring buffer algorithm for reliable data transmission</li>
-                <li>Developed parametric configuration system allowing dynamic adjustment of sampling rates, channel activation, and voltage gain settings through serial handshake protocols</li>
+              <ul className="list-disc list-outside ml-5 space-y-1 text-sm resume-bullets">
+                <li>Implemented serial handshake protocol, Brainflow SDK integration, runtime-configurable board parameters, and O(n) ring buffer algorithm for robust and reliable EEG data transmission using an ESP32 microcontroller and ADS1299 ADC</li>                
               </ul>
             </div>
 
-            {/* Product Engineer */}
-            <div className="mb-5">
-              <div className="flex flex-col md:flex-row justify-between mb-1">
-                <h4 className="font-medium">Product Engineer</h4>
-                <span className="text-muted-foreground text-sm">Apr 2022 - Jun 2023</span>
+            {/* Progress Rail */}
+            <div className="mb-3">
+              <div className="flex flex-wrap items-baseline justify-between gap-2 mb-0">
+                <div className="flex flex-wrap items-baseline gap-2">
+                  <h4 className="font-medium">Design Engineer</h4>
+                  <span className="text-muted-foreground">@</span>
+                  <h5 className="text-muted-foreground">Progress Rail (Caterpillar)</h5>
+                </div>
+                <div className="whitespace-nowrap"><span className="text-muted-foreground text-xs opacity-80">Cleveland, OH</span> <span className="text-muted-foreground text-sm">· Sep 2023 - Mar 2025</span></div>
               </div>
-              <div className="flex flex-col md:flex-row justify-between mb-2">
-                <div className="flex items-center gap-2">
+              <ul className="list-disc list-outside ml-5 space-y-1 text-sm resume-bullets">
+                  <li>Created 400+ special trackwork drawings and BOMs to fulfill 300+ sales orders for 75 global agencies, resulting in $3.5M in revenue</li>
+                  <li>Developed CAD programs with 7,500+ lines of VBA code to automate switch point and joint bar design, savings 3,000+ engineering hours annually</li>
+              </ul>
+            </div>
+
+            {/* Lazurite */}
+            <div className="mb-3">
+              <div className="flex flex-wrap items-baseline justify-between gap-2 mb-0">
+                <div className="flex flex-wrap items-baseline gap-2">
+                  <h4 className="font-medium">Product Engineer</h4>
+                  <span className="text-muted-foreground">@</span>
                   <h5 className="text-muted-foreground">Lazurite</h5>
-                  <Badge variant="published">Full-Time</Badge>
                 </div>
-                <span className="text-muted-foreground text-sm">Cleveland, OH</span>
+                <div className="whitespace-nowrap"><span className="text-muted-foreground text-xs opacity-80">Cleveland, OH</span> <span className="text-muted-foreground text-sm">· Apr 2022 - Jun 2023</span></div>
               </div>
-              <ul className="list-disc list-outside ml-5 space-y-1 text-sm">
-                <li>Designed and manufactured 15 portable demo devices with integrated electronics and software systems</li>
-                <li>Implemented PLM software to manage inventory of 75+ electronic components and optimize supply chain</li>
-                <li>Conducted 6 product validation tests and optimized manufacturing processes for first 10 production units</li>
-                <li>Developed cost analysis systems demonstrating 25% savings through data-driven optimization</li>
+              <ul className="list-disc list-outside ml-5 space-y-1 text-sm resume-bullets">
+                <li>Designed and manufactured 10 portable kits for surgical device demonstration and established an inventory system tracking 150+ electronic and mechanical components</li>
+                <li>Created a cost-per-case analysis demonstrating cost-savings over alternatives and oversaw manufacturing of first 10 production units</li>
               </ul>
             </div>
-
-            {/* Design Engineer / Project Manager */}
-            <div className="mb-5">
-              <div className="flex flex-col md:flex-row justify-between mb-1">
-                <h4 className="font-medium">Design Engineer / Project Manager</h4>
-                <span className="text-muted-foreground text-sm">Summer 2019</span>
-              </div>
-              <div className="flex flex-col md:flex-row justify-between mb-2">
-                <div className="flex items-center gap-2">
+            
+            {/* Birkdale */}
+            <div className="mb-3">
+              <div className="flex flex-wrap items-baseline justify-between gap-2 mb-0">
+                <div className="flex flex-wrap items-baseline gap-2">
+                  <h4 className="font-medium">Design Engineer</h4>
+                  <span className="text-muted-foreground">@</span>
                   <h5 className="text-muted-foreground">Birkdale Neuro Rehab Centre</h5>
-                  <Badge variant="finished">Contract</Badge>
                 </div>
-                <span className="text-muted-foreground text-sm">London, UK</span>
+                <div className="whitespace-nowrap"><span className="text-muted-foreground text-xs opacity-80">London, UK</span> <span className="text-muted-foreground text-sm">· Summer 2019</span></div>
               </div>
-              <ul className="list-disc list-outside ml-5 space-y-1 text-sm">
-                <li>Designed and prototyped innovative medical therapy device with 50% cost savings over alternatives</li>
-                <li>Integrated Arduino PLCs with Bluetooth connectivity, pressure sensors, and haptic feedback systems</li>
-                <li>Programmed 10 unique device outputs enabling patients to complete therapy through interactive games</li>
+              <ul className="list-disc list-outside ml-5 space-y-1 text-sm resume-bullets">
+                  <li>Designed an innovative medical therapy device with Bluetooth, pressure sensors, haptic feedback, and 3D-printed handgrips, utilizing programmable device ouputs and mirror therapy to improve patient recovery and engagement</li>
               </ul>
             </div>
           </section>
-
-          <Separator className="my-6" />
 
           {/* Technical Skills */}
-          <section className="mb-6">
-            <h3 className="text-lg font-semibold mb-3">Technical Skills</h3>
-            <div className="grid grid-cols-2 gap-4">
-              <div>
-                <h4 className="font-medium mb-2">Frontend Development</h4>
-                <div className="flex flex-wrap gap-2">
-                  <Badge variant="finished">TypeScript</Badge>
-                  <Badge variant="finished">Next.js</Badge>
-                  <Badge variant="finished">React</Badge>
-                  <Badge variant="finished">React Native</Badge>
-                </div>
+          <section className="mb-4 print:break-inside-avoid avoid-break-before">
+            <h3 className="text-lg font-semibold mb-1">Technical Skills</h3>
+            <div className="space-y-1">
+              <div className="flex flex-wrap items-center gap-1.5">
+                <h5 className="mr-2">Languages:</h5>
+                <Badge variant="skill">JavaScript/Typescript</Badge>
+                <Badge variant="skill">Python</Badge>
+                <Badge variant="skill">C/C++</Badge>
+                <Badge variant="skill">VBA</Badge>
+                <Badge variant="skill">MATLAB</Badge>
               </div>
-              <div>
-                <h4 className="font-medium mb-2">Backend & Database</h4>
-                <div className="flex flex-wrap gap-2">
-                  <Badge variant="deployed">Node.js</Badge>
-                  <Badge variant="deployed">Express</Badge>
-                  <Badge variant="deployed">PostgreSQL</Badge>
-                  <Badge variant="deployed">Supabase</Badge>
-                  <Badge variant="deployed">Neon</Badge>
-                </div>
+              <div className="flex flex-wrap items-center gap-1.5">
+                <h5 className="mr-2">Fullstack:</h5>
+                <Badge variant="skill">React</Badge>
+                <Badge variant="skill">Next.js</Badge>
+                <Badge variant="skill">Node.js</Badge>
+                <Badge variant="skill">Express</Badge>
+                <Badge variant="skill">PostgreSQL</Badge>
+                <Badge variant="skill">Supabase</Badge>
+                <Badge variant="skill">OpenAI API</Badge>
               </div>
-              <div>
-                <h4 className="font-medium mb-2">Programming Languages</h4>
-                <div className="flex flex-wrap gap-2">
-                  <Badge variant="published">JavaScript</Badge>
-                  <Badge variant="published">Python</Badge>
-                  <Badge variant="published">C/C++</Badge>
-                  <Badge variant="published">Arduino</Badge>
-                  <Badge variant="published">VBA</Badge>
-                  <Badge variant="published">MATLAB</Badge>
-                </div>
+              <div className="flex flex-wrap items-center gap-1.5">
+                <h5 className="mr-2">Hardware:</h5>
+                <Badge variant="skill">Arduino</Badge>
+                <Badge variant="skill">Raspberry Pi</Badge>
+                <Badge variant="skill">Linux</Badge>
+                <Badge variant="skill">Serial Protocols (SPI, I2C)</Badge>
               </div>
-              <div>
-                <h4 className="font-medium mb-2">Deployment</h4>
-                <div className="flex flex-wrap gap-2">
-                  <Badge variant="experiment">GitTown</Badge>
-                  <Badge variant="experiment">Docker</Badge>
-                  <Badge variant="experiment">Vercel</Badge>
-                  <Badge variant="experiment">Netlify</Badge>
-                  <Badge variant="experiment">Render</Badge>
-                </div>
+              <div className="flex flex-wrap items-center gap-1.5">
+                <h5 className="mr-2">Tools & Infra:</h5>
+                <Badge variant="skill">Git</Badge>
+                <Badge variant="skill">Docker</Badge>
+                <Badge variant="skill">Cursor</Badge>
+                <Badge variant="skill">Claude Code</Badge>
+                  <Badge variant="skill">Vercel (AI SDK)</Badge>
               </div>
-              <div>
-                <h4 className="font-medium mb-2">AI & Development Tools</h4>
-                <div className="flex flex-wrap gap-2">
-                  <Badge variant="in-progress">Claude Code</Badge>
-                  <Badge variant="in-progress">OpenAI Vision API</Badge>
-                  <Badge variant="in-progress">OpenAI TTS</Badge>
-                  <Badge variant="in-progress">ElevenLabs TTS</Badge>
-                  <Badge variant="in-progress">Replit</Badge>
-                  <Badge variant="in-progress">v0</Badge>
-                </div>
-              </div>
-              <div>
-                <h4 className="font-medium mb-2">Media Production & Graphic Design</h4>
-                <div className="flex flex-wrap gap-2">
-                  <Badge variant="broadway">Final Cut Pro</Badge>
-                  <Badge variant="broadway">iMovie</Badge>
-                  <Badge variant="broadway">Logo Design</Badge>
-                </div>
-              </div>
-              <div>
-                <h4 className="font-medium mb-2">CAD & Automation</h4>
-                <div className="flex flex-wrap gap-2">
-                  <Badge variant="playhouse-square">Inventor</Badge>
-                  <Badge variant="playhouse-square">iLogic</Badge>
-                  <Badge variant="playhouse-square">SolidWorks</Badge>
-                  <Badge variant="playhouse-square">AutoCAD</Badge>
-                </div>
+              <div className="flex flex-wrap items-center gap-1.5 ">
+                <h5 className="mr-2">CAD:</h5>
+                <Badge variant="skill">Autodesk Inventor</Badge>
+                <Badge variant="skill">Fusion</Badge>
+                <Badge variant="skill">SolidWorks</Badge>
+                <Badge variant="skill">AutoCAD 2D</Badge>
               </div>
             </div>
           </section>
 
-          <Separator className="my-6" />
 
-          {/* Projects */}
-          <section className="mb-6">
-            <h3 className="text-lg font-semibold mb-4">Technical Projects</h3>
-
-            <div className="mb-4">
-              <div className="flex flex-col md:flex-row justify-between mb-1">
-                <h4 className="font-medium">AI Smart Mirror</h4>
-                <div className="flex gap-2">
-                  <Badge variant="finished">React</Badge>
-                  <Badge variant="finished">OpenAI Vision API</Badge>
-                  <Badge variant="finished">OpenAI TTS</Badge>
-                  <Badge variant="finished">Raspberry Pi</Badge>
+          {/* Education + Ask me about (2 columns) */}
+          <section className="mb-4 print:break-inside-avoid avoid-break-before grid grid-cols-1 md:grid-cols-7 print:grid-cols-7 gap-2">
+            <div className="md:col-span-4 print:col-span-4">
+              <h3 className="text-lg font-semibold mb-1">Education</h3>
+              <div className="space-y-2">
+                <div>
+                  <div className="flex flex-wrap items-baseline justify-between gap-x-2 gap-y-0mb-0">
+                    <div className="flex flex-wrap items-baseline gap-2">
+                      <h4 className="font-medium">Master of Science</h4>
+                      <span className="text-muted-foreground text-sm">· Innovation & Entrepreneurship</span>
+                    </div>
+                    <div className="text-muted-foreground text-sm whitespace-nowrap">John Carroll University · 2020-2021 · GPA: 3.52</div>
+                  </div>
+                </div>
+                <div>
+                  <div className="flex flex-wrap items-baseline justify-between gap-x-2 gap-y-0 mb-0">
+                    <div className="flex flex-wrap items-baseline gap-2">
+                      <h4 className="font-medium">Bachelor of Science</h4>
+                      <span className="text-muted-foreground text-sm">· Mechanical Engineering</span>
+                    </div>
+                    <div className="text-muted-foreground text-sm whitespace-nowrap">Miami University · 2016-2020 · GPA: 3.68</div>
+                  </div>
+                  <div className="text-muted-foreground text-sm">Mathematics Minor · Cum Laude</div>
                 </div>
               </div>
-              <p className="text-sm text-muted-foreground mb-1">
-                Interactive smart mirror with AI-powered computer vision and text-to-speech.
-              </p>
-              <ul className="list-disc list-outside ml-5 space-y-1 text-sm">
-                <li>Integrated OpenAI Vision API for real-time object recognition and analysis</li>
-                <li>Implemented text-to-speech functionality using OpenAI TTS for voice interactions</li>
-                <li>Built responsive React interface for mirror display and user interactions</li>
-                <li>Deployed on Raspberry Pi with custom hardware integration for mirror display</li>
-              </ul>
             </div>
-
-            <div className="mb-4">
-              <div className="flex flex-col md:flex-row justify-between mb-1">
-                <h4 className="font-medium">Design Automation System</h4>
-                <div className="flex gap-2">
-                  <Badge variant="deployed">VBA</Badge>
-                  <Badge variant="deployed">iLogic</Badge>
-                  <Badge variant="deployed">CAD APIs</Badge>
-                </div>
-              </div>
-              <p className="text-sm text-muted-foreground mb-1">
-                Comprehensive automation system for mechanical design workflows with modern development practices.
-              </p>
+            <div className="md:col-span-3 print:col-span-3 pl-4">
+              <h3 className="text-lg font-semibold mb-1">Ask me about…</h3>
               <ul className="list-disc list-outside ml-5 space-y-1 text-sm">
-                <li>Built 5,000+ lines of VBA and iLogic code to automate 80% of design processes</li>
-                <li>Integrated with CAD APIs and database systems using modern development practices</li>
-                <li>Implemented version control with Git and collaborative development workflows</li>
-                <li>Used AI tools for code optimization and debugging</li>
+                <li>building a smart mirror in 10 days</li>
+                <li>modeling aircraft wing instability</li>
+                <li>my Venture For America Fellowship</li>
+                <li>solving diabolical Sudoku puzzles</li>
+                <li>Broadway shows</li>
               </ul>
             </div>
           </section>
-
-          <Separator className="my-6" />
-
-          {/* Education */}
-          <section className="mb-6">
-            <h3 className="text-lg font-semibold mb-4">Education</h3>
-
-            <div className="mb-2">
-              <div className="flex flex-col md:flex-row justify-between">
-                <h4 className="font-medium">AI Accelerator & Software Engineering Bootcamp</h4>
-                <span className="text-muted-foreground text-sm">Summer 2025 Cohort</span>
-              </div>
-              <div className="flex flex-col md:flex-row justify-between">
-                <p className="text-muted-foreground">Fractal Tech</p>
-                <span className="text-muted-foreground text-sm">Brooklyn, NY</span>
-              </div>
-            </div>
-
-            <div className="mb-2">
-              <div className="flex flex-col md:flex-row justify-between">
-                <h4 className="font-medium">Venture For America Fellowship</h4>
-                <span className="text-muted-foreground text-sm">2021 - 2023</span>
-              </div>
-              <div className="flex flex-col md:flex-row justify-between">
-                <p className="text-muted-foreground">Entrepreneurship fellowship program</p>
-                <span className="text-muted-foreground text-sm">Training Bootcamp: July 2021</span>
-              </div>
-            </div>
-
-            <div className="mb-2">
-              <div className="flex flex-col md:flex-row justify-between">
-                <h4 className="font-medium">Master of Science in Innovation & Entrepreneurship</h4>
-                <span className="text-muted-foreground text-sm">2020 - 2021</span>
-              </div>
-              <div className="flex flex-col md:flex-row justify-between">
-                <p className="text-muted-foreground">John Carroll University</p>
-                <span className="text-muted-foreground text-sm">GPA: 3.52</span>
-              </div>
-            </div>
-
-            <div>
-              <div className="flex flex-col md:flex-row justify-between">
-                <h4 className="font-medium">Bachelor of Science in Mechanical Engineering</h4>
-                <span className="text-muted-foreground text-sm">2016 - 2020</span>
-              </div>
-              <div className="flex flex-col md:flex-row justify-between">
-                <p className="text-muted-foreground">Miami University • Mathematics Minor • Cum Laude</p>
-                <span className="text-muted-foreground text-sm">GPA: 3.68</span>
-              </div>
-            </div>
-          </section>
-
-          <Separator className="my-6" />
-          
+            
         </CardContent>
       </Card>
       </div>
