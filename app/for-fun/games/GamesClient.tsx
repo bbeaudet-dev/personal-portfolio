@@ -14,8 +14,9 @@ export default function GamesClient({ games }: GamesClientProps) {
   return (
     <section>
       <div className="mb-6">
-        <h1 className="text-2xl font-bold">Press Start</h1>
+        <h1 className="text-2xl font-bold">Playing games as intended, probably.</h1>
       </div>
+      
       <p className="text-sm text-neutral-600 dark:text-neutral-400 mb-6">
         My favorite games, from childhood classics to transformative experiences that shaped who I am
       </p>

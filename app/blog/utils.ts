@@ -9,7 +9,6 @@ type Metadata = {
   image?: string
   tags?: string[]
   collection?: string
-  prominence?: string | number
   [key: string]: any
 }
 
@@ -85,8 +84,7 @@ export function getBlogPosts() {
     ...post,
     metadata: {
       ...post.metadata,
-      publishedAt: post.metadata.publishedAt || post.metadata.date || new Date().toISOString(),
-      prominence: post.metadata.prominence ? parseInt(post.metadata.prominence as string) : undefined
+      publishedAt: post.metadata.publishedAt || post.metadata.date || new Date().toISOString()
     }
   }))
   

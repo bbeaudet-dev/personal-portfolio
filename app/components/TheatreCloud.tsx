@@ -16,7 +16,7 @@ interface TheatreCloudProps {
 export default function TheatreCloud({ shows }: TheatreCloudProps) {
   const [selectedShow, setSelectedShow] = useState<TheatreShow | null>(null)
   const [positionedShows, setPositionedShows] = useState<PositionedShow[]>([])
-  const [filter, setFilter] = useState<'all' | 'Broadway' | 'Playhouse Square' | 'Other'>('all')
+  const [filter, setFilter] = useState<'all' | 'Broadway' | 'Playhouse Square' | 'West End' | 'Off-Broadway' | 'Local' | 'Touring' | 'Other'>('all')
   const [imageIndexes, setImageIndexes] = useState<Record<string, number>>({})
   const [imageOpacity, setImageOpacity] = useState<Record<string, number>>({})
   const [showScale, setShowScale] = useState<Record<string, number>>({})
@@ -29,12 +29,21 @@ export default function TheatreCloud({ shows }: TheatreCloudProps) {
       if (filter === 'Other') {
         return show.visits.some(visit => 
           visit.district !== 'Broadway' && 
-          visit.district !== 'Playhouse Square'
+          visit.district !== 'Playhouse Square' &&
+          visit.district !== 'West End' &&
+          visit.district !== 'Off-Broadway' &&
+          visit.district !== 'Local' &&
+          visit.district !== 'Touring'
         )
       }
       if (filter === 'Broadway') {
         return show.visits.some(visit => 
-          visit.district === 'Broadway' || visit.district === 'Broadway (Touring)'
+          visit.district === 'Broadway'
+        )
+      }
+      if (filter === 'Touring') {
+        return show.visits.some(visit => 
+          visit.district === 'Touring'
         )
       }
       return show.visits.some(visit => visit.district === filter)
@@ -47,14 +56,25 @@ export default function TheatreCloud({ shows }: TheatreCloudProps) {
       return shows.filter(show => 
         show.visits.some(visit => 
           visit.district !== 'Broadway' && 
-          visit.district !== 'Playhouse Square'
+          visit.district !== 'Playhouse Square' &&
+          visit.district !== 'West End' &&
+          visit.district !== 'Off-Broadway' &&
+          visit.district !== 'Local' &&
+          visit.district !== 'Touring'
         )
       ).length
     }
     if (district === 'Broadway') {
       return shows.filter(show => 
         show.visits.some(visit => 
-          visit.district === 'Broadway' || visit.district === 'Broadway (Touring)'
+          visit.district === 'Broadway'
+        )
+      ).length
+    }
+    if (district === 'Touring') {
+      return shows.filter(show => 
+        show.visits.some(visit => 
+          visit.district === 'Touring'
         )
       ).length
     }
@@ -377,6 +397,16 @@ export default function TheatreCloud({ shows }: TheatreCloudProps) {
           Broadway ({getShowCountByDistrict('Broadway')})
         </button>
         <button
+          onClick={() => setFilter('Off-Broadway')}
+          className={`px-2 py-1 rounded text-xs font-medium transition-colors ${
+            filter === 'Off-Broadway'
+              ? 'bg-blue-600 text-white'
+              : 'bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-300 dark:hover:bg-gray-600'
+          }`}
+        >
+          Off-Broadway ({getShowCountByDistrict('Off-Broadway')})
+        </button>
+        <button
           onClick={() => setFilter('Playhouse Square')}
           className={`px-2 py-1 rounded text-xs font-medium transition-colors ${
             filter === 'Playhouse Square'
@@ -385,6 +415,36 @@ export default function TheatreCloud({ shows }: TheatreCloudProps) {
           }`}
         >
           Playhouse Square ({getShowCountByDistrict('Playhouse Square')})
+        </button>
+        <button
+          onClick={() => setFilter('West End')}
+          className={`px-2 py-1 rounded text-xs font-medium transition-colors ${
+            filter === 'West End'
+              ? 'bg-blue-600 text-white'
+              : 'bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-300 dark:hover:bg-gray-600'
+          }`}
+        >
+          West End ({getShowCountByDistrict('West End')})
+        </button>
+        <button
+          onClick={() => setFilter('Touring')}
+          className={`px-2 py-1 rounded text-xs font-medium transition-colors ${
+            filter === 'Touring'
+              ? 'bg-blue-600 text-white'
+              : 'bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-300 dark:hover:bg-gray-600'
+          }`}
+        >
+          Touring ({getShowCountByDistrict('Touring')})
+        </button>
+        <button
+          onClick={() => setFilter('Local')}
+          className={`px-2 py-1 rounded text-xs font-medium transition-colors ${
+            filter === 'Local'
+              ? 'bg-blue-600 text-white'
+              : 'bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-300 dark:hover:bg-gray-600'
+          }`}
+        >
+          Local ({getShowCountByDistrict('Local')})
         </button>
         <button
           onClick={() => setFilter('Other')}

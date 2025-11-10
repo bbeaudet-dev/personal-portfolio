@@ -147,7 +147,7 @@ html {
 }
 
 .prose h2 {
-  @apply text-xl font-medium tracking-tight mt-6 mb-2;
+  @apply text-2xl font-medium tracking-tight mt-6 mb-2;
 }
 
 .prose h3 {
@@ -228,6 +228,50 @@ table {
 }
 
 /* Resume bullets: add a little spacing around the disc for readability */
+
+/* Image wrapping styles for blog posts */
+.prose .image-wrap-left {
+  @apply float-left mr-4 mb-2 mt-1;
+  max-width: 300px;
+}
+
+.prose .image-wrap-right {
+  @apply float-right ml-4 mb-2 mt-1;
+  max-width: 300px;
+}
+
+.prose .image-wrap-center {
+  @apply block mx-auto my-6;
+  max-width: 500px;
+}
+
+.prose .image-wrap-small {
+  max-width: 200px;
+}
+
+.prose .image-wrap-medium {
+  max-width: 300px;
+}
+
+.prose .image-wrap-large {
+  max-width: 400px;
+}
+
+/* Clear floats after wrapped content */
+.prose .clear-float::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Figure/caption styling for images in posts */
+.prose figure {
+  @apply my-4;
+}
+
+.prose figcaption {
+  @apply text-xs text-neutral-500 dark:text-neutral-400 mt-2 text-center;
+}
 .resume-bullets li::marker {
   font-size: 0.9em;
 }
