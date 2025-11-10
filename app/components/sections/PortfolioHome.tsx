@@ -11,11 +11,11 @@ export interface PortfolioItem {
 export function PortfolioHome() {
   const allProjects = getPortfolioProjects()
   
-  // Sort projects by prominence
+  // Sort projects by date (newest first)
   const sortedProjects = allProjects.sort((a, b) => {
-    const aProminence = a.metadata.prominence || 999
-    const bProminence = b.metadata.prominence || 999
-    return (aProminence as number) - (bProminence as number)
+    const aDate = new Date(a.metadata.completedAt || '1900-01-01')
+    const bDate = new Date(b.metadata.completedAt || '1900-01-01')
+    return bDate.getTime() - aDate.getTime()
   })
 
   const portfolioItems: PortfolioItem[] = sortedProjects.map(project => ({

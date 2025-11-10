@@ -10,7 +10,6 @@ type Metadata = {
   technologies?: string
   githubUrl?: string
   liveUrl?: string
-  prominence?: string | number
   tags?: string[]
   [key: string]: any
 }
