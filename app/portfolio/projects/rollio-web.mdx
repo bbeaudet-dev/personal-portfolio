@@ -11,20 +11,27 @@ image: "/images-portfolio/rollio/rollio-web-screenshot.jpg"
 
 _A web-based version of a dice-rolling roguelike inspired by Balatro and Farkle_
 
-<video
-  src="/images-portfolio/rollio/rollio-web-demo.mov"
-  controls
-  className="rounded-lg my-6 w-full max-w-2xl mx-auto"
->
-  Your browser does not support the video tag.
-</video>
+<div className="my-8 w-full max-w-4xl mx-auto">
+  <div
+    className="relative"
+    style={{ paddingBottom: "56.25%", height: 0, overflow: "hidden" }}
+  >
+    <iframe
+      className="absolute top-0 left-0 w-full h-full rounded-lg"
+      src="https://www.youtube.com/embed/IvawNeYjMFw"
+      title="Rollio Web Demo"
+      frameBorder="0"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowFullScreen
+    ></iframe>
+  </div>
+</div>
 
 After [building a CLI-only version of a dice-rolling roguelike](/portfolio/rollio), my next challenge was to create a web-based version without breaking the CLI version or rewriting core game logic.
 
 After severely over-engineering my game engine's type safety, I started this iteration by flattening my file structure, refactoring game logic, and building a working roguelike progression system.
 
-Once the core CLI game was playable, enjoyable, and even somewhat "finished", I took another swing at implementing a web version - and was shocked to see how quickly and cleanly I got it working. Better GameState management definitely helped, and I had also come a lot closer to having a game engine running exclusively on _pure functions_. 
-
+Once the core CLI game was playable, enjoyable, and even somewhat "finished", I took another swing at implementing a web version - and was shocked to see how quickly and cleanly I got it working. Better GameState management definitely helped, and I had also come a lot closer to having a game engine running exclusively on _pure functions_.
 
 ## Technologies Used
 

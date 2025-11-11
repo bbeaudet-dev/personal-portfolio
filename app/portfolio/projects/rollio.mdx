@@ -12,13 +12,21 @@ import Image from "next/image";
 
 _A roguelike dice-rolling game experienced exclusively in a Terminal window_
 
-<video
-  src="/images-portfolio/rollio/rollio-cli-demo.mov"
-  controls
-  className="rounded-lg my-6 w-full max-w-2xl mx-auto"
->
-  Your browser does not support the video tag.
-</video>
+<div className="my-8 w-full max-w-4xl mx-auto">
+  <div
+    className="relative"
+    style={{ paddingBottom: "56.25%", height: 0, overflow: "hidden" }}
+  >
+    <iframe
+      className="absolute top-0 left-0 w-full h-full rounded-lg"
+      src="https://www.youtube.com/embed/uoMLUNbIm2c"
+      title="Rollio CLI Demo"
+      frameBorder="0"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowFullScreen
+    ></iframe>
+  </div>
+</div>
 
 After several iterations of Balatro-inspired dice-rolling games all met the same fate - mixed separation of concerns and disjointed frontend/backend - I had the idea to create a CLI-only game that used extremely minimal UI - and would (hopefully) still be fun.
 
