@@ -2,12 +2,34 @@
 
 import { useState, useEffect, useMemo, useCallback } from 'react'
 import Image from 'next/image'
+import Link from 'next/link'
 import { type TheatreShow } from 'app/for-fun/theatre/data/shows'
 import { 
   type PositionedShow, 
   createTheatreCloudLayout, 
   getObjectPosition 
 } from './TheatreCloudAnimation'
+
+// Format date like "June 15th, 2024"
+function formatDateLong(dateString: string): string {
+  const date = new Date(dateString + 'T00:00:00Z')
+  const months = [
+    'January', 'February', 'March', 'April', 'May', 'June',
+    'July', 'August', 'September', 'October', 'November', 'December'
+  ]
+  const month = months[date.getUTCMonth()]
+  const day = date.getUTCDate()
+  const year = date.getUTCFullYear()
+  
+  // Add ordinal suffix (st, nd, rd, th)
+  const getOrdinal = (n: number): string => {
+    const s = ['th', 'st', 'nd', 'rd']
+    const v = n % 100
+    return n + (s[(v - 20) % 10] || s[v] || s[0])
+  }
+  
+  return `${month} ${getOrdinal(day)}, ${year}`
+}
 
 interface TheatreCloudProps {
   shows: TheatreShow[]
@@ -117,9 +139,48 @@ export default function TheatreCloud({ shows }: TheatreCloudProps) {
     setPositionedShows(layout)
   }, [filteredShows])
 
-  const handleShowClick = (show: TheatreShow) => {
+  const handleShowClick = (show: TheatreShow, e?: React.MouseEvent) => {
+    e?.stopPropagation() // Prevent event from bubbling to container
     setSelectedShow(selectedShow?.slug === show.slug ? null : show)
   }
+
+  const handleContainerClick = () => {
+    if (selectedShow) {
+      setSelectedShow(null)
+    }
+  }
+
+  // Global click handler to deselect when clicking outside the component
+  useEffect(() => {
+    if (!selectedShow) return
+
+    const handleGlobalClick = (e: MouseEvent) => {
+      // Check if the click is outside the theatre cloud container
+      const target = e.target as HTMLElement
+      const cloudContainer = target.closest('[data-theatre-cloud]')
+      if (!cloudContainer) {
+        setSelectedShow(null)
+      }
+    }
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        setSelectedShow(null)
+      }
+    }
+
+    // Add listener with a small delay to avoid immediate deselection
+    const timeoutId = setTimeout(() => {
+      document.addEventListener('click', handleGlobalClick)
+      document.addEventListener('keydown', handleKeyDown)
+    }, 100)
+
+    return () => {
+      clearTimeout(timeoutId)
+      document.removeEventListener('click', handleGlobalClick)
+      document.removeEventListener('keydown', handleKeyDown)
+    }
+  }, [selectedShow])
 
   // Wave animation for all shows (alternating patterns)
   useEffect(() => {
@@ -201,7 +262,7 @@ export default function TheatreCloud({ shows }: TheatreCloudProps) {
       
       // Stagger the wave animation
       showsInOrder.forEach((show, index) => {
-        const delay = index * 21 // 30% faster: 30ms -> 21ms delay between each show
+        const delay = index * 35 // Slightly faster: 50ms -> 35ms delay between each show
         
         setTimeout(() => {
           // Scale up (20% bigger: 1.15 -> 1.38)
@@ -210,7 +271,7 @@ export default function TheatreCloud({ shows }: TheatreCloudProps) {
             [show.slug]: 1.125
           }))
           
-          // Change image at peak size (after 150ms of growing)
+          // Change image at peak size (after 200ms of growing - faster)
           setTimeout(() => {
             if (show.images.length > 1) {
               // Start cross-fade
@@ -219,7 +280,7 @@ export default function TheatreCloud({ shows }: TheatreCloudProps) {
                 [show.slug]: 0
               }))
               
-              // After cross-fade completes, update image index
+              // After cross-fade completes, update image index (faster: 2000ms -> 1500ms)
               setTimeout(() => {
                 setImageIndexes(prev => {
                   const currentIndex = prev[show.slug] || 0
@@ -234,51 +295,101 @@ export default function TheatreCloud({ shows }: TheatreCloudProps) {
                   ...prev,
                   [show.slug]: 1
                 }))
-              }, 1250)
+              }, 1500) // Faster cross-fade
             }
-          }, 150) // Change image at peak size
+          }, 200) // Faster: 300ms -> 200ms to reach peak size
           
-          // Scale back down after 450ms (longer duration: 210ms -> 450ms)
+          // Scale back down after 600ms (faster: 800ms -> 600ms)
           setTimeout(() => {
             setShowScale(prev => ({
               ...prev,
               [show.slug]: 1
             }))
-          }, 450)
+          }, 600) // Faster scale down
         }, delay)
       })
       
       // Move to next pattern
       setCurrentPattern((prev) => (prev + 1) % 6)
       
-    }, 2000) // Every 2 seconds
+    }, 3500) // Faster: 5 seconds -> 3.5 seconds
     
     return () => {
       clearInterval(interval)
     }
   }, [filteredShows, positionedShows, currentPattern])
 
+  // Find the positioned show for the selected show
+  const selectedPositionedShow = selectedShow 
+    ? positionedShows.find(ps => ps.show.slug === selectedShow.slug)
+    : null
+
+  // Calculate bubble position if a show is selected
+  const bubblePosition = useMemo(() => {
+    if (!selectedPositionedShow) return null
+    
+    const bubbleWidth = Math.max(300, Math.min(380, selectedPositionedShow.width * 2.5))
+    // Center the bubble horizontally relative to the show's center
+    const showCenterX = selectedPositionedShow.x + selectedPositionedShow.width / 2
+    const bubbleLeft = showCenterX - bubbleWidth / 2
+    const bubbleTop = selectedPositionedShow.y + selectedPositionedShow.height + 10
+    
+    // Adjust position if bubble would overflow container
+    let adjustedLeft = bubbleLeft
+    let adjustedTop = bubbleTop
+    
+    // Check right edge overflow
+    if (bubbleLeft + bubbleWidth > 800) {
+      adjustedLeft = 800 - bubbleWidth - 10
+    }
+    
+    // Check left edge overflow
+    if (adjustedLeft < 10) {
+      adjustedLeft = 10
+    }
+    
+    // Check bottom edge overflow - if it would overflow, position above instead
+    const estimatedBubbleHeight = 200 // Rough estimate
+    if (bubbleTop + estimatedBubbleHeight > 800) {
+      adjustedTop = selectedPositionedShow.y - estimatedBubbleHeight - 10
+    }
+    
+    return {
+      left: adjustedLeft,
+      top: adjustedTop,
+      width: bubbleWidth
+    }
+  }, [selectedPositionedShow])
+
   return (
-    <div>
-      {/* Top section: Cloud and Detail Box side by side */}
-      <div className="flex flex-col lg:flex-row gap-8">
-        {/* Theatre Cloud - Left side */}
-        <div className="flex-1">
-          <div className="relative" style={{ width: '800px', height: '800px' }}>
-        {positionedShows.map((positionedShow) => (
+    <div data-theatre-cloud>
+      {/* Theatre Cloud */}
+      <div className="flex-1">
+        <div 
+          className="relative" 
+          style={{ width: '800px', height: '800px' }}
+          onClick={handleContainerClick}
+        >
+      {positionedShows.map((positionedShow) => {
+        const isSelected = selectedShow?.slug === positionedShow.show.slug
+        const baseScale = showScale[positionedShow.show.slug] ?? 1
+        const finalScale = isSelected ? baseScale * 1.15 : baseScale
+        
+        return (
           <div
             key={positionedShow.show.slug}
-            className="absolute cursor-pointer transition-all duration-200 hover:scale-105"
+            className="absolute cursor-pointer transition-all duration-500 hover:scale-105"
             style={{
               left: positionedShow.x,
               top: positionedShow.y,
               width: positionedShow.width,
               height: positionedShow.height,
-              transform: `scale(${showScale[positionedShow.show.slug] ?? 1})`,
-              transition: 'transform 0.5s ease-in-out',
-              zIndex: Math.round(positionedShow.width) // Bigger icons get higher z-index
+              transform: `scale(${finalScale})`,
+              transition: 'transform 0.5s ease-in-out, filter 0.25s ease-in-out',
+              zIndex: isSelected ? 1000 : Math.round(positionedShow.width), // Selected show gets highest z-index
+              filter: selectedShow && !isSelected ? 'blur(2px) brightness(0.7)' : 'none'
             }}
-            onClick={() => handleShowClick(positionedShow.show)}
+            onClick={(e) => handleShowClick(positionedShow.show, e)}
           >
             {positionedShow.show.images.length > 0 ? (
               <div 
@@ -286,11 +397,16 @@ export default function TheatreCloud({ shows }: TheatreCloudProps) {
                 style={{ borderRadius: `${Math.max(2, Math.min(8, positionedShow.width * 0.1))}px` }}
               >
                 <div
-                  className="relative overflow-hidden border border-gray-300 dark:border-gray-600"
+                  className={`relative overflow-hidden border transition-all duration-300 ${
+                    isSelected 
+                      ? 'border-blue-500 dark:border-blue-400 ring-2 ring-blue-500 dark:ring-blue-400 ring-opacity-50' 
+                      : 'border-gray-300 dark:border-gray-600'
+                  }`}
                   style={{
                     width: positionedShow.width,
                     height: positionedShow.height,
-                    borderRadius: `${Math.max(2, Math.min(8, positionedShow.width * 0.1))}px`
+                    borderRadius: `${Math.max(2, Math.min(8, positionedShow.width * 0.1))}px`,
+                    boxShadow: isSelected ? '0 0 0 2px rgba(59, 130, 246, 0.3)' : 'none'
                   }}
                 >
                   <div className="relative w-full h-full">
@@ -305,7 +421,7 @@ export default function TheatreCloud({ shows }: TheatreCloudProps) {
                       style={{
                         objectPosition: getObjectPosition(positionedShow.show.slug),
                         opacity: imageOpacity[positionedShow.show.slug] ?? 1,
-                        transitionDuration: '750ms'
+                        transitionDuration: '1200ms'
                       }}
                     />
                     
@@ -321,7 +437,7 @@ export default function TheatreCloud({ shows }: TheatreCloudProps) {
                         style={{
                           objectPosition: getObjectPosition(positionedShow.show.slug),
                           opacity: (imageOpacity[positionedShow.show.slug] ?? 1) === 1 ? 0 : 1,
-                          transitionDuration: '750ms'
+                          transitionDuration: '1200ms'
                         }}
                       />
                     )}
@@ -348,30 +464,76 @@ export default function TheatreCloud({ shows }: TheatreCloudProps) {
               </div>
             )}
           </div>
-        ))}
-        </div>
-      </div>
-
-      {/* Selected Show Details - Right side */}
-      {selectedShow && (
-        <div className="flex-1 lg:max-w-2xl">
-          <div className="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-lg border border-gray-200 dark:border-gray-700">
-            <h3 className="text-xl font-semibold mb-3">{selectedShow.name}</h3>
+        )
+      })}
+      
+      {/* Selected Show Details - Bubble positioned under the selected show */}
+      {selectedShow && selectedPositionedShow && bubblePosition && (
+        <div
+          className="absolute bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-lg p-2 shadow-lg border border-gray-200 dark:border-gray-700 transition-all duration-300"
+          style={{
+            left: `${bubblePosition.left}px`,
+            top: `${bubblePosition.top}px`,
+            width: `${bubblePosition.width}px`,
+            zIndex: 1001,
+            maxWidth: '380px'
+          }}
+          onClick={(e) => e.stopPropagation()}
+        >
+          <h3 className="text-base font-semibold mb-1.5 text-gray-900 dark:text-gray-100">{selectedShow.name}</h3>
+          
+          {/* Show Info */}
+          <div className="space-y-1 text-xs text-gray-600 dark:text-gray-400">
+            <p><strong>Rank:</strong> #{selectedShow.rank} of {shows.length}</p>
+            <p><strong>Total Visits:</strong> {selectedShow.visits.length}</p>
+            {selectedShow.visits.map((visit, index) => (
+              <div key={visit.chronologicalId} className="ml-1">
+                <p><strong>{index + 1}:</strong> {visit.theatre} ({visit.district}) - {formatDateLong(visit.date)}</p>
+                {visit.notes && <p className="ml-2 italic text-[11px]">Notes: {visit.notes}</p>}
+              </div>
+            ))}
             
-            {/* Show Info */}
-            <div className="space-y-2 text-sm text-gray-600 dark:text-gray-400">
-              <p><strong>Rank:</strong> #{selectedShow.rank} of {shows.length}</p>
-              <p><strong>Total Visits:</strong> {selectedShow.visits.length}</p>
-              {selectedShow.visits.map((visit, index) => (
-                <div key={visit.chronologicalId} className="ml-4">
-                  <p><strong>Visit {index + 1}:</strong> {visit.theatre} ({visit.district}) - {visit.date}</p>
-                  {visit.notes && <p className="ml-4 italic">Notes: {visit.notes}</p>}
-                </div>
-              ))}
-            </div>
+            {/* Linked Reviews */}
+            {selectedShow.reviews && selectedShow.reviews.length > 0 && (
+              <div className="mt-1.5 pt-1.5 border-t border-gray-200 dark:border-gray-700">
+                <p className="font-semibold mb-0.5 text-gray-700 dark:text-gray-300 text-xs">Reviews:</p>
+                <ul className="space-y-0">
+                  {selectedShow.reviews.map((review, index) => (
+                    <li key={index}>
+                      <Link 
+                        href={`/for-fun/theatre/${review.slug}`}
+                        className="text-blue-600 dark:text-blue-400 hover:underline text-xs"
+                      >
+                        {review.title}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+            
+            {/* Linked Blog Posts */}
+            {selectedShow.blogPosts && selectedShow.blogPosts.length > 0 && (
+              <div className="mt-1.5 pt-1.5 border-t border-gray-200 dark:border-gray-700">
+                <p className="font-semibold mb-0.5 text-gray-700 dark:text-gray-300 text-xs">Blog Posts:</p>
+                <ul className="space-y-0">
+                  {selectedShow.blogPosts.map((post, index) => (
+                    <li key={index}>
+                      <Link 
+                        href={`/blog/${post.slug}`}
+                        className="text-blue-600 dark:text-blue-400 hover:underline text-xs"
+                      >
+                        {post.title}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
           </div>
         </div>
       )}
+        </div>
       </div>
 
       {/* Filter Controls - underneath the cloud */}
