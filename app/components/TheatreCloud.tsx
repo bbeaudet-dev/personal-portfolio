@@ -38,7 +38,7 @@ interface TheatreCloudProps {
 export default function TheatreCloud({ shows }: TheatreCloudProps) {
   const [selectedShow, setSelectedShow] = useState<TheatreShow | null>(null)
   const [positionedShows, setPositionedShows] = useState<PositionedShow[]>([])
-  const [filter, setFilter] = useState<'all' | 'Broadway' | 'Playhouse Square' | 'West End' | 'Off-Broadway' | 'Local' | 'Touring' | 'Other'>('all')
+  const [filter, setFilter] = useState<'all' | 'Broadway' | 'Playhouse Square' | 'West End' | 'Off-Broadway' | 'Local' | 'Touring'>('all')
   const [imageIndexes, setImageIndexes] = useState<Record<string, number>>({})
   const [imageOpacity, setImageOpacity] = useState<Record<string, number>>({})
   const [showScale, setShowScale] = useState<Record<string, number>>({})
@@ -48,16 +48,6 @@ export default function TheatreCloud({ shows }: TheatreCloudProps) {
   const filteredShows = useMemo(() => {
     return shows.filter(show => {
       if (filter === 'all') return true
-      if (filter === 'Other') {
-        return show.visits.some(visit => 
-          visit.district !== 'Broadway' && 
-          visit.district !== 'Playhouse Square' &&
-          visit.district !== 'West End' &&
-          visit.district !== 'Off-Broadway' &&
-          visit.district !== 'Local' &&
-          visit.district !== 'Touring'
-        )
-      }
       if (filter === 'Broadway') {
         return show.visits.some(visit => 
           visit.district === 'Broadway'
@@ -488,7 +478,7 @@ export default function TheatreCloud({ shows }: TheatreCloudProps) {
             <p><strong>Total Visits:</strong> {selectedShow.visits.length}</p>
             {selectedShow.visits.map((visit, index) => (
               <div key={visit.chronologicalId} className="ml-1">
-                <p><strong>{index + 1}:</strong> {visit.theatre} ({visit.district}) - {formatDateLong(visit.date)}</p>
+                <p>{visit.theatre} ({visit.district}) - {formatDateLong(visit.date)}</p>
                 {visit.notes && <p className="ml-2 italic text-[11px]">Notes: {visit.notes}</p>}
               </div>
             ))}
@@ -607,16 +597,6 @@ export default function TheatreCloud({ shows }: TheatreCloudProps) {
           }`}
         >
           Local ({getShowCountByDistrict('Local')})
-        </button>
-        <button
-          onClick={() => setFilter('Other')}
-          className={`px-2 py-1 rounded text-xs font-medium transition-colors ${
-            filter === 'Other'
-              ? 'bg-blue-600 text-white'
-              : 'bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-300 dark:hover:bg-gray-600'
-          }`}
-        >
-          Other ({getShowCountByDistrict('Other')})
         </button>
       </div>
 

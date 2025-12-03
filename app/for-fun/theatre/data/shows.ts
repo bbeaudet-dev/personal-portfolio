@@ -40,7 +40,7 @@ export const theatreShowList: TheatreShow[] = [
     id: 0,
     slug: "hadestown",
     name: "Hadestown", 
-    rank: 4,
+    rank: 2,
     visits: [
       { chronologicalId: 23, visitId: 0, theatre: "Connor Palace", date: "2024-12-15", district: "Playhouse Square" },
       { chronologicalId: 25, visitId: 1, theatre: "Walter Kerr Theatre", date: "2025-01-20", district: "Broadway" },
@@ -104,7 +104,7 @@ export const theatreShowList: TheatreShow[] = [
     id: 6,
     slug: "death-becomes-her",
     name: "Death Becomes Her", 
-    rank: 5,
+    rank: 4,
     visits: [
       { chronologicalId: 38, visitId: 0, theatre: "Lunt-Fontanne Theatre", date: "2025-08-03", district: "Broadway", notes: "Main Viola, backup Stefan" },
       { chronologicalId: 39, visitId: 1, theatre: "Lunt-Fontanne Theatre", date: "2025-08-08", district: "Broadway", notes: "Main Stefan, backup Viola" }
@@ -125,7 +125,7 @@ export const theatreShowList: TheatreShow[] = [
     id: 8,
     slug: "the-outsiders",
     name: "The Outsiders", 
-    rank: 13,
+    rank: 14,
     visits: [
       { chronologicalId: 12, visitId: 0, theatre: "Bernard B. Jacobs Theatre", date: "2024-09-19", district: "Broadway" }
     ],
@@ -145,7 +145,7 @@ export const theatreShowList: TheatreShow[] = [
     id: 10,
     slug: "moulin-rouge",
     name: "Moulin Rouge", 
-    rank: 14,
+    rank: 15,
     visits: [
       { chronologicalId: 4, visitId: 0, theatre: "Al Hirschfeld Theatre", date: "2023-01-29", district: "Broadway" }
     ],
@@ -155,7 +155,7 @@ export const theatreShowList: TheatreShow[] = [
     id: 11,
     slug: "wicked",
     name: "Wicked", 
-    rank: 15,
+    rank: 13,
     visits: [
       { chronologicalId: 3, visitId: 0, theatre: "Gershwin Theatre", date: "2023-01-28", district: "Broadway" }
     ],
@@ -265,7 +265,7 @@ export const theatreShowList: TheatreShow[] = [
     id: 22,
     slug: "shucked",
     name: "Shucked", 
-    rank: 42,
+    rank: 44,
     visits: [
       { chronologicalId: 19, visitId: 0, theatre: "Connor Palace", date: "2024-11-15", district: "Playhouse Square" }
     ],
@@ -331,7 +331,7 @@ export const theatreShowList: TheatreShow[] = [
     id: 28,
     slug: "and-juliet",
     name: "& Juliet", 
-    rank: 43,
+    rank: 45,
     visits: [
       { chronologicalId: 27, visitId: 0, theatre: "Connor Palace", date: "2025-03-06", district: "Playhouse Square" }
     ],
@@ -344,7 +344,7 @@ export const theatreShowList: TheatreShow[] = [
     id: 29,
     slug: "harry-potter-cursed-child",
     name: "Harry Potter and the Cursed Child", 
-    rank: 41,
+    rank: 43,
     visits: [
       { chronologicalId: 15, visitId: 0, theatre: "Lyric Theatre", date: "2024-09-25", district: "Broadway" }
     ],
@@ -380,7 +380,7 @@ export const theatreShowList: TheatreShow[] = [
     id: 32,
     slug: "lord-nil-seven-deadly-sins",
     name: "Lord Nil: Seven Deadly Sins", 
-    rank: 47,
+    rank: 50,
     visits: [
       { chronologicalId: 36, visitId: 0, theatre: "Stage 42", date: "2025-08-01", district: "Off-Broadway" }
     ],
@@ -390,7 +390,7 @@ export const theatreShowList: TheatreShow[] = [
     id: 33,
     slug: "stranger-things-first-shadow",
     name: "Stranger Things: The First Shadow", 
-    rank: 48,
+    rank: 46,
     visits: [
       { chronologicalId: 35, visitId: 0, theatre: "Marquis Theatre", date: "2025-07-18", district: "Broadway" }
     ],
@@ -403,7 +403,7 @@ export const theatreShowList: TheatreShow[] = [
     id: 34,
     slug: "company",
     name: "Company", 
-    rank: 45,
+    rank: 48,
     visits: [
       { chronologicalId: 0, visitId: 0, theatre: "Bernard B. Jacobs Theatre", date: "2022-04-30", district: "Broadway" }
     ],
@@ -416,7 +416,7 @@ export const theatreShowList: TheatreShow[] = [
     id: 35,
     slug: "six",
     name: "Six", 
-    rank: 46,
+    rank: 49,
     visits: [
       { chronologicalId: 11, visitId: 0, theatre: "Connor Palace", date: "2024-09-05", district: "Playhouse Square" }
     ],
@@ -454,7 +454,10 @@ export const theatreShowList: TheatreShow[] = [
       { chronologicalId: 43, visitId: 0, theatre: "Golden Theatre", date: "2025-08-15", district: "Broadway" },
       { chronologicalId: 52, visitId: 1, theatre: "Golden Theatre", date: "2025-10-14", district: "Broadway" }
     ],
-    images: ['/images-theatre/operation-mincemeat.jpg']
+    images: ['/images-theatre/operation-mincemeat.jpg'],
+    reviews: [
+      { title: "Operation Mincemeat", slug: "operation-mincemeat" }
+    ]
   },
   { 
     id: 39,
@@ -490,7 +493,7 @@ export const theatreShowList: TheatreShow[] = [
     id: 42,
     slug: "mexodus",
     name: "Mexodus", 
-    rank: 2,
+    rank: 5,
     visits: [
       { chronologicalId: 51, visitId: 0, theatre: "Minetta Lane Theatre", date: "2025-10-13", district: "Off-Broadway" },
       { chronologicalId: 53, visitId: 1, theatre: "Minetta Lane Theatre", date: "2025-10-15", district: "Off-Broadway" }
@@ -531,7 +534,7 @@ export const theatreShowList: TheatreShow[] = [
     id: 46,
     slug: "tartuffe",
     name: "Tartuffe", 
-    rank: 44,
+    rank: 47,
     visits: [
       { chronologicalId: 49, visitId: 0, theatre: "House of the Redeemer", date: "2025-10-12", district: "Off-Broadway" }
     ],
@@ -546,5 +549,25 @@ export const theatreShowList: TheatreShow[] = [
       { chronologicalId: 54, visitId: 0, theatre: "Columbus Performing Arts Center (CPAC)", date: "2025-11-07", district: "Local" }
     ],
     images: ['/images-theatre/rent.webp']
+  },
+  { 
+    id: 48,
+    slug: "pen-pals",
+    name: "Pen Pals", 
+    rank: 41,
+    visits: [
+      { chronologicalId: 55, visitId: 0, theatre: "DR2 Theatre", date: "2025-11-30", district: "Off-Broadway" }
+    ],
+    images: ['/images-theatre/pen-pals.jpg']
+  },
+  { 
+    id: 49,
+    slug: "marjorie-prime",
+    name: "Marjorie Prime", 
+    rank: 42,
+    visits: [
+      { chronologicalId: 56, visitId: 0, theatre: "Hayes Theater", date: "2025-11-29", district: "Broadway" }
+    ],
+    images: ['/images-theatre/marjorie-prime.jpg']
   }
 ]; 
