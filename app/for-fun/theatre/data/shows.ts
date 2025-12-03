@@ -309,7 +309,10 @@ export const theatreShowList: TheatreShow[] = [
     visits: [
       { chronologicalId: 30, visitId: 0, theatre: "Audible Theatre", date: "2025-06-15", district: "Broadway" }
     ],
-    images: ['/images-theatre/dead-outlaw.jpg']
+    images: ['/images-theatre/dead-outlaw.jpg'],
+    reviews: [
+      { title: "Dead Outlaw", slug: "dead-outlaw" }
+    ]
   },
   { 
     id: 27,
@@ -319,7 +322,10 @@ export const theatreShowList: TheatreShow[] = [
     visits: [
       { chronologicalId: 5, visitId: 0, theatre: "Connor Palace", date: "2023-05-17", district: "Playhouse Square" }
     ],
-    images: ['/images-theatre/dear-evan-hansen.jpg']
+    images: ['/images-theatre/dear-evan-hansen.jpg'],
+    reviews: [
+      { title: "Dear Evan Hansen", slug: "dear-evan-hansen" }
+    ]
   },
   { 
     id: 28,
@@ -329,7 +335,10 @@ export const theatreShowList: TheatreShow[] = [
     visits: [
       { chronologicalId: 27, visitId: 0, theatre: "Connor Palace", date: "2025-03-06", district: "Playhouse Square" }
     ],
-    images: ['/images-theatre/and-juliet.jpg']
+    images: ['/images-theatre/and-juliet.jpg'],
+    reviews: [
+      { title: "& Juliet", slug: "and-juliet" }
+    ]
   },
   { 
     id: 29,
@@ -349,7 +358,10 @@ export const theatreShowList: TheatreShow[] = [
     visits: [
       { chronologicalId: 6, visitId: 0, theatre: "Lyceum Theatre", date: "2023-08-20", district: "Broadway" }
     ],
-    images: ['/images-theatre/a-strange-loop.jpg']
+    images: ['/images-theatre/a-strange-loop.jpg'],
+    reviews: [
+      { title: "A Strange Loop", slug: "a-strange-loop" }
+    ]
   },
   { 
     id: 31,
@@ -359,7 +371,10 @@ export const theatreShowList: TheatreShow[] = [
     visits: [
       { chronologicalId: 2, visitId: 0, theatre: "Eugene O'Neill Theatre", date: "2023-01-27", district: "Broadway" }
     ],
-    images: ['/images-theatre/book-of-mormon.jpg']
+    images: ['/images-theatre/book-of-mormon.jpg'],
+    reviews: [
+      { title: "Book of Mormon", slug: "book-of-mormon" }
+    ]
   },
   { 
     id: 32,
@@ -379,7 +394,10 @@ export const theatreShowList: TheatreShow[] = [
     visits: [
       { chronologicalId: 35, visitId: 0, theatre: "Marquis Theatre", date: "2025-07-18", district: "Broadway" }
     ],
-    images: ['/images-theatre/stranger-things.jpg']
+    images: ['/images-theatre/stranger-things.jpg'],
+    reviews: [
+      { title: "Stranger Things: The First Shadow", slug: "stranger-things-first-shadow" }
+    ]
   },
   { 
     id: 34,
@@ -389,7 +407,10 @@ export const theatreShowList: TheatreShow[] = [
     visits: [
       { chronologicalId: 0, visitId: 0, theatre: "Bernard B. Jacobs Theatre", date: "2022-04-30", district: "Broadway" }
     ],
-    images: ['/images-theatre/company.jpg']
+    images: ['/images-theatre/company.jpg'],
+    reviews: [
+      { title: "Company", slug: "company" }
+    ]
   },
   { 
     id: 35,
@@ -399,7 +420,10 @@ export const theatreShowList: TheatreShow[] = [
     visits: [
       { chronologicalId: 11, visitId: 0, theatre: "Connor Palace", date: "2024-09-05", district: "Playhouse Square" }
     ],
-    images: ['/images-theatre/six.jpg']
+    images: ['/images-theatre/six.jpg'],
+    reviews: [
+      { title: "Six", slug: "six" }
+    ]
   },
   { 
     id: 36,
