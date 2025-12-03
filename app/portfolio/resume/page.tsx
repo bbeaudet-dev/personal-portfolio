@@ -76,6 +76,21 @@ export default function Resume() {
           <section className="mb-2 print:break-inside-avoid avoid-break-before">
             <h3 className="text-lg font-semibold mb-1">Professional Experience</h3>
 
+            {/* BATS-TOI */}
+            <div className="mb-3">
+              <div className="flex flex-wrap items-baseline justify-between gap-2 mb-0">
+                <div className="flex flex-wrap items-baseline gap-2">
+                  <h4 className="font-medium">Fullstack & Firmware Engineer</h4>
+                  <span className="text-muted-foreground">@</span>
+                  <h5 className="text-muted-foreground">BATS-TOI</h5>
+                </div>
+                <div className="whitespace-nowrap"><span className="text-muted-foreground text-xs opacity-80">Contract</span> <span className="text-muted-foreground text-sm">· Nov 2025 - Present</span></div>
+              </div>
+              <ul className="list-disc list-outside ml-5 space-y-1 text-sm resume-bullets">
+                <li>Fullstack and firmware engineering work</li>
+              </ul>
+            </div>
+
             {/* Fractal Tech */}
             <div className="mb-3">
               <div className="flex flex-wrap items-baseline justify-between gap-2 mb-0">
