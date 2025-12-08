@@ -3,9 +3,10 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import { getShowRank, getTotalShows, formatRank, getShowBySlug, getShowDistrict } from 'app/for-fun/theatre/utils'
-import { ContentList } from 'app/components/ContentListItem'
 import TheatreCloud from 'app/components/TheatreCloud'
-import { theatreShowList } from './data/shows'
+import { theatreShowList } from './data/shows-ben'
+import { theatreShowListRose } from './data/shows-rose'
+import { theatreShowListSophia } from './data/shows-sophia'
 
 interface TheatreClientProps {
   reviews: any[]
@@ -32,11 +33,7 @@ export default function TheatreClient({ reviews }: TheatreClientProps) {
         My rankings, reviews, and thoughts on shows and the magic of theatre
       </p>
       
-      {/* Contextual subtitle and cloud */}
-      <div className="mb-2">
-        <TheatreCloud shows={theatreShowList} />
-      </div>
-
+      {/* Story text above all clouds */}
       <div className="prose prose-neutral dark:prose-invert mb-8">
         <p className="text-sm text-neutral-600 dark:text-neutral-400 mb-6">
           My first trip to New York City (in 2022) was with my then-fiancee Sophia and her friend Rose. Despite living in the city with the second-largest theatre district (Cleveland's Playhouse Square), it was this trip that truly unlocked the magic of theatre for me.
@@ -62,28 +59,26 @@ export default function TheatreClient({ reviews }: TheatreClientProps) {
         )}
       </div>
 
-      <ContentList
-        items={allReviews}
-        getItemProps={(review) => {
-          const showInfo = getShowBySlug(review.slug)
-          const displayName = showInfo ? showInfo.name : review.metadata.showName
-          const rank = getShowRank(displayName)
-          const totalShows = getTotalShows()
-          
-          // Get location tag (Broadway, Playhouse Square, etc.)
-          const locationTag = getShowDistrict(displayName)
-          
-          return {
-            date: formatDate(review.metadata.publishedAt, true),
-            title: displayName,
-            href: `/for-fun/theatre/${review.slug}`,
-            extra: formatRank(rank, totalShows),
-            tags: locationTag ? [locationTag] : [],
-            collection: 'theatre',
-          }
-        }}
-        getKey={(review) => review.slug}
-      />
+      {/* Ben's cloud */}
+      <div className="mb-2">
+        <TheatreCloud shows={theatreShowList} />
+      </div>
+
+      {/* Rose's cloud - on its own row */}
+      <div className="mb-8">
+        <h2 className="text-lg font-semibold mb-4 text-center">Rose</h2>
+        <div className="flex justify-center">
+          <TheatreCloud shows={theatreShowListRose} showFilters={false} />
+        </div>
+      </div>
+
+      {/* Sophia's cloud */}
+      <div className="mb-8">
+        <h2 className="text-lg font-semibold mb-4 text-center">Sophia</h2>
+        <div className="flex justify-center">
+          <TheatreCloud shows={theatreShowListSophia} showFilters={false} />
+        </div>
+      </div>
     </section>
   )
 } 

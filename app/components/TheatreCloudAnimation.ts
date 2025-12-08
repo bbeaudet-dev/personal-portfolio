@@ -1,4 +1,4 @@
-import { type TheatreShow } from 'app/for-fun/theatre/data/shows'
+import { type TheatreShow } from 'app/for-fun/theatre/data/shows-ben'
 
 export interface PositionedShow {
   show: TheatreShow

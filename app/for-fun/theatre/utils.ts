@@ -1,5 +1,5 @@
 // Show data utility functions
-import { theatreShowList, TheatreShow } from './data/shows'
+import { theatreShowList, TheatreShow } from './data/shows-ben'
 
 export const getBaseShowName = (showName: string): string => {
   // Remove viewing number from show name (e.g., "Hadestown (2)" -> "Hadestown")

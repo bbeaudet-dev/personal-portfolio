@@ -3,7 +3,7 @@
 import { useState, useEffect, useMemo, useCallback } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
-import { type TheatreShow } from 'app/for-fun/theatre/data/shows'
+import { type TheatreShow } from 'app/for-fun/theatre/data/shows-ben'
 import { 
   type PositionedShow, 
   createTheatreCloudLayout, 
@@ -33,9 +33,10 @@ function formatDateLong(dateString: string): string {
 
 interface TheatreCloudProps {
   shows: TheatreShow[]
+  showFilters?: boolean
 }
 
-export default function TheatreCloud({ shows }: TheatreCloudProps) {
+export default function TheatreCloud({ shows, showFilters = true }: TheatreCloudProps) {
   const [selectedShow, setSelectedShow] = useState<TheatreShow | null>(null)
   const [positionedShows, setPositionedShows] = useState<PositionedShow[]>([])
   const [filter, setFilter] = useState<'all' | 'Broadway' | 'Playhouse Square' | 'West End' | 'Off-Broadway' | 'Local' | 'Touring'>('all')
@@ -475,7 +476,7 @@ export default function TheatreCloud({ shows }: TheatreCloudProps) {
           {/* Show Info */}
           <div className="space-y-1 text-xs text-gray-600 dark:text-gray-400">
             <p><strong>Rank:</strong> #{selectedShow.rank} of {shows.length}</p>
-            <p><strong>Total Visits:</strong> {selectedShow.visits.length}</p>
+            <p><strong>Visits:</strong></p>
             {selectedShow.visits.map((visit, index) => (
               <div key={visit.chronologicalId} className="ml-1">
                 <p>{visit.theatre} ({visit.district}) - {formatDateLong(visit.date)}</p>
@@ -527,6 +528,7 @@ export default function TheatreCloud({ shows }: TheatreCloudProps) {
       </div>
 
       {/* Filter Controls - underneath the cloud */}
+      {showFilters && (
       <div className="flex justify-center space-x-2 mt-8 mb-8">
         <button
           onClick={() => setFilter('all')}
@@ -599,6 +601,7 @@ export default function TheatreCloud({ shows }: TheatreCloudProps) {
           Local ({getShowCountByDistrict('Local')})
         </button>
       </div>
+      )}
 
     </div>
   )
