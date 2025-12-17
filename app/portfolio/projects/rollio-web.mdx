@@ -6,7 +6,7 @@ technologies: "TypeScript, React, Node.js, Express, Socket.io, Vercel, Render"
 githubUrl: "https://github.com/bbeaudet-dev/rollio"
 liveUrl: "https://rollio.vercel.app"
 tags: ["Game Dev", "Software"]
-image: "/images-portfolio/rollio/rollio-web-screenshot.jpg"
+image: "/images-portfolio/rollio/Rollio-sceenshot.jpg"
 ---
 
 _A web-based version of a dice-rolling roguelike inspired by Balatro and Farkle_
@@ -14,13 +14,26 @@ _A web-based version of a dice-rolling roguelike inspired by Balatro and Farkle_
 <LaunchButton
   href="https://rollio.vercel.app"
   title="Play Rollio"
-  description="Play the roguelike dice game in your browser"
+  description=""
   icon="🎲"
   color="blue"
 />
 
-// link to new video
-
+<div className="my-8 w-full max-w-4xl mx-auto">
+  <div
+    className="relative"
+    style={{ paddingBottom: "56.25%", height: 0, overflow: "hidden" }}
+  >
+    <iframe
+      className="absolute top-0 left-0 w-full h-full rounded-lg"
+      src="https://www.youtube.com/embed/OiAZwY3sad4"
+      title="Rollio Web Demo"
+      frameBorder="0"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowFullScreen
+    ></iframe>
+  </div>
+</div>
 
 After [building a CLI-only version of a dice-rolling roguelike](/portfolio/rollio), my next challenge was to create a web-based version without breaking the CLI version or rewriting core game logic.
 
@@ -44,11 +57,11 @@ Once the core CLI game was once again playable, enjoyable, and even somewhat "fi
   </div>
 </div>
 
-From there, I was able to rapidly introduce new game mechanics and content, and it was starting to feel like an actual roguelike game. 
+From there, I was able to rapidly introduce new game mechanics and content, and it was starting to feel like an actual roguelike game.
 
-However, I had somewhat left the CLI version in the dust, so I decided to implement a GameAPI, which could be used with the CLI, web, and any future implementations without burdening the code down with too much implementation-specific code. This way, the WebGameManager exclusively interacted with the GameAPI and *never* needed to import or use anything directly from the game engine. This refactor also made me realize that I needed to clean up my game logic and functions, so I made GameAPI the "orchestrator" of different game interactions, i.e. it essentially calls a function for each step of a major game action like "Scoring", and each group of related functions (e.g. charms.ts, consumables.ts) have their own file where they are organized and kept pure. 
+However, I had somewhat left the CLI version in the dust, so I decided to implement a GameAPI, which could be used with the CLI, web, and any future implementations without burdening the code down with too much implementation-specific code. This way, the WebGameManager exclusively interacted with the GameAPI and _never_ needed to import or use anything directly from the game engine. This refactor also made me realize that I needed to clean up my game logic and functions, so I made GameAPI the "orchestrator" of different game interactions, i.e. it essentially calls a function for each step of a major game action like "Scoring", and each group of related functions (e.g. charms.ts, consumables.ts) have their own file where they are organized and kept pure.
 
-While the GameAPI refactor was pretty brutal and almost cracked me several times, it again paved the way for a deluge of new game mechanics and content. It was at this point that I created a document called [content-polish.md](https://github.com/bbeaudet-dev/rollio/blob/main/docs/specs/in-progress/content-polish.md), which would serve as the basis of the next 25+ major pull requests of this project, taking Rollio from a basic dice-rolling game to a fully-built roguelike world. 
+While the GameAPI refactor was pretty brutal and almost cracked me several times, it again paved the way for a deluge of new game mechanics and content. It was at this point that I created a document called [content-polish.md](https://github.com/bbeaudet-dev/rollio/blob/main/docs/specs/in-progress/content-polish.md), which would serve as the basis of the next 25+ major pull requests of this project, taking Rollio from a basic dice-rolling game to a fully-built roguelike world.
 
 ## Technologies Used
 
