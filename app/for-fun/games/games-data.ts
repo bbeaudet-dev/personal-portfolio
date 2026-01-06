@@ -17,7 +17,7 @@ export const gamesData: GameData[] = [
   },
   {
     // Undertale
-    rating: 9, periods: ['adult'], slug: 'undertale', title: 'Undertale',
+    rating: 10, periods: ['adult'], slug: 'undertale', title: 'Undertale',
     series: [{ title: 'Undertale', platform: 'Switch' }],
     images: ['/images-games/undertale3.jpg'],
     achievements: [{ title: 'All Endings', description: 'Completed the Neutral, Pacifist, and Genocide routes' }]
@@ -37,7 +37,7 @@ export const gamesData: GameData[] = [
   },
   {
     // Inside
-    rating: 3, periods: ['adult'], slug: 'inside', title: 'Inside',
+    rating: 5, periods: ['adult'], slug: 'inside', title: 'Inside',
     series: [{ title: 'Inside', platform: 'Switch' }],
     images: ['/images-games/inside.avif']
   },
@@ -75,7 +75,7 @@ export const gamesData: GameData[] = [
   },
   {
     // Minecraft
-    rating: 8, periods: ['teenager', 'childhood'], slug: 'minecraft', title: 'Minecraft',
+    rating: 7, periods: ['teenager', 'childhood'], slug: 'minecraft', title: 'Minecraft',
     series: [{ title: 'Minecraft', platform: 'PC' }],
     images: ['/images-games/minecraft.webp']
   },
@@ -107,7 +107,7 @@ export const gamesData: GameData[] = [
   },
   {
     // Pokemon Colosseum/XD Gale of Darkness
-    rating: 8, periods: ['childhood'], slug: 'pokemon-colosseum', title: 'Pokemon Colosseum/XD Gale of Darkness',
+    rating: 7, periods: ['childhood'], slug: 'pokemon-colosseum', title: 'Pokemon Colosseum/XD Gale of Darkness',
     series: [{ title: 'Pokemon Colosseum', platform: 'GameCube' }, { title: 'Pokemon XD: Gale of Darkness', platform: 'GameCube' }],
     images: ['/images-games/pokemon-colosseum.jpeg', '/images-games/pokemon-gale-of-darkness.jpg']
   },
@@ -137,7 +137,7 @@ export const gamesData: GameData[] = [
   },
   {
     // Spyro the Dragon Series
-    rating: 6, periods: ['childhood'], slug: 'spyro-series', title: 'Spyro the Dragon Series',
+    rating: 5, periods: ['childhood'], slug: 'spyro-series', title: 'Spyro the Dragon Series',
     series: [{ title: 'Spyro the Dragon', platform: 'PlayStation' }, { title: 'Spyro 2: Ripto\'s Rage', platform: 'PlayStation' }, { title: 'Spyro 3: Year of the Dragon', platform: 'PlayStation' }, {title: 'Spyro: Season of Flame', platform: 'Game Boy Advance' }, { title: 'Spyro: Attack of the Rhynocs', platform: 'Game Boy Advance' }, { title: 'Spyro: Enter the Dragonfly', platform: 'GameCube' }, { title: 'Spyro Orange', platform: 'Game Boy Advance' }, { title: 'Spyro: A Hero\'s Tail', platform: 'GameCube' }, { title: 'Spyro: A New Beginning', platform: 'GameCube' }, { title: 'Spyro Reignited Trilogy', platform: 'Switch' }],
     images: ['/images-games/spyro-the-dragon.jpg', '/images-games/spyro-2-riptos-rage.png', '/images-games/spyro-year-of-the-dragon.png', '/images-games/spyro-a-heros-tail.webp', '/images-games/spyro-a-new-beginning.jpg', '/images-games/spyro-attack-of-the-rhynocs.jpg', '/images-games/spyro-enter-the-dragonfly.jpg', '/images-games/spyro-orange.webp', '/images-games/spyro-season-of-flame.jpeg', '/images-games/spyro-reignited-trilogy.jpeg'],
     blogPosts: [{ title: 'The Completionist', slug: 'completionist' }],
@@ -145,7 +145,7 @@ export const gamesData: GameData[] = [
   },
   {
     // Super Smash Bros Series
-    rating: 7, periods: ['childhood','teenager','adult'], slug: 'smash-bros', title: 'Super Smash Bros Series',
+    rating: 6, periods: ['childhood','teenager','adult'], slug: 'smash-bros', title: 'Super Smash Bros Series',
     series: [{ title: 'Super Smash Bros.', platform: 'Nintendo 64' }, { title: 'Super Smash Bros. Melee', platform: 'GameCube' }, { title: 'Super Smash Bros. Brawl', platform: 'Wii' }, { title: 'Super Smash Bros. for Nintendo 3DS', platform: 'Nintendo 3DS' }, { title: 'Super Smash Bros. for Wii U', platform: 'Wii U' }, { title: 'Super Smash Bros. Ultimate', platform: 'Switch' }],
     images: ['/images-games/smash-melee.jpg', '/images-games/smash-brawl.jpg', '/images-games/smash-wiiu.jpeg', '/images-games/smash-bros-ultimate.avif']
   },
@@ -199,39 +199,39 @@ export const gamesData: GameData[] = [
   },
   {
     // Factorio
-    rating: 6, periods: ['adult'], slug: 'factorio', title: 'Factorio',
+    rating: 7, periods: ['adult'], slug: 'factorio', title: 'Factorio',
     series: [{ title: 'Factorio', platform: 'PC' }],
     images: ['/images-games/factorio.png']
   },
   {
     // Faster Than Light
-    rating: 7, periods: ['adult'], slug: 'faster-than-light', title: 'Faster Than Light',
+    rating: 8, periods: ['adult'], slug: 'faster-than-light', title: 'Faster Than Light',
     series: [{ title: 'Faster Than Light', platform: 'PC' }],
     images: ['/images-games/ftl2.jpeg']
   },
   {
     // Opus Magnum
-    rating: 7, periods: ['adult'], slug: 'opus-magnum', title: 'Opus Magnum',
+    rating: 8, periods: ['adult'], slug: 'opus-magnum', title: 'Opus Magnum',
     series: [{ title: 'Opus Magnum', platform: 'PC' }],
     images: ['/images-games/opus-magnum3.jpg'],
     achievements: [{ title: '100% Completion', description: 'Completed all puzzles' }]
   },
   {
     // Subnautica
-    rating: 8, periods: ['adult'], slug: 'subnautica', title: 'Subnautica',
+    rating: 9, periods: ['adult'], slug: 'subnautica', title: 'Subnautica',
     series: [{ title: 'Subnautica', platform: 'Switch' }, { title: 'Subnautica: Below Zero', platform: 'Switch' }],
     images: ['/images-games/subnautica.jpg', '/images-games/subnautica-below-zero.avif']
   },
   {
     // Celeste
-    rating: 9, periods: ['adult'], slug: 'celeste', title: 'Celeste',
+    rating: 10, periods: ['adult'], slug: 'celeste', title: 'Celeste',
     series: [{ title: 'Celeste', platform: 'Switch' }],
     images: ['/images-games/celeste.avif'],
     achievements: [{ title: '100% Completion', description: 'Completed all levels and collectibles' }, { title: 'Golden Strawberries', description: 'Working on collecting golden strawberries' }]
   },
   {
     // Keep Talking and Nobody Explodes
-    rating: 4, periods: ['adult'], slug: 'keep-talking-and-nobody-explodes', title: 'Keep Talking and Nobody Explodes',
+    rating: 6, periods: ['adult'], slug: 'keep-talking-and-nobody-explodes', title: 'Keep Talking and Nobody Explodes',
     series: [{ title: 'Keep Talking and Nobody Explodes', platform: 'PC' }],
     images: ['/images-games/keep-talking2.jpg']
   },
@@ -249,13 +249,13 @@ export const gamesData: GameData[] = [
   },
   {
     // A Way Out
-    rating: 6, periods: ['adult'], slug: 'a-way-out', title: 'A Way Out',
+    rating: 7, periods: ['adult'], slug: 'a-way-out', title: 'A Way Out',
     series: [{ title: 'A Way Out', platform: 'PC' }],
     images: ['/images-games/a-way-out.jpg']
   },
   {
     // Uncharted 4: A Thief's End
-    rating: 3, periods: ['teenager'], slug: 'uncharted-4', title: 'Uncharted 4: A Thief\'s End',
+    rating: 5, periods: ['teenager'], slug: 'uncharted-4', title: 'Uncharted 4: A Thief\'s End',
     series: [{ title: 'Uncharted 4: A Thief\'s End', platform: 'PlayStation 4' }],
     images: ['/images-games/uncharted-4.webp']
   },
@@ -318,5 +318,17 @@ export const gamesData: GameData[] = [
     rating: 4, periods: ['adult'], slug: 'stanley-parable', title: 'The Stanley Parable',
     series: [{ title: 'The Stanley Parable', platform: 'Switch' }],
     images: ['/images-games/stanley-parable.jpg']
+  },
+  {
+    // Return of the Obra Dinn
+    rating: 9, periods: ['adult'], slug: 'return-of-the-obra-dinn', title: 'Return of the Obra Dinn',
+    series: [{ title: 'Return of the Obra Dinn', platform: 'PC' }],
+    images: ['/images-games/obra-dinn.jpg']
+  },
+  {
+    // Blue Prince
+    rating: 10, periods: ['adult'], slug: 'blue-prince', title: 'Blue Prince',
+    series: [{ title: 'Blue Prince', platform: 'PC' }],
+    images: ['/images-games/blue-prince.jpg']
   }
 ] 
