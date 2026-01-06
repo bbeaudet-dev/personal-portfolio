@@ -4,9 +4,11 @@ import { useState } from 'react'
 import Link from 'next/link'
 import { getShowRank, getTotalShows, formatRank, getShowBySlug, getShowDistrict } from 'app/for-fun/theatre/utils'
 import TheatreCloud from 'app/components/TheatreCloud'
+import { ContentList } from 'app/components/ContentListItem'
 import { theatreShowList } from './data/shows-ben'
 import { theatreShowListRose } from './data/shows-rose'
 import { theatreShowListSophia } from './data/shows-sophia'
+import { theatreShowListEric } from './data/shows-eric'
 
 interface TheatreClientProps {
   reviews: any[]
@@ -79,6 +81,31 @@ export default function TheatreClient({ reviews }: TheatreClientProps) {
           <TheatreCloud shows={theatreShowListSophia} showFilters={false} />
         </div>
       </div>
+
+      {/* Eric's cloud */}
+      <div className="mb-8">
+        <h2 className="text-lg font-semibold mb-4 text-center">Eric</h2>
+        <div className="flex justify-center">
+          <TheatreCloud shows={theatreShowListEric} showFilters={false} />
+        </div>
+      </div>
+
+      {/* Reviews Section */}
+      {allReviews.length > 0 && (
+        <div className="mt-12 mb-8">
+          <h2 className="text-xl font-semibold mb-6 tracking-tighter">Theatre Reviews</h2>
+          <ContentList
+            items={allReviews}
+            getItemProps={(review) => ({
+              date: formatDate(review.metadata.publishedAt, false),
+              title: review.metadata.showName,
+              subtitle: review.metadata.summary,
+              href: `/for-fun/theatre/${review.slug}`,
+            })}
+            getKey={(review) => review.slug}
+          />
+        </div>
+      )}
     </section>
   )
 } 
