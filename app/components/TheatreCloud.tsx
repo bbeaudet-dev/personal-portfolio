@@ -3,7 +3,7 @@
 import { useState, useEffect, useMemo, useCallback } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
-import { type TheatreShow } from 'app/for-fun/theatre/data/shows-ben'
+import { type TheatreShow, type ShowForm } from 'app/for-fun/theatre/data/shows-ben'
 import { 
   type PositionedShow, 
   createTheatreCloudLayout, 
@@ -40,30 +40,34 @@ export default function TheatreCloud({ shows, showFilters = true }: TheatreCloud
   const [selectedShow, setSelectedShow] = useState<TheatreShow | null>(null)
   const [positionedShows, setPositionedShows] = useState<PositionedShow[]>([])
   const [filter, setFilter] = useState<'all' | 'Broadway' | 'Playhouse Square' | 'West End' | 'Off-Broadway' | 'Local' | 'Touring'>('all')
+  const [formFilter, setFormFilter] = useState<'all' | ShowForm>('all')
   const [imageIndexes, setImageIndexes] = useState<Record<string, number>>({})
   const [imageOpacity, setImageOpacity] = useState<Record<string, number>>({})
   const [showScale, setShowScale] = useState<Record<string, number>>({})
   const [currentPattern, setCurrentPattern] = useState(0)
   
-  // Filter shows based on selected district - memoized to prevent recreation
+  // Filter shows: district and form 
   const filteredShows = useMemo(() => {
     return shows.filter(show => {
-      if (filter === 'all') return true
-      if (filter === 'Broadway') {
-        return show.visits.some(visit => 
-          visit.district === 'Broadway'
-        )
-      }
-      if (filter === 'Touring') {
-        return show.visits.some(visit => 
-          visit.district === 'Touring'
-        )
-      }
-      return show.visits.some(visit => visit.district === filter)
+      const matchesDistrict =
+        filter === 'all' ||
+        (filter === 'Broadway' && show.visits.some(v => v.district === 'Broadway')) ||
+        (filter === 'Touring' && show.visits.some(v => v.district === 'Touring')) ||
+        (filter !== 'Broadway' && filter !== 'Touring' && show.visits.some(v => v.district === filter))
+      const matchesForm =
+        formFilter === 'all' ||
+        show.form === formFilter
+      return matchesDistrict && matchesForm
     })
-  }, [shows, filter])
+  }, [shows, filter, formFilter])
 
-  // Helper function to count shows by district
+  // Count by form (independent of district filter)
+  const getShowCountByForm = (form: 'all' | ShowForm) => {
+    if (form === 'all') return shows.length
+    return shows.filter(show => show.form === form).length
+  }
+
+  // Helper function to count shows by district (independent of form filter)
   const getShowCountByDistrict = (district: string) => {
     if (district === 'Other') {
       return shows.filter(show => 
@@ -529,77 +533,157 @@ export default function TheatreCloud({ shows, showFilters = true }: TheatreCloud
 
       {/* Filter Controls - underneath the cloud */}
       {showFilters && (
-      <div className="flex justify-center space-x-2 mt-8 mb-8">
+      <div className="mt-8 mb-8 space-y-3">
+        <p className="text-center text-sm text-neutral-600 dark:text-neutral-400">
+          Displaying: <strong>{filteredShows.length} shows</strong>
+        </p>
+        <div className="flex justify-center flex-wrap gap-2">
         <button
           onClick={() => setFilter('all')}
-          className={`px-2 py-1 rounded text-xs font-medium transition-colors ${
+          className={`px-2 py-1 rounded text-xs font-medium transition-colors flex flex-col items-center leading-tight ${
             filter === 'all'
               ? 'bg-blue-600 text-white'
-              : 'bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-300 dark:hover:bg-gray-600'
+              : 'bg-blue-100 text-blue-900 dark:bg-blue-950/50 dark:text-blue-200 hover:bg-blue-200 dark:hover:bg-blue-900/60'
           }`}
         >
-          All ({shows.length})
+          <span>All</span>
+          <span className="text-[10px] opacity-90">({shows.length})</span>
         </button>
         <button
           onClick={() => setFilter('Broadway')}
-          className={`px-2 py-1 rounded text-xs font-medium transition-colors ${
+          className={`px-2 py-1 rounded text-xs font-medium transition-colors flex flex-col items-center leading-tight ${
             filter === 'Broadway'
               ? 'bg-blue-600 text-white'
-              : 'bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-300 dark:hover:bg-gray-600'
+              : 'bg-blue-100 text-blue-900 dark:bg-blue-950/50 dark:text-blue-200 hover:bg-blue-200 dark:hover:bg-blue-900/60'
           }`}
         >
-          Broadway ({getShowCountByDistrict('Broadway')})
+          <span>Broadway</span>
+          <span className="text-[10px] opacity-90">({getShowCountByDistrict('Broadway')})</span>
         </button>
         <button
           onClick={() => setFilter('Off-Broadway')}
-          className={`px-2 py-1 rounded text-xs font-medium transition-colors ${
+          className={`px-2 py-1 rounded text-xs font-medium transition-colors flex flex-col items-center leading-tight ${
             filter === 'Off-Broadway'
               ? 'bg-blue-600 text-white'
-              : 'bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-300 dark:hover:bg-gray-600'
+              : 'bg-blue-100 text-blue-900 dark:bg-blue-950/50 dark:text-blue-200 hover:bg-blue-200 dark:hover:bg-blue-900/60'
           }`}
         >
-          Off-Broadway ({getShowCountByDistrict('Off-Broadway')})
+          <span>Off-Broadway</span>
+          <span className="text-[10px] opacity-90">({getShowCountByDistrict('Off-Broadway')})</span>
         </button>
         <button
           onClick={() => setFilter('Playhouse Square')}
-          className={`px-2 py-1 rounded text-xs font-medium transition-colors ${
+          className={`px-2 py-1 rounded text-xs font-medium transition-colors flex flex-col items-center leading-tight ${
             filter === 'Playhouse Square'
               ? 'bg-blue-600 text-white'
-              : 'bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-300 dark:hover:bg-gray-600'
+              : 'bg-blue-100 text-blue-900 dark:bg-blue-950/50 dark:text-blue-200 hover:bg-blue-200 dark:hover:bg-blue-900/60'
           }`}
         >
-          Playhouse Square ({getShowCountByDistrict('Playhouse Square')})
+          <span>Playhouse Square</span>
+          <span className="text-[10px] opacity-90">({getShowCountByDistrict('Playhouse Square')})</span>
         </button>
         <button
           onClick={() => setFilter('West End')}
-          className={`px-2 py-1 rounded text-xs font-medium transition-colors ${
+          className={`px-2 py-1 rounded text-xs font-medium transition-colors flex flex-col items-center leading-tight ${
             filter === 'West End'
               ? 'bg-blue-600 text-white'
-              : 'bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-300 dark:hover:bg-gray-600'
+              : 'bg-blue-100 text-blue-900 dark:bg-blue-950/50 dark:text-blue-200 hover:bg-blue-200 dark:hover:bg-blue-900/60'
           }`}
         >
-          West End ({getShowCountByDistrict('West End')})
+          <span>West End</span>
+          <span className="text-[10px] opacity-90">({getShowCountByDistrict('West End')})</span>
         </button>
         <button
           onClick={() => setFilter('Touring')}
-          className={`px-2 py-1 rounded text-xs font-medium transition-colors ${
+          className={`px-2 py-1 rounded text-xs font-medium transition-colors flex flex-col items-center leading-tight ${
             filter === 'Touring'
               ? 'bg-blue-600 text-white'
-              : 'bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-300 dark:hover:bg-gray-600'
+              : 'bg-blue-100 text-blue-900 dark:bg-blue-950/50 dark:text-blue-200 hover:bg-blue-200 dark:hover:bg-blue-900/60'
           }`}
         >
-          Touring ({getShowCountByDistrict('Touring')})
+          <span>Touring</span>
+          <span className="text-[10px] opacity-90">({getShowCountByDistrict('Touring')})</span>
         </button>
         <button
           onClick={() => setFilter('Local')}
-          className={`px-2 py-1 rounded text-xs font-medium transition-colors ${
+          className={`px-2 py-1 rounded text-xs font-medium transition-colors flex flex-col items-center leading-tight ${
             filter === 'Local'
               ? 'bg-blue-600 text-white'
-              : 'bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-300 dark:hover:bg-gray-600'
+              : 'bg-blue-100 text-blue-900 dark:bg-blue-950/50 dark:text-blue-200 hover:bg-blue-200 dark:hover:bg-blue-900/60'
           }`}
         >
-          Local ({getShowCountByDistrict('Local')})
+          <span>Local</span>
+          <span className="text-[10px] opacity-90">({getShowCountByDistrict('Local')})</span>
         </button>
+        </div>
+        <div className="flex justify-center flex-wrap gap-2">
+        <button
+          onClick={() => setFormFilter('all')}
+          className={`px-2 py-1 rounded text-xs font-medium transition-colors flex flex-col items-center leading-tight ${
+            formFilter === 'all'
+              ? 'bg-emerald-600 text-white'
+              : 'bg-emerald-100 text-emerald-900 dark:bg-emerald-950/50 dark:text-emerald-200 hover:bg-emerald-200 dark:hover:bg-emerald-900/60'
+          }`}
+        >
+          <span>All</span>
+          <span className="text-[10px] opacity-90">({getShowCountByForm('all')})</span>
+        </button>
+        <button
+          onClick={() => setFormFilter('musical')}
+          className={`px-2 py-1 rounded text-xs font-medium transition-colors flex flex-col items-center leading-tight ${
+            formFilter === 'musical'
+              ? 'bg-emerald-600 text-white'
+              : 'bg-emerald-100 text-emerald-900 dark:bg-emerald-950/50 dark:text-emerald-200 hover:bg-emerald-200 dark:hover:bg-emerald-900/60'
+          }`}
+        >
+          <span>Musicals</span>
+          <span className="text-[10px] opacity-90">({getShowCountByForm('musical')})</span>
+        </button>
+        <button
+          onClick={() => setFormFilter('play')}
+          className={`px-2 py-1 rounded text-xs font-medium transition-colors flex flex-col items-center leading-tight ${
+            formFilter === 'play'
+              ? 'bg-emerald-600 text-white'
+              : 'bg-emerald-100 text-emerald-900 dark:bg-emerald-950/50 dark:text-emerald-200 hover:bg-emerald-200 dark:hover:bg-emerald-900/60'
+          }`}
+        >
+          <span>Plays</span>
+          <span className="text-[10px] opacity-90">({getShowCountByForm('play')})</span>
+        </button>
+        <button
+          onClick={() => setFormFilter('opera')}
+          className={`px-2 py-1 rounded text-xs font-medium transition-colors flex flex-col items-center leading-tight ${
+            formFilter === 'opera'
+              ? 'bg-emerald-600 text-white'
+              : 'bg-emerald-100 text-emerald-900 dark:bg-emerald-950/50 dark:text-emerald-200 hover:bg-emerald-200 dark:hover:bg-emerald-900/60'
+          }`}
+        >
+          <span>Opera</span>
+          <span className="text-[10px] opacity-90">({getShowCountByForm('opera')})</span>
+        </button>
+        <button
+          onClick={() => setFormFilter('dance')}
+          className={`px-2 py-1 rounded text-xs font-medium transition-colors flex flex-col items-center leading-tight ${
+            formFilter === 'dance'
+              ? 'bg-emerald-600 text-white'
+              : 'bg-emerald-100 text-emerald-900 dark:bg-emerald-950/50 dark:text-emerald-200 hover:bg-emerald-200 dark:hover:bg-emerald-900/60'
+          }`}
+        >
+          <span>Dance</span>
+          <span className="text-[10px] opacity-90">({getShowCountByForm('dance')})</span>
+        </button>
+        <button
+          onClick={() => setFormFilter('other')}
+          className={`px-2 py-1 rounded text-xs font-medium transition-colors flex flex-col items-center leading-tight ${
+            formFilter === 'other'
+              ? 'bg-emerald-600 text-white'
+              : 'bg-emerald-100 text-emerald-900 dark:bg-emerald-950/50 dark:text-emerald-200 hover:bg-emerald-200 dark:hover:bg-emerald-900/60'
+          }`}
+        >
+          <span>Other</span>
+          <span className="text-[10px] opacity-90">({getShowCountByForm('other')})</span>
+        </button>
+        </div>
       </div>
       )}
 
