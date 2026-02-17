@@ -10,6 +10,15 @@ import { theatreShowListRose } from './data/shows-rose'
 import { theatreShowListSophia } from './data/shows-sophia'
 import { theatreShowListEric } from './data/shows-eric'
 
+const PEOPLE = [
+  { id: 'ben' as const, name: 'Ben', shows: theatreShowList, showFilters: true },
+  { id: 'rose' as const, name: 'Rose', shows: theatreShowListRose, showFilters: false },
+  { id: 'sophia' as const, name: 'Sophia', shows: theatreShowListSophia, showFilters: false },
+  { id: 'eric' as const, name: 'Eric', shows: theatreShowListEric, showFilters: false },
+]
+
+type PersonId = typeof PEOPLE[number]['id']
+
 interface TheatreClientProps {
   reviews: any[]
 }
@@ -24,7 +33,9 @@ function formatDate(dateString: string, includeYear: boolean = true): string {
 
 export default function TheatreClient({ reviews }: TheatreClientProps) {
   const [isExpanded, setIsExpanded] = useState(false)
+  const [selectedPerson, setSelectedPerson] = useState<PersonId>('ben')
   const allReviews = reviews.sort((a, b) => new Date(b.metadata.publishedAt).getTime() - new Date(a.metadata.publishedAt).getTime())
+  const current = PEOPLE.find(p => p.id === selectedPerson)!
 
   return (
     <section>
@@ -52,7 +63,7 @@ export default function TheatreClient({ reviews }: TheatreClientProps) {
         {isExpanded && (
           <>
             <p className="text-sm text-neutral-600 dark:text-neutral-400 mb-6">
-            I didn't even *anticipate* liking Broadway shows very much - in fact, I primarily was in town to play in a squash tournament and watch the Tournament of Champions at Grand Central Terminal. So while the two of them went ["show-maxxing"](/blog/show-maxxing) (a term we apparently coined), I spent most of the weekend playing and watching squash. Eventually I went with them to see POTUS and I was hooked from there. We have Rose to thank for the introduction.
+            I didn&apos;t even <em>anticipate</em> liking Broadway shows very much - in fact, I primarily was in town to play in a squash tournament and watch the Tournament of Champions at Grand Central Terminal. So while the two of them went <Link href="/blog/show-maxxing" className="text-blue-600 dark:text-blue-400 hover:underline">show-maxxing</Link> (a term we apparently coined), I spent most of the weekend playing and watching squash. Eventually I went with them to see POTUS and I was hooked from there. We have Rose to thank for the introduction.
             </p>
             <p className="text-sm text-neutral-600 dark:text-neutral-400 mb-6">
               Since then, my wife and I have indulged in many show-maxxing weekends in the big city, and we began paying attention to the theatre scene in Cleveland, which happens to be quite good as well.  
@@ -61,34 +72,47 @@ export default function TheatreClient({ reviews }: TheatreClientProps) {
         )}
       </div>
 
-      {/* Ben's cloud */}
-      <div className="mb-2">
-        <TheatreCloud shows={theatreShowList} />
+      {/* Single cloud for selected person */}
+      <div className="mb-6">
+        <TheatreCloud shows={current.shows} showFilters={current.showFilters} />
       </div>
 
-      {/* Rose's cloud - on its own row */}
-      <div className="mb-8">
-        <h2 className="text-lg font-semibold mb-4 text-center">Rose</h2>
-        <div className="flex justify-center">
-          <TheatreCloud shows={theatreShowListRose} showFilters={false} />
-        </div>
+      {/* Name selector - radio style, below cloud & filters */}
+      <div className="flex flex-wrap justify-center gap-2 mb-6" role="radiogroup" aria-label="Select whose cloud to view">
+        {PEOPLE.map((person) => (
+          <label
+            key={person.id}
+            className={`cursor-pointer select-none rounded-full px-4 py-2 text-sm font-medium transition-colors ${
+              selectedPerson === person.id
+                ? 'bg-neutral-800 text-white dark:bg-neutral-200 dark:text-neutral-900'
+                : 'bg-neutral-100 text-neutral-700 hover:bg-neutral-200 dark:bg-neutral-800 dark:text-neutral-300 dark:hover:bg-neutral-700'
+            }`}
+          >
+            <input
+              type="radio"
+              name="cloud-person"
+              value={person.id}
+              checked={selectedPerson === person.id}
+              onChange={() => setSelectedPerson(person.id)}
+              className="sr-only"
+            />
+            {person.name}
+          </label>
+        ))}
       </div>
 
-      {/* Sophia's cloud */}
-      <div className="mb-8">
-        <h2 className="text-lg font-semibold mb-4 text-center">Sophia</h2>
-        <div className="flex justify-center">
-          <TheatreCloud shows={theatreShowListSophia} showFilters={false} />
-        </div>
-      </div>
-
-      {/* Eric's cloud */}
-      <div className="mb-8">
-        <h2 className="text-lg font-semibold mb-4 text-center">Eric</h2>
-        <div className="flex justify-center">
-          <TheatreCloud shows={theatreShowListEric} showFilters={false} />
-        </div>
-      </div>
+      {/* Want your own cloud? */}
+      <p className="text-center text-sm text-neutral-600 dark:text-neutral-400 mb-10">
+        Want your own cloud?{' '}
+        <a
+          href="https://github.com/bbeaudet-dev/personal-portfolio/issues/55"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-blue-600 dark:text-blue-400 hover:underline font-medium"
+        >
+          Request via Github
+        </a>
+      </p>
 
       {/* Reviews Section */}
       {allReviews.length > 0 && (
