@@ -312,7 +312,7 @@ export const theatreShowList: TheatreShow[] = [
     id: 22,
     slug: "shucked",
     name: "Shucked", 
-    rank: 71,
+    rank: 64,
     visits: [
       { chronologicalId: 19, visitId: 0, theatre: "Connor Palace", date: "2024-11-15", district: "Playhouse Square" }
     ],
@@ -399,7 +399,7 @@ export const theatreShowList: TheatreShow[] = [
     id: 29,
     slug: "harry-potter-cursed-child",
     name: "Harry Potter and the Cursed Child", 
-    rank: 72,
+    rank: 63,
     visits: [
       { chronologicalId: 15, visitId: 0, theatre: "Lyric Theatre", date: "2024-09-25", district: "Broadway" }
     ],
@@ -438,7 +438,7 @@ export const theatreShowList: TheatreShow[] = [
     id: 32,
     slug: "lord-nil-seven-deadly-sins",
     name: "Lord Nil: Seven Deadly Sins", 
-    rank: 66,
+    rank: 69,
     visits: [
       { chronologicalId: 36, visitId: 0, theatre: "Stage 42", date: "2025-08-01", district: "Off-Broadway" }
     ],
@@ -449,7 +449,7 @@ export const theatreShowList: TheatreShow[] = [
     id: 33,
     slug: "stranger-things-first-shadow",
     name: "Stranger Things: The First Shadow", 
-    rank: 63,
+    rank: 66,
     visits: [
       { chronologicalId: 35, visitId: 0, theatre: "Marquis Theatre", date: "2025-07-18", district: "Broadway" }
     ],
@@ -463,7 +463,7 @@ export const theatreShowList: TheatreShow[] = [
     id: 34,
     slug: "company",
     name: "Company", 
-    rank: 70,
+    rank: 62,
     visits: [
       { chronologicalId: 0, visitId: 0, theatre: "Bernard B. Jacobs Theatre", date: "2022-04-30", district: "Broadway" }
     ],
@@ -477,7 +477,7 @@ export const theatreShowList: TheatreShow[] = [
     id: 35,
     slug: "six",
     name: "Six", 
-    rank: 65,
+    rank: 68,
     visits: [
       { chronologicalId: 11, visitId: 0, theatre: "Connor Palace", date: "2024-09-05", district: "Playhouse Square" }
     ],
@@ -608,7 +608,7 @@ export const theatreShowList: TheatreShow[] = [
     id: 46,
     slug: "andre-de-shields-is-tartuffe",
     name: "André de Shields is Tartuffe", 
-    rank: 67,
+    rank: 70,
     visits: [
       { chronologicalId: 49, visitId: 0, theatre: "House of the Redeemer", date: "2025-10-12", district: "Off-Broadway" }
     ],
@@ -688,7 +688,7 @@ export const theatreShowList: TheatreShow[] = [
     id: 53,
     slug: "oh-mary",
     name: "Oh, Mary!", 
-    rank: 64,
+    rank: 67,
     visits: [
       { chronologicalId: 62, visitId: 0, theatre: "Lyceum Theatre", date: "2025-12-07", district: "Broadway" }
     ],
@@ -721,7 +721,7 @@ export const theatreShowList: TheatreShow[] = [
     id: 56,
     slug: "perfect-crime",
     name: "Perfect Crime", 
-    rank: 69,
+    rank: 72,
     visits: [
       { chronologicalId: 64, visitId: 0, theatre: "The Theater Center", date: "2026-01-05", district: "Off-Broadway" }
     ],
@@ -820,7 +820,7 @@ export const theatreShowList: TheatreShow[] = [
     id: 65,
     slug: "an-ark",
     name: "An Ark",
-    rank: 68,
+    rank: 71,
     visits: [
       { chronologicalId: 77, visitId: 0, theatre: "The Shed", date: "2026-02-04", district: "Off-Broadway" }
     ],
@@ -864,7 +864,7 @@ export const theatreShowList: TheatreShow[] = [
     id: 69,
     slug: "data",
     name: "Data",
-    rank: 62,
+    rank: 65,
     visits: [
       { chronologicalId: 71, visitId: 0, theatre: "Lucille Lortel Theatre", date: "2026-01-11", district: "Off-Broadway" }
     ],
