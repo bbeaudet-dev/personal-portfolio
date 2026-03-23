@@ -1,0 +1,49 @@
+---
+title: "Theatre Diary"
+completedAt: "2026-03-09"
+summary: "A mobile app for theatre lovers — show rankings, social features, and trip planning"
+technologies: "TypeScript, React Native, Expo"
+githubUrl: "https://github.com/bbeaudet-dev/theatre-diary"
+tags: ["Software"]
+---
+
+_A mobile-first, all-in-one theatre app_
+
+After learning from the [first iteration](/portfolio/theatre-app) — which tried to do everything at once and ended up a bit sloppy — this second version takes a more focused approach, starting with the features that matter most and building outward.
+
+## Phase 1: Rankings & Visualization
+
+The original inspiration for building this app is a shared note that I have with a few friends, which we use to log and rank all of the shows we see (Broadway, touring, etc.), so I wanted this to be the first feature. In addition to a simple and clean interface for rankings the shows you've seen, a visualization cloud (similar to the [theatre page on this site](/for-fun/theatre)) is automatically created. 
+
+## Phase 2: Shows vs. Productions vs. Visits
+
+I wanted to refine the data structure before getting too far, and I eventually landed on distinguishing between *shows, productions, and visits*. Each *show* (e.g. Hadestown) can have multiple *productions* (e.g. Broadway 2019, West End 2024, touring 2021), and *productions* can have various *visits* (e.g. "saw the touring Hadestown production in Cleveland, OH on February 13th, 2023" and "saw Hadestown on Broadway on January 20th, 2025"). 
+
+While I do think this is a solid structure for the backend, it's not exactly how users think about their theatre history, nor is it valuable for this data to be presented in a strictly hierarchical way. Rather, I decided that the primary pieces of information should ultimately be "Which show did you see?" and "Where/when did you see it?" when it comes to how the app displays this hierarchical data. 
+
+Rather than a bottom-up approach, where data becomes unusable if it's missing any fields, we can take a top-down approach, where the important info is guaranteed to exist and everything else is gravy. 
+
+For example, if I open the app and simply log that I saw Hamilton, then we have all the info needed to create a post that shows up in a social feed. This is much better than data becoming invalid just because one field was left out, even if everything else was manually added by the user. Providing a location has high value for low effort - since basically all other info can be inferred from a show, date, and location - but is still not strictly necessary. 
+
+This provides a low-friction experience with the *option* of adding more info, rather than a high-friction experience that *requires* maximum data input.
+
+## Phase 3: Social
+
+With the new data structure discussed above, a "social feed" feature becomes much simpler to create. 
+
+Users can follow other theatre lovers, post updates and thoughts on shows, and see what your friends are posting too.
+
+Currently, "posts" are only created when adding a new visit/show, but the data structure is set up to allow all kinds of social updates in the future, e.g. edited ranking(s), added show(s) to list(s), liked/commented on others' posts, etc.
+
+## Phase 4: Future
+
+Features such as trip planning, a ticket marketplace, a recommendation engine, and many more would bring this app away from just a "theatre diary" and more towards the "all-in-one theatre app" that I envision. 
+
+## Technologies Used
+
+- TypeScript
+- React Native & Expo
+
+## Links
+
+- [GitHub Repository](https://github.com/bbeaudet-dev/theatre-diary)
