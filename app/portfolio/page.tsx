@@ -31,6 +31,7 @@ export default function Page() {
           tags: project.metadata.tags || [],
           summary: project.metadata.summary,
           image: project.metadata.image,
+          video: project.metadata.video,
           collection: 'portfolio'
         }))}
       />

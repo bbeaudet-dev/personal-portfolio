@@ -7,6 +7,7 @@ type Metadata = {
   duration?: string
   summary: string
   image?: string
+  video?: string
   technologies?: string
   githubUrl?: string
   liveUrl?: string

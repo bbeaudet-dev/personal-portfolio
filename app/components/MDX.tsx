@@ -46,7 +46,12 @@ function CustomLink(props) {
 }
 
 function RoundedImage(props) {
-  return <Image alt={props.alt} className="rounded-lg" {...props} />
+  const width = typeof props.width === 'number' ? props.width : Number(props.width) || undefined
+  const height = typeof props.height === 'number' ? props.height : Number(props.height) || undefined
+  if (!width || !height) {
+    return <img alt={props.alt} className="rounded-lg" {...props} />
+  }
+  return <Image alt={props.alt} className="rounded-lg" {...props} width={width} height={height} />
 }
 
 function Code({ children, ...props }) {
