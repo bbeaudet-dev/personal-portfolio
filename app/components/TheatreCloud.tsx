@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect, useMemo, useCallback } from 'react'
+import { useState, useEffect, useMemo, useRef } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { type TheatreShow, type ShowForm } from 'app/for-fun/theatre/data/shows-ben'
@@ -44,7 +44,7 @@ export default function TheatreCloud({ shows, showFilters = true }: TheatreCloud
   const [imageIndexes, setImageIndexes] = useState<Record<string, number>>({})
   const [imageOpacity, setImageOpacity] = useState<Record<string, number>>({})
   const [showScale, setShowScale] = useState<Record<string, number>>({})
-  const [currentPattern, setCurrentPattern] = useState(0)
+  const wavePatternRef = useRef(0)
   
   // Filter shows: district and form 
   const filteredShows = useMemo(() => {
@@ -179,104 +179,106 @@ export default function TheatreCloud({ shows, showFilters = true }: TheatreCloud
 
   // Wave animation for all shows (alternating patterns)
   useEffect(() => {
-    const interval = setInterval(() => {
-      // Get all shows in order based on current pattern
+    if (positionedShows.length === 0) return
+
+    const pendingTimeouts: ReturnType<typeof setTimeout>[] = []
+    const schedule = (fn: () => void, ms: number) => {
+      pendingTimeouts.push(setTimeout(fn, ms))
+    }
+
+    const clearPendingTimeouts = () => {
+      pendingTimeouts.forEach(clearTimeout)
+      pendingTimeouts.length = 0
+    }
+
+    const runWave = () => {
+      clearPendingTimeouts()
+
       let showsInOrder = [...filteredShows]
-      
-      switch (currentPattern) {
+      const pattern = wavePatternRef.current
+
+      switch (pattern) {
         case 0: // Top-left to bottom-right diagonal
           showsInOrder.sort((a, b) => {
             const showA = positionedShows.find(ps => ps.show.slug === a.slug)
             const showB = positionedShows.find(ps => ps.show.slug === b.slug)
             if (!showA || !showB) return 0
-            const diagonalA = showA.x + showA.y
-            const diagonalB = showB.x + showB.y
-            return diagonalA - diagonalB
+            return showA.x + showA.y - (showB.x + showB.y)
           })
           break
-          
+
         case 1: // Top-right to bottom-left diagonal
           showsInOrder.sort((a, b) => {
             const showA = positionedShows.find(ps => ps.show.slug === a.slug)
             const showB = positionedShows.find(ps => ps.show.slug === b.slug)
             if (!showA || !showB) return 0
-            const diagonalA = showA.x - showA.y
-            const diagonalB = showB.x - showB.y
-            return diagonalB - diagonalA // Reverse order
+            return showB.x - showB.y - (showA.x - showA.y)
           })
           break
-          
+
         case 2: // Bottom-right to top-left diagonal
           showsInOrder.sort((a, b) => {
             const showA = positionedShows.find(ps => ps.show.slug === a.slug)
             const showB = positionedShows.find(ps => ps.show.slug === b.slug)
             if (!showA || !showB) return 0
-            const diagonalA = showA.x + showA.y
-            const diagonalB = showB.x + showB.y
-            return diagonalB - diagonalA // Reverse order
+            return showB.x + showB.y - (showA.x + showA.y)
           })
           break
-          
+
         case 3: // Bottom-left to top-right diagonal
           showsInOrder.sort((a, b) => {
             const showA = positionedShows.find(ps => ps.show.slug === a.slug)
             const showB = positionedShows.find(ps => ps.show.slug === b.slug)
             if (!showA || !showB) return 0
-            const diagonalA = showA.x - showA.y
-            const diagonalB = showB.x - showB.y
-            return diagonalA - diagonalB
+            return showA.x - showA.y - (showB.x - showB.y)
           })
           break
-          
+
         case 4: // Outwards from center to edges
           showsInOrder.sort((a, b) => {
             const showA = positionedShows.find(ps => ps.show.slug === a.slug)
             const showB = positionedShows.find(ps => ps.show.slug === b.slug)
             if (!showA || !showB) return 0
-            const centerX = 400 // Approximate center
-            const centerY = 300
-            const distanceA = Math.sqrt((showA.x - centerX) ** 2 + (showA.y - centerY) ** 2)
-            const distanceB = Math.sqrt((showB.x - centerX) ** 2 + (showB.y - centerY) ** 2)
-            return distanceA - distanceB // Closest to furthest
+            const centerX = 400
+            const centerY = 400
+            const distanceA = Math.hypot(showA.x - centerX, showA.y - centerY)
+            const distanceB = Math.hypot(showB.x - centerX, showB.y - centerY)
+            return distanceA - distanceB
           })
           break
-          
+
         case 5: // Inwards from edges to center
           showsInOrder.sort((a, b) => {
             const showA = positionedShows.find(ps => ps.show.slug === a.slug)
             const showB = positionedShows.find(ps => ps.show.slug === b.slug)
             if (!showA || !showB) return 0
-            const centerX = 400 // Approximate center
-            const centerY = 300
-            const distanceA = Math.sqrt((showA.x - centerX) ** 2 + (showA.y - centerY) ** 2)
-            const distanceB = Math.sqrt((showB.x - centerX) ** 2 + (showB.y - centerY) ** 2)
-            return distanceB - distanceA // Furthest to closest
+            const centerX = 400
+            const centerY = 400
+            const distanceA = Math.hypot(showA.x - centerX, showA.y - centerY)
+            const distanceB = Math.hypot(showB.x - centerX, showB.y - centerY)
+            return distanceB - distanceA
           })
           break
       }
-      
-      // Stagger the wave animation
+
+      wavePatternRef.current = (pattern + 1) % 6
+
       showsInOrder.forEach((show, index) => {
-        const delay = index * 35 // Slightly faster: 50ms -> 35ms delay between each show
-        
-        setTimeout(() => {
-          // Scale up (20% bigger: 1.15 -> 1.38)
+        const delay = index * 35
+        schedule(() => {
           setShowScale(prev => ({
             ...prev,
             [show.slug]: 1.125
           }))
-          
-          // Change image at peak size (after 200ms of growing - faster)
-          setTimeout(() => {
+
+          schedule(() => {
             if (show.images.length > 1) {
-              // Start cross-fade
               setImageOpacity(prev => ({
                 ...prev,
                 [show.slug]: 0
               }))
-              
-              // After cross-fade completes, update image index (faster: 2000ms -> 1500ms)
-              setTimeout(() => {
+
+              schedule(() => {
                 setImageIndexes(prev => {
                   const currentIndex = prev[show.slug] || 0
                   return {
@@ -284,35 +286,33 @@ export default function TheatreCloud({ shows, showFilters = true }: TheatreCloud
                     [show.slug]: (currentIndex + 1) % show.images.length
                   }
                 })
-                
-                // Reset opacity for this show
+
                 setImageOpacity(prev => ({
                   ...prev,
                   [show.slug]: 1
                 }))
-              }, 1500) // Faster cross-fade
+              }, 1500)
             }
-          }, 200) // Faster: 300ms -> 200ms to reach peak size
-          
-          // Scale back down after 600ms (faster: 800ms -> 600ms)
-          setTimeout(() => {
+          }, 200)
+
+          schedule(() => {
             setShowScale(prev => ({
               ...prev,
               [show.slug]: 1
             }))
-          }, 600) // Faster scale down
+          }, 600)
         }, delay)
       })
-      
-      // Move to next pattern
-      setCurrentPattern((prev) => (prev + 1) % 6)
-      
-    }, 3500) // Faster: 5 seconds -> 3.5 seconds
-    
+    }
+
+    runWave()
+    const interval = setInterval(runWave, 3500)
+
     return () => {
       clearInterval(interval)
+      clearPendingTimeouts()
     }
-  }, [filteredShows, positionedShows, currentPattern])
+  }, [filteredShows, positionedShows])
 
   // Find the positioned show for the selected show
   const selectedPositionedShow = selectedShow 
