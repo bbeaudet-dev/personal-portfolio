@@ -9,7 +9,23 @@ type Metadata = {
   image?: string
   tags?: string[]
   collection?: string
+  featured?: number
   [key: string]: any
+}
+
+function parseScalarValue(value: string) {
+  return value.replace(/^['"](.*)['"]$/, '$1')
+}
+
+function parseTagsValue(value: string) {
+  try {
+    const cleanValue = parseScalarValue(value)
+    const parsedTags = JSON.parse(cleanValue)
+    return Array.isArray(parsedTags) ? parsedTags : [parsedTags]
+  } catch {
+    const cleanValue = parseScalarValue(value)
+    return cleanValue.split(',').map(tag => parseScalarValue(tag.trim()))
+  }
 }
 
 function parseFrontmatter(fileContent: string) {
@@ -27,31 +43,39 @@ function parseFrontmatter(fileContent: string) {
   let metadata: Partial<Metadata> = {}
 
   frontMatterLines.forEach((line) => {
-    if (line.trim() && line.includes(': ')) {
-      let [key, ...valueArr] = line.split(': ')
-      let value = valueArr.join(': ').trim()
+    if (line.trim() && line.includes(':')) {
+      let [key, ...valueArr] = line.split(':')
+      const trimmedKey = key.trim()
+      let value = valueArr.join(':').trim()
       
-      // Handle tags array specially
-      if (key.trim() === 'tags') {
-        try {
-          // Remove outer quotes if present
-          const cleanValue = value.replace(/^['"](.*)['"]$/, '$1')
-          // Parse as JSON array
-          const parsedTags = JSON.parse(cleanValue)
-          metadata[key.trim() as keyof Metadata] = Array.isArray(parsedTags) ? parsedTags : [parsedTags]
-        } catch {
-          // Fallback to comma-separated parsing
-          const cleanValue = value.replace(/^['"](.*)['"]$/, '$1')
-          metadata[key.trim() as keyof Metadata] = cleanValue.split(',').map(tag => tag.trim().replace(/^['"](.*)['"]$/, '$1'))
-        }
+      if (trimmedKey === 'tags') {
+        metadata.tags = parseTagsValue(value)
+      } else if (trimmedKey === 'featured') {
+        metadata.featured = Number(value)
       } else {
-        value = value.replace(/^['"](.*)['"]$/, '$1') // Remove quotes
-        metadata[key.trim() as keyof Metadata] = value
+        metadata[trimmedKey as keyof Metadata] = parseScalarValue(value)
       }
     }
   })
 
   return { metadata: metadata as Metadata, content }
+}
+
+function sortByFeatured<T extends { metadata: Metadata }>(items: T[]) {
+  return items
+    .filter(item => item.metadata.featured !== undefined && !Number.isNaN(item.metadata.featured))
+    .sort((a, b) => {
+      const aFeatured = a.metadata.featured ?? Number.MAX_SAFE_INTEGER
+      const bFeatured = b.metadata.featured ?? Number.MAX_SAFE_INTEGER
+
+      if (aFeatured !== bFeatured) {
+        return aFeatured - bFeatured
+      }
+
+      const aDate = new Date(a.metadata.publishedAt || '1900-01-01')
+      const bDate = new Date(b.metadata.publishedAt || '1900-01-01')
+      return bDate.getTime() - aDate.getTime()
+    })
 }
 
 function getMDXFiles(dir) {
@@ -89,6 +113,10 @@ export function getBlogPosts() {
   }))
   
   return allPosts
+}
+
+export function getFeaturedBlogPosts() {
+  return sortByFeatured(getBlogPosts())
 }
 
 export function formatDate(date: string | undefined, includeRelative = false) {
