@@ -1,21 +1,11 @@
 import { ContentListHomeResponsive } from 'app/components/ContentListHomeResponsive'
 import { Introduction } from 'app/components/Introduction'
-import { getPortfolioProjects } from 'app/portfolio/utils'
-import { getBlogPosts } from 'app/blog/utils'
+import { getFeaturedPortfolioProjects } from 'app/portfolio/utils'
+import { getFeaturedBlogPosts } from 'app/blog/utils'
 
 export default function Page() {
-  // Fetch data from each section
-  const portfolioProjects = getPortfolioProjects().sort((a, b) => {
-    const aDate = new Date(a.metadata.completedAt || '1900-01-01')
-    const bDate = new Date(b.metadata.completedAt || '1900-01-01')
-    return bDate.getTime() - aDate.getTime() // Newest first
-  }).slice(0, 9)
-
-  const blogPosts = getBlogPosts().sort((a, b) => {
-    const aDate = new Date(a.metadata.publishedAt || '1900-01-01')
-    const bDate = new Date(b.metadata.publishedAt || '1900-01-01')
-    return bDate.getTime() - aDate.getTime() // Newest first
-  }).slice(0, 9)
+  const portfolioProjects = getFeaturedPortfolioProjects()
+  const blogPosts = getFeaturedBlogPosts()
 
   return (
     <div className="overflow-x-hidden">
@@ -26,7 +16,7 @@ export default function Page() {
         <ContentListHomeResponsive 
           title={
             <div className="flex items-center gap-2">
-              <span>Portfolio</span>
+              <span>Featured Projects</span>
               <span className="text-sm text-neutral-600 dark:text-neutral-400 font-normal">
                 (<a href="/portfolio/resume" className="underline hover:text-neutral-800 dark:hover:text-neutral-200 transition-colors">resume</a>)
               </span>
@@ -40,13 +30,14 @@ export default function Page() {
             image: project.metadata.image,
             video: project.metadata.video,
             summary: project.metadata.summary,
+            ctas: project.metadata.ctas,
           }))}
           viewAllHref="/portfolio"
           viewAllText="see all Projects"
           variant="compact"
         />
         <ContentListHomeResponsive 
-          title="Blog Posts"
+          title="Featured Blogs"
           items={blogPosts.map((post) => ({
             date: post.metadata.publishedAt,
             title: post.metadata.title,
