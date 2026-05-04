@@ -207,7 +207,7 @@ table {
 /* Print optimizations */
 @media print {
   @page {
-    margin: 12mm;
+    margin: 10mm;
   }
   body {
     -webkit-print-color-adjust: exact;
@@ -301,6 +301,10 @@ table {
 
 @media print {
   .resume-zoom {
-    zoom: 0.73;
+    zoom: 0.72;
+    width: calc((8.5in - 20mm) / 0.72);
+    max-width: none;
+    margin-left: 0;
+    margin-right: 0;
   }
 }
