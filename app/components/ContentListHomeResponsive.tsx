@@ -18,6 +18,11 @@ interface ContentListHomeResponsiveProps {
     collection?: string
     image?: string
     video?: string
+    ctas?: Array<{
+      label: string
+      href: string
+      icon?: string
+    }>
   }>
 }
 
@@ -49,9 +54,9 @@ export function ContentListHomeResponsive({
             {items.map((item, index) => {
               const hasMedia = !!(item.image || item.video)
               return (
-              <Link key={`item-${item.title}-${index}`} href={item.href} className="block group">
-                <div 
-                  className={`px-4 py-3 rounded-lg border border-neutral-200 dark:border-neutral-800 hover:border-neutral-300 dark:hover:border-neutral-700 transition-all duration-300 hover:shadow-lg hover:-translate-y-1 hover:scale-[1.02] flex flex-col justify-between relative overflow-hidden ${
+              <article key={`item-${item.title}-${index}`} className="group relative">
+                <div
+                  className={`px-4 py-3 rounded-lg border border-neutral-200 dark:border-neutral-800 group-hover:border-neutral-300 dark:group-hover:border-neutral-700 transition-all duration-300 group-hover:shadow-lg group-hover:-translate-y-1 group-hover:scale-[1.02] flex flex-col justify-between relative overflow-hidden ${
                     hasMedia ? 'h-48' : 'h-32'
                   }`}
                   style={{
@@ -76,8 +81,11 @@ export function ContentListHomeResponsive({
                   {hasMedia && (
                     <div className="absolute inset-0 bg-black/60 backdrop-blur-[0.5px]"></div>
                   )}
+                  <Link href={item.href} className="absolute inset-0 z-10">
+                    <span className="sr-only">View {item.title}</span>
+                  </Link>
                   
-                  <div className={`flex flex-col h-full ${hasMedia ? 'relative z-10' : ''}`}>
+                  <div className={`flex flex-col h-full pointer-events-none ${hasMedia ? 'relative z-20' : 'relative z-20'}`}>
                     <div className="flex flex-col gap-1 mb-2">
                       <h3 className={`font-medium transition-colors text-sm ${
                         hasMedia 
@@ -109,32 +117,48 @@ export function ContentListHomeResponsive({
                         {item.summary}
                       </p>
                     )}
-                    {item.date && (
-                      <span className={`text-xs mt-auto text-right ${
-                        hasMedia 
-                          ? 'text-neutral-300 drop-shadow-lg' 
-                          : 'text-neutral-400 dark:text-neutral-500'
-                      }`}>
-                        {getRelativeDate(item.date)}
-                      </span>
+                    {(item.date || item.ctas?.length) && (
+                      <div className="mt-auto flex items-end justify-between gap-2">
+                        {item.ctas?.length ? (
+                          <div className="flex flex-wrap gap-1 pointer-events-auto">
+                            {item.ctas.map((cta, ctaIndex) => (
+                              <a
+                                key={`${cta.href}-${ctaIndex}`}
+                                href={cta.href}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className={`rounded-full px-2 py-1 text-[10px] font-medium transition-colors ${
+                                  hasMedia
+                                    ? 'bg-white/20 text-white hover:bg-white/30 border border-white/30 backdrop-blur-sm'
+                                    : 'bg-neutral-100 text-neutral-700 hover:bg-neutral-200 dark:bg-neutral-800 dark:text-neutral-200 dark:hover:bg-neutral-700'
+                                }`}
+                              >
+                                {cta.icon && <span className="mr-1">{cta.icon}</span>}
+                                {cta.label}
+                              </a>
+                            ))}
+                          </div>
+                        ) : (
+                          <span />
+                        )}
+                        {item.date && (
+                          <span className={`text-xs whitespace-nowrap ${
+                            hasMedia 
+                              ? 'text-neutral-300 drop-shadow-lg' 
+                              : 'text-neutral-400 dark:text-neutral-500'
+                          }`}>
+                            {getRelativeDate(item.date)}
+                          </span>
+                        )}
+                      </div>
                     )}
                   </div>
                 </div>
-              </Link>
+              </article>
               )
             })}
           </div>
         </div>
-        {showViewAll && viewAllHref && (
-          <div className="flex justify-center mt-6">
-            <Link 
-              href={viewAllHref}
-              className="text-sm text-neutral-600 dark:text-neutral-400 hover:text-neutral-800 dark:hover:text-neutral-200 transition-colors"
-            >
-              {viewAllText} →
-            </Link>
-          </div>
-        )}
       </div>
     )
   }
@@ -186,16 +210,6 @@ export function ContentListHomeResponsive({
           </Link>
         ))}
       </div>
-      {showViewAll && viewAllHref && (
-        <div className="flex justify-center mt-6">
-          <Link 
-            href={viewAllHref}
-            className="text-sm text-neutral-600 dark:text-neutral-400 hover:text-neutral-800 dark:hover:text-neutral-200 transition-colors"
-          >
-            {viewAllText} →
-          </Link>
-        </div>
-      )}
     </div>
   )
 } 

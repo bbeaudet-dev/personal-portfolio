@@ -1,5 +1,4 @@
-import { getPortfolioProjects } from 'app/portfolio/utils'
-import { formatDate } from 'app/blog/utils'
+import { getFeaturedPortfolioProjects, getPortfolioProjects } from 'app/portfolio/utils'
 import { ContentListHomeResponsive } from 'app/components/ContentListHomeResponsive'
 
 export const metadata = {
@@ -8,6 +7,7 @@ export const metadata = {
 }
 
 export default function Page() {
+  const featuredProjects = getFeaturedPortfolioProjects().slice(0, 6)
   const allProjects = getPortfolioProjects().sort((a, b) => {
     // Sort by date, newest first
     const aDate = new Date(a.metadata.completedAt || '1900-01-01')
@@ -21,7 +21,23 @@ export default function Page() {
         View Resume
       </a>
       <ContentListHomeResponsive
-        title="Portfolio Projects"
+        title="Featured Projects"
+        variant="compact"
+        showViewAll={false}
+        items={featuredProjects.map(project => ({
+          date: project.metadata.completedAt,
+          title: project.metadata.title,
+          href: `/portfolio/${project.slug}`,
+          tags: project.metadata.tags || [],
+          summary: project.metadata.summary,
+          image: project.metadata.image,
+          video: project.metadata.video,
+          ctas: project.metadata.ctas,
+          collection: 'portfolio'
+        }))}
+      />
+      <ContentListHomeResponsive
+        title="All Projects"
         variant="compact"
         showViewAll={false}
         items={allProjects.map(project => ({
@@ -32,6 +48,7 @@ export default function Page() {
           summary: project.metadata.summary,
           image: project.metadata.image,
           video: project.metadata.video,
+          ctas: project.metadata.ctas,
           collection: 'portfolio'
         }))}
       />
