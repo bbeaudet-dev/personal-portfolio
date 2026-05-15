@@ -104,7 +104,7 @@ export default function Resume() {
               </div>
               <ul className="list-disc list-outside ml-5 space-y-1 text-sm resume-bullets">
                 <li>Designed firmware architecture and BLE/Wi-Fi communication protocols for real-time sensor streaming from smart footwear and headgear devices to companion mobile apps</li>
-                <li>Consulted with CMs on hardware specs and production; integrated ±1cm-accurate customer fit tool on Shopify</li>
+                <li>Consulted with CMs on hardware specs and production; integrated ±1cm-accurate customer sizing tool</li>
               </ul>
             </div>
 
