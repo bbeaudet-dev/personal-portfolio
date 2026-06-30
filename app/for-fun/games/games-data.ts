@@ -36,6 +36,12 @@ export const gamesData: GameData[] = [
     achievements: [{ title: '112% Completion', description: 'Achieved full game completion' }, { title: 'Steel Soul', description: 'Completed Steel Soul mode' }]
   },
   {
+    // Hollow Knight: Silksong
+    rating: 8, periods: ['adult'], slug: 'silksong', title: 'Hollow Knight: Silksong',
+    series: [{ title: 'Hollow Knight: Silksong', platform: 'Switch' }],
+    images: ['/images-games/silksong.jpg']
+  },
+  {
     // Inside
     rating: 5, periods: ['adult'], slug: 'inside', title: 'Inside',
     series: [{ title: 'Inside', platform: 'Switch' }],
@@ -75,7 +81,7 @@ export const gamesData: GameData[] = [
   },
   {
     // Minecraft
-    rating: 7, periods: ['teenager', 'childhood'], slug: 'minecraft', title: 'Minecraft',
+    rating: 8, periods: ['teenager', 'childhood'], slug: 'minecraft', title: 'Minecraft',
     series: [{ title: 'Minecraft', platform: 'PC' }],
     images: ['/images-games/minecraft.webp']
   },
@@ -223,6 +229,12 @@ export const gamesData: GameData[] = [
     images: ['/images-games/subnautica.jpg', '/images-games/subnautica-below-zero.avif']
   },
   {
+    // Subnautica 2
+    rating: 5, periods: ['adult'], slug: 'subnautica-2', title: 'Subnautica 2',
+    series: [{ title: 'Subnautica 2', platform: 'PC' }],
+    images: ['/images-games/subnautica-2.webp']
+  },
+  {
     // Celeste
     rating: 10, periods: ['adult'], slug: 'celeste', title: 'Celeste',
     series: [{ title: 'Celeste', platform: 'Switch' }],
@@ -330,5 +342,11 @@ export const gamesData: GameData[] = [
     rating: 10, periods: ['adult'], slug: 'blue-prince', title: 'Blue Prince',
     series: [{ title: 'Blue Prince', platform: 'PC' }],
     images: ['/images-games/blue-prince.jpg']
+  },
+  {
+    // Viewfinder
+    rating: 7, periods: ['adult'], slug: 'viewfinder', title: 'Viewfinder',
+    series: [{ title: 'Viewfinder', platform: 'PC' }],
+    images: ['/images-games/viewfinder.avif']
   }
 ] 
